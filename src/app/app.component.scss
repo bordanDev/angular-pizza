@@ -1,0 +1,12 @@
+app-header {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+
+    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(3px);
+}
+
+app-not-found {
+    height: 100vh;
+}

@@ -1,0 +1,29 @@
+.breadcrumbs {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    li {
+        &:not(:last-child)::after {
+            display: inline-flex;
+            content: '/';
+            margin: 0 12px;
+        }
+
+        &:last-child {
+            color: darken(white, 40%);
+
+            a {
+                cursor: default;
+            }
+        }
+
+
+
+        &:not(:last-child)a:hover {
+            color: #FE5F00;
+        }
+    }
+
+
+}

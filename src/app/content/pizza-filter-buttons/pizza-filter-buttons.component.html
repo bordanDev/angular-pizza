@@ -1,0 +1,6 @@
+<div class="content-group-filter">
+    <div *ngFor="let button of filterButtonsTexts, let i = index">
+        <app-button [filterButtonActive]="button.active" [filterButton]="true" (click)="setActiveButton(i, button.text)"
+            [text]="''">{{ button.text }}</app-button>
+    </div>
+</div>

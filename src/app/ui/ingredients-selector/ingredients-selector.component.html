@@ -1,0 +1,6 @@
+<div class="selector" [ngClass]="{'active': item.state}" (click)="setActive(i)"
+    *ngFor="let item of ingredients; let i = index">
+    <img [src]="item.imgUrl" class="selector-img">
+    <p class="selector-title">{{ item.title }}</p>
+    <span class="selector-price">{{ item.price }} $</span>
+</div>

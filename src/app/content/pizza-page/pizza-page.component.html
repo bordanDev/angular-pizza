@@ -1,0 +1,36 @@
+<div class="pizza">
+    <div class="pizza-img">
+        <img src="assets/images/big-size-6.png" alt="">
+    </div>
+    <div class="pizza-constructor">
+        <h2 class="h2 pizza-title">Meat</h2>
+        <p class="pizza-types">{{
+            activePizzaSize === 'Small' ? '25' :
+            activePizzaSize === 'Middle' ? '35' :
+            activePizzaSize === 'Big' ? '45' : 'N/A' }} см, {{ activePizzaThickness.toLowerCase() + ' ' + 'thickness'
+            }}, ~400
+            g
+        </p>
+        <div class="pizza-types--switchers">
+            <app-switch [items]="pizzaSizeArray" (activeChange)="onSwitchSize($event)"></app-switch>
+            <app-switch [items]="pizzaThicknessArray" (activeChange)="onSwitchThickness($event)"></app-switch>
+        </div>
+
+        <div class="pizza-ingredients--container">
+            <p class="pizza-ingredients--title">Ingredients <span class="counter"
+                    *ngIf="selectedIngredients.length !== 0">Выбрано
+                    ингридиентов {{ selectedIngredients.length }}x</span>
+            </p>
+        </div>
+        <app-ingredients-selector [ingredients]="testIngredients"
+            (activatedSelector)="onSelectedIngredientsChanged($event)"></app-ingredients-selector>
+
+        <app-button [buttonSize]="'big'" [text]="''">Добавить в корзину за
+            <!-- <div *ngFor="let item of selectedIngredients; let i = index">
+                {{ pizzaStaticPrice }}
+            </div> $ -->
+            {{ totalPrice.toFixed(2) }}
+        </app-button>
+    </div>
+
+</div>

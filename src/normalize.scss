@@ -1,0 +1,183 @@
+// Normalize Styles in SCSS
+
+html {
+    line-height: 1.15; // Увеличивает читаемость
+    -webkit-text-size-adjust: 100%; // Исправляет резиновый текст в Safari
+}
+
+body {
+    margin: 0; // Убирает стандартный отступ
+}
+
+main {
+    display: block; // Исправляет отображение в IE
+}
+
+h1 {
+    font-size: 2em; // Приведение к единообразию
+    margin: 0.67em 0;
+}
+
+hr {
+    box-sizing: content-box; // Исправляет поведение в браузерах
+    height: 0;
+    overflow: visible;
+}
+
+pre {
+    font-family: monospace, monospace; // Приведение шрифта к единообразию
+    font-size: 1em;
+}
+
+a {
+    background-color: transparent; // Убирает фон у ссылок
+}
+
+abbr[title] {
+    border-bottom: none; // Исправляет стиль у аббревиатур
+    text-decoration: underline dotted;
+}
+
+b,
+strong {
+    font-weight: bolder; // Приведение жирности к единообразию
+}
+
+code,
+kbd,
+samp {
+    font-family: monospace, monospace; // Приведение шрифта к единообразию
+    font-size: 1em;
+}
+
+small {
+    font-size: 80%; // Приведение размера к единообразию
+}
+
+sub,
+sup {
+    font-size: 75%; // Приведение размера к единообразию
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+
+sub {
+    bottom: -0.25em;
+}
+
+sup {
+    top: -0.5em;
+}
+
+img {
+    border-style: none; // Убирает рамку у изображений
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+    font-family: inherit; // Наследование шрифта
+    font-size: 100%; // Приведение размера к единообразию
+    line-height: 1.15;
+    margin: 0; // Убирает стандартные отступы
+}
+
+button,
+input {
+    overflow: visible; // Исправляет отображение в IE
+}
+
+button,
+select {
+    text-transform: none; // Исправляет стиль текста
+}
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+    -webkit-appearance: button; // Исправляет стиль кнопок
+}
+
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+    border-style: none;
+    padding: 0;
+}
+
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
+    outline: 1px dotted ButtonText;
+}
+
+fieldset {
+    padding: 0.35em 0.75em 0.625em; // Исправляет отступы
+}
+
+legend {
+    box-sizing: border-box;
+    color: inherit; // Исправляет стиль текста
+    display: table; // Исправляет отображение в IE
+    max-width: 100%;
+    white-space: normal;
+}
+
+progress {
+    vertical-align: baseline; // Исправляет выравнивание
+}
+
+textarea {
+    overflow: auto; // Исправляет отображение в IE
+}
+
+[type="checkbox"],
+[type="radio"] {
+    box-sizing: border-box; // Исправляет стиль в IE
+    padding: 0;
+}
+
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+    height: auto;
+}
+
+[type="search"] {
+    -webkit-appearance: textfield; // Исправляет стиль
+    outline-offset: -2px;
+}
+
+[type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none; // Убирает оформление
+}
+
+::-webkit-file-upload-button {
+    -webkit-appearance: button; // Исправляет стиль
+    font: inherit;
+}
+
+details {
+    display: block; // Исправляет отображение
+}
+
+summary {
+    display: list-item; // Исправляет стиль
+}
+
+template {
+    display: none; // Исправляет отображение
+}
+
+[hidden] {
+    display: none; // Скрывает элементы
+}
+
+li {
+    list-style-type: none;
+}

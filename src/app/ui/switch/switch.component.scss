@@ -1,0 +1,41 @@
+.switcher {
+    display: flex;
+    position: relative;
+    border-radius: 1000px;
+    padding: 2px;
+    overflow: hidden;
+    background-color: #f5f5f5;
+
+    &-button {
+
+        flex: 1;
+        text-align: center;
+        padding: 10px 0;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        border-radius: inherit;
+        z-index: 99;
+        transition: 0.15s ease;
+
+        // &:hover {
+        //     background-color: #e1e1e1;
+        // }
+
+        &.active {
+            font-weight: bold;
+        }
+    }
+
+    &-highlight {
+        position: absolute;
+        height: calc(100% - 4px);
+        background-color: white;
+        border-radius: 1000px;
+        width: calc((100% - 4px) / var(--button-count));
+        /* Ширина зависит от количества кнопок */
+        transition: transform 0.3s ease;
+        transform: translateX(calc(var(--button-active) * 100%));
+        /* Позиция активной кнопки */
+        z-index: 80;
+    }
+}

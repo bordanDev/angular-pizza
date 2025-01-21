@@ -1,0 +1,74 @@
+.pizza {
+    display: flex;
+
+    gap: 48px;
+
+    &-img {
+        img {
+            width: 100%;
+        }
+
+        padding: 48px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        aspect-ratio: 1/1;
+        width: 100%;
+        max-width: 570px;
+        background-color: #FFF7EE;
+        border-radius: 16px;
+    }
+
+    &-title {
+        margin-bottom: 12px;
+        font-weight: 800;
+    }
+
+    &-types {
+        margin-bottom: 32px;
+        color: darken(#FFFFFF, 40%);
+
+        &--switchers {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+    }
+
+    &-ingredients--title {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 16px;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        align-items: center;
+
+        .counter {
+            color: #FE5F00;
+        }
+    }
+
+    &-ingredients--container {
+        display: inline-flex;
+    }
+
+    &-constructor {
+        display: inline-flex;
+        flex-direction: column;
+        width: 100%;
+
+
+
+        app-switch {
+            width: 100%;
+        }
+
+        app-ingredients-selector {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 64px;
+        }
+    }
+}

@@ -1,0 +1,134 @@
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background-color: #FE5F00;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 14px 20px;
+    border: unset;
+    border-radius: 16px;
+    text-wrap: nowrap;
+    cursor: pointer;
+    line-height: 20px;
+
+    &-lg {
+        padding: 16px 40px !important
+    }
+
+    &:hover {
+        background-color: #e25402;
+
+        svg {
+            .stroke-only {
+                stroke: #c74b03 !important; // Цвет обводки при наведении
+            }
+
+            .fill-only {
+                fill: #c74b03 !important; // Цвет заливки при наведении
+            }
+        }
+
+    }
+
+    &-primary {
+        color: white;
+        padding: 14px 20px;
+        background-color: #FE5F00;
+    }
+
+
+    &-secondary {
+        background-color: #FFFAF4;
+        color: #FE5F00;
+
+        &:hover {
+            background-color: #fff6ec;
+            color: #c74b03;
+
+            svg {
+                path {
+                    &.stroke-only {
+                        stroke: currentColor !important; // Цвет обводки при наведении
+                    }
+
+                    &.fill-only {
+                        fill: currentColor !important; // Цвет заливки при наведении
+                    }
+                }
+            }
+
+        }
+    }
+
+
+    &-outline {
+        color: #FE5F00;
+        background-color: transparent;
+        outline: 2px solid #FE5F00;
+        outline-offset: -2px;
+
+        &:hover {
+            outline-color: #c74b03;
+            background-color: transparent;
+        }
+    }
+
+    &-filled {
+        width: 100%;
+    }
+
+    &-icon {
+        padding: 14px;
+
+        #text {
+            display: none;
+        }
+
+        &-none {
+            svg {
+                display: none;
+            }
+        }
+
+        &-left {
+            svg {
+
+                order: 0;
+            }
+        }
+
+        &-right {
+            svg {
+
+                order: 1;
+            }
+        }
+    }
+
+    // Group button to filtered pizza
+
+    &-filter {
+        background-color: transparent;
+        color: #202020;
+        padding: 10px 16px;
+
+        &:hover {
+            background-color: #eeeeee;
+            color: #202020;
+        }
+
+        &--active {
+            background-color: #fff;
+            color: #FE5F00;
+            box-shadow: 4px 2px 10px -2px rgba(0, 0, 0, 0.05);
+
+            &:hover {
+                background-color: #fdfdfd;
+                color: #FE5F00;
+            }
+        }
+    }
+
+}

@@ -1,0 +1,20 @@
+<button [disabled]="isDisabled" class="button" [ngClass]="{
+    'button-disabled': isDisabled,
+    'button-primary': variant === 'primary' && !isDisabled,
+    'button-secondary': variant === 'secondary' && !isDisabled,
+    'button-outline': variant === 'outline' && !isDisabled,
+    'button-icon-left': iconPosition === 'left' && !isDisabled,
+    'button-icon-right': iconPosition === 'right' && !isDisabled,
+    'button-icon-none': iconPosition === 'none' && !isDisabled,
+    'button-icon':  text === '' && !isDisabled,
+    'button-filter': filterButton && !isDisabled,
+    'button-filter--active': filterButtonActive && !isDisabled,
+    'button-filled': isFilled && !isDisabled,
+    'button-lg' : buttonSize === 'big' && !isDisabled,
+    'button-md' : buttonSize === 'md' && !isDisabled,
+    'button-sm' : buttonSize === 'sm' && !isDisabled
+    }">
+    <ng-content *ngIf="svgIcon"></ng-content>
+    {{ text }}
+    <ng-container></ng-container>
+</button>

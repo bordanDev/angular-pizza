@@ -1,0 +1,15 @@
+.notfound {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    max-width: 840px;
+    align-items: center;
+
+
+    &-left {
+        &--subtitle {
+            color: darken($color: #ffffff, $amount: 40%);
+            margin-bottom: 40px;
+        }
+    }
+}

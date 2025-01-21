@@ -1,0 +1,80 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    max-width: 256px;
+    max-height: 430px;
+    height: 100%;
+    cursor: pointer;
+    position: relative;
+
+    &-image {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        aspect-ratio: 1/1;
+        width: 256px;
+        background-color: #FFF7EE;
+        border-radius: 16px;
+
+        &-tag {
+            display: flex;
+            align-items: center;
+            justify-items: center;
+            padding: 2px 10px;
+            border-radius: 1000px;
+            position: absolute;
+            right: 16px;
+            top: 16px;
+            color: white;
+            background-color: #CECECE;
+
+            &--top {
+                background-color: #FE5F00 !important;
+
+            }
+
+            &--new {
+                background-color: #1BB486 !important;
+            }
+
+            &--none {
+                display: none !important;
+            }
+        }
+    }
+
+    &-title {
+        font-size: 20px;
+        margin-top: 16px;
+    }
+
+    &-ingredients {
+        margin-top: 8px;
+        line-height: 20px;
+        font-size: 14px;
+        color: darken($color: #ffffff, $amount: 40%);
+        flex: 1;
+        overflow-wrap: break-word;
+    }
+
+
+
+}
+
+
+.card-container {
+    margin-top: 12px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+
+    &--price {
+        b {
+            @extend .card-container--price
+        }
+
+        font-size: 20px;
+    }
+}
