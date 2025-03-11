@@ -26,9 +26,6 @@
             (activatedSelector)="onSelectedIngredientsChanged($event)"></app-ingredients-selector>
 
         <app-button [buttonSize]="'big'" [text]="''">Добавить в корзину за
-            <!-- <div *ngFor="let item of selectedIngredients; let i = index">
-                {{ pizzaStaticPrice }}
-            </div> $ -->
             {{ totalPrice.toFixed(2) }}
         </app-button>
     </div>

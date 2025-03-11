@@ -41,4 +41,13 @@
             }
         }
     }
+
+    &-filter{
+        border: 1px solid #F0F0F0;
+        background-color: white;
+        width: unset;
+        &:hover{
+            background-color: unset;
+        }
+    }
 }

@@ -1,0 +1,21 @@
+.wrapper{
+    display: flex;
+    gap: 8px;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+}
+
+.checkbox{
+    background-color: #F1F1F1;
+    border-radius: 8px;
+    display: flex;
+    padding: 6px;
+    width: 12px;
+    aspect-ratio: 1 / 1;
+    cursor: pointer;
+}
+
+.active{
+    background-color: #FE5F00;
+}

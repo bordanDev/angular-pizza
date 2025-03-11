@@ -1,6 +1,16 @@
+:host{
+    display: flex;
+    justify-content: end;
+    justify-content: space-between;
+    gap: 48px;
+    max-width: 1160px;
+    margin: 0 auto;
+}
+
 .list {
     display: flex;
     gap: 40px;
     flex-wrap: wrap;
-    margin-top: 32px;
+    max-width: 850px;
+    justify-content: start;
 }

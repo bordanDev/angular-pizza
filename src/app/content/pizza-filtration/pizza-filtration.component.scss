@@ -1,0 +1,23 @@
+:host{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    max-width: 240px;
+    gap: 24px;
+    position: sticky !important;
+    top: 128px;
+    height: min-content;
+
+}
+
+.wrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.wrapper-h{
+    display: flex;
+    flex-direction: row;
+    gap: 16px
+}

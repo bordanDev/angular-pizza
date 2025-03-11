@@ -10,6 +10,7 @@ import { PizzaListComponent } from './content/pizza-list/pizza-list.component';
 import { UiModule } from './ui/ui.module';
 import { PizzaPageComponent } from './content/pizza-page/pizza-page.component';
 import { NotFoundComponent } from './content/not-found/not-found.component';
+import { PizzaFiltrationComponent } from './content/pizza-filtration/pizza-filtration.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { NotFoundComponent } from './content/not-found/not-found.component';
     PizzaFilterButtonsComponent,
     PizzaListComponent,
     PizzaPageComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    PizzaFiltrationComponent
   ],
   imports: [
     BrowserModule,

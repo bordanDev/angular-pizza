@@ -8,6 +8,8 @@ import { InputComponent } from './input/input.component';
 import { SwitchComponent } from './switch/switch.component';
 import { IngredientsSelectorComponent } from './ingredients-selector/ingredients-selector.component';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
+import { CheckboxComponent } from './checkbox/checkbox.component';
+import { RadioComponent } from './radio/radio.component';
 
 
 
@@ -18,7 +20,9 @@ import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
     InputComponent,
     SwitchComponent,
     IngredientsSelectorComponent,
-    BreadcrumbsComponent
+    BreadcrumbsComponent,
+    CheckboxComponent,
+    RadioComponent
   ],
   imports: [
     CommonModule,
@@ -36,7 +40,9 @@ import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
     InputComponent,
     SwitchComponent,
     IngredientsSelectorComponent,
-    BreadcrumbsComponent
+    BreadcrumbsComponent,
+    CheckboxComponent,
+    RadioComponent
   ]
 })
 export class UiModule { }
