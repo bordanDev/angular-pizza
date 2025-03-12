@@ -39,6 +39,7 @@ export class PizzaListComponent implements OnInit, OnDestroy {
     if (this.subscription) {
       this.subscription.unsubscribe(); // rxjs
     }
+    this.pizzaService.pizzas$
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, HostListener, Input, signal, WritableSignal } from '@angular/core';
+import { Component, signal, WritableSignal } from '@angular/core';
 import { filterOptions } from '../../ui/radio/radio.interface';
 import { Pizza } from '../pizza.model';
 import { PizzaService } from '../service/pizza.service';
@@ -11,19 +11,6 @@ import { PizzaService } from '../service/pizza.service';
 export class PizzaFiltrationComponent {
 
   constructor(private pizzaService: PizzaService) { }
-
-  // @Input() public testData!: boolean;
-
-  // getData(value: boolean){
-  //   this.testData = value
-  // }
-
-  // outputDataFromInput!: string;
-
-  // getDataFromInput(value: string){
-  //   this.outputDataFromInput = value
-  // }
-
 
   selectedFilter = signal('')
   filteredPizzas: WritableSignal<Pizza[]> = signal([])
@@ -40,7 +27,6 @@ export class PizzaFiltrationComponent {
     this.pizzaService.setFilteredPizzas(this.filteredPizzas())
     console.log(this.filteredPizzas())
   }
-
   getThicknessFilteredPizzas(filter: string) {
     return this.pizzaService.mockPizzas.filter(pizza => pizza.thickness === filter);
   }
