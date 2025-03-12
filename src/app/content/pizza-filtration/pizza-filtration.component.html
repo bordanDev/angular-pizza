@@ -38,4 +38,5 @@
     <p>Type of dough</p>
 </b>
 
-<app-radio [options]="filterOptions()" [name]="'thickness'" [selectedValue]="'standard'"></app-radio>
+<app-radio [options]="filterOptions()" [name]="'thickness'" [selectedValue]="this.selectedFilter()"
+    (valueChange)="onFilterChange($event)"></app-radio>

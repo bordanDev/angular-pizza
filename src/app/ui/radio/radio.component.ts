@@ -13,7 +13,7 @@ export class RadioComponent {
 
   valueChange = output<string>()
 
-  onChange(value: string){
+  onChange(value: string) {
     this.valueChange.emit(value)
   }
 
