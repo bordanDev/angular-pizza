@@ -1,4 +1,4 @@
-export interface filterOptions{
+export interface RadioOptions{
     value: string;
     label: string;
 }

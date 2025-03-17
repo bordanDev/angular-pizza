@@ -2,7 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 
 
 @Component({
-  selector: 'app-pizza-filter-buttons',
+  selector: 'app-pizza-types-filter',
   templateUrl: './pizza-filter-buttons.component.html',
   styleUrls: ['./pizza-filter-buttons.component.scss']
 })

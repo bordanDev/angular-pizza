@@ -3,13 +3,14 @@ import { CommonModule } from '@angular/common';
 import { ButtonComponent } from './button/button.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { PizzaCardComponent } from './pizza-card/pizza-card.component';
+import { PizzaCardComponent } from './card/pizza-card.component';
 import { InputComponent } from './input/input.component';
 import { SwitchComponent } from './switch/switch.component';
-import { IngredientsSelectorComponent } from './ingredients-selector/ingredients-selector.component';
+import { IngredientsSelectorComponent } from './additional-selector/ingredients-selector.component';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { CheckboxComponent } from './checkbox/checkbox.component';
 import { RadioComponent } from './radio/radio.component';
+import { IntervalComponent } from './interval/interval.component';
 
 
 
@@ -22,7 +23,8 @@ import { RadioComponent } from './radio/radio.component';
     IngredientsSelectorComponent,
     BreadcrumbsComponent,
     CheckboxComponent,
-    RadioComponent
+    RadioComponent,
+    IntervalComponent
   ],
   imports: [
     CommonModule,
@@ -42,7 +44,8 @@ import { RadioComponent } from './radio/radio.component';
     IngredientsSelectorComponent,
     BreadcrumbsComponent,
     CheckboxComponent,
-    RadioComponent
+    RadioComponent,
+    IntervalComponent
   ]
 })
 export class UiModule { }

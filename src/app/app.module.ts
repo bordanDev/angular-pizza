@@ -5,12 +5,12 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { AuthorizationComponent } from './header/authorization/authorization.component';
 import { ContentComponent } from './content/content.component';
-import { PizzaFilterButtonsComponent } from './content/pizza-filter-buttons/pizza-filter-buttons.component';
-import { PizzaListComponent } from './content/pizza-list/pizza-list.component';
+import { PizzaFilterButtonsComponent } from './content/pizza/pizza-types-filter/pizza-filter-buttons.component';
+import { PizzaListComponent } from './content/pizza/pizza-list/pizza-list.component';
 import { UiModule } from './ui/ui.module';
-import { PizzaPageComponent } from './content/pizza-page/pizza-page.component';
+import { PizzaPageComponent } from './content/pizza/pizza-page/pizza-page.component';
 import { NotFoundComponent } from './content/not-found/not-found.component';
-import { PizzaFiltrationComponent } from './content/pizza-filtration/pizza-filtration.component';
+import { PizzaFiltrationComponent } from './content/pizza/pizza-filtration/pizza-filtration.component';
 
 @NgModule({
   declarations: [

@@ -1,6 +1,6 @@
 <div class="pizza">
     <div class="pizza-img">
-        <img src="assets/images/big-size-6.png" alt="">
+        <img src="../../../../assets/images/big-size.png" alt="">
     </div>
     <div class="pizza-constructor">
         <h2 class="h2 pizza-title">Meat</h2>
@@ -22,8 +22,7 @@
                     ингридиентов {{ selectedIngredients.length }}x</span>
             </p>
         </div>
-        <app-ingredients-selector [ingredients]="testIngredients"
-            (activatedSelector)="onSelectedIngredientsChanged($event)"></app-ingredients-selector>
+        <app-additional-selector [ingredients]="testIngredients"></app-additional-selector>
 
         <app-button [buttonSize]="'big'" [text]="''">Добавить в корзину за
             {{ totalPrice.toFixed(2) }}

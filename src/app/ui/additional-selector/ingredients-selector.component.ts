@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { PizzaAdditionalIngredients } from '../../content/pizza.model';
 
 @Component({
-  selector: 'app-ingredients-selector',
+  selector: 'app-additional-selector',
   templateUrl: './ingredients-selector.component.html',
   styleUrl: './ingredients-selector.component.scss'
 })

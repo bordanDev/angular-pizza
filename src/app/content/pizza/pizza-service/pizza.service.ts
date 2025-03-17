@@ -1,31 +1,15 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { Pizza } from '../pizza.model';
-import { filterOptions } from '../../ui/radio/radio.interface';
+import {Injectable, OnInit} from '@angular/core';
+import {BehaviorSubject, Observable} from 'rxjs';
+import { Pizza } from '../../pizza.model';
+import { RadioOptions } from '../../../ui/radio/radio.interface';
+import { Interval } from "../../../ui/interval/interval.interface";
 
 @Injectable({
   providedIn: 'root'
 })
-export class PizzaService {
-  // Мы должны применить существующий класс из библиотеки rxjs для сохранения текущих данных
-  // Создаём публичный объект
+export class PizzaService{
 
-  public categoryData = new BehaviorSubject<string>('All'); // rxjs потребует первоначальное значение 
-  // Была мысль передавать в инициализируемое зачение то, что находится в компоненте фильтрации, где в массиве есть поле active true
-
-  // Теперь мы имеем объект которым можем оперировать для сохранения данных о фильтрации
-  // this.nameRXJS.subscrive будет подписывать участника(наш компонент) на получение данных
-  // Но есть предложение создать переменную по которой компоненты смогут подписываться на обновления
-
-  // Видимо под такое выделяют отдельный синтаксис прописывая в конце доллар как в php
-  category$ = this.categoryData.asObservable(); // Применяя переменную, мы пользуемся нашим созданным сервисом(если подключим к компоненту сервис в конструктор)
-
-  // Создаём метод сервиса, который будет обновлять данные и уведомлять всех подписчиков которые подписались на обновления
-  setCategory(dataCategory: string) { // Получает строку
-    this.categoryData.next(dataCategory) // Устанавливает новым значением полученную строку
-  }
-
-  public mockPizzas = [
+  private readonly mockPizzas = [
     {
       id: 1,
       type: 'All',
@@ -117,21 +101,49 @@ export class PizzaService {
       thickness: 'thin' // Случайное значение
     }
   ];
-
-  public doughFiltrationConfig: filterOptions[] = [
+  private doughFiltrationConfig: RadioOptions[] = [
     { value: 'standard', label: 'thickness1' },
     { value: 'thin', label: 'thickness2' }
   ]
+  private intervalConfig: Interval[] = [ { minValue: 0, maxValue: undefined } ]
 
-  public obsPizzas = new BehaviorSubject<Pizza[]>(this.mockPizzas.filter(pizza => pizza.thickness === this.doughFiltrationConfig[0].value))
-  pizzas$ = this.obsPizzas.asObservable();
+  private intervalData: BehaviorSubject<Interval[]> = new BehaviorSubject<Interval[]>(this.intervalConfig)
+  interval$: Observable<Interval[]> = this.intervalData.asObservable();
 
-  setFilteredPizzas(pizzas: Pizza[]) {
-    this.obsPizzas.next(pizzas)
+  setIntervalData(value: Interval[]) {
+    this.intervalData.next(value)
+  }
+  getIntervalData() {
+    return this.intervalData.getValue()
   }
 
-  getFilteredPizzas(): Pizza[] {
-    return this.obsPizzas.getValue()
+  private categoryData = new BehaviorSubject<string>('All'); // rxjs потребует первоначальное значение
+  category$ = this.categoryData.asObservable(); // Применяя переменную, мы пользуемся нашим созданным сервисом(если подключим к компоненту сервис в конструктор)
+
+  setCategory(dataCategory: string) {
+    this.categoryData.next(dataCategory)
+  }
+  getCategory() {
+    return this.categoryData.getValue()
+  }
+
+  constructor() {
+    // console.log(this.getCategory())
+  }
+
+  private doughTypesSubject: BehaviorSubject<RadioOptions[]> = new BehaviorSubject<RadioOptions[]>(this.doughFiltrationConfig)
+  doughTypes$: Observable<RadioOptions[]> = this.doughTypesSubject.asObservable()
+
+  /////////////////////////////////
+  /////////////////////////////////
+  private pizzasSubject = new BehaviorSubject<Pizza[]>(this.mockPizzas)
+  pizzas$: Observable<Pizza[]> = this.pizzasSubject.asObservable();
+
+  setPizzas(pizzas: Pizza[]) {
+    this.pizzasSubject.next(pizzas)
+  }
+  getPizzas(): Pizza[] {
+    return this.pizzasSubject.getValue()
   }
 
 }

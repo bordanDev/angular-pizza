@@ -10,6 +10,7 @@ export interface Pizza {
     price: number;
     imgUrl: string;
     tag: string;
+    thickness: string;
 }
 
 // Как подключить?

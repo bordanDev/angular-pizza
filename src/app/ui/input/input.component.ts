@@ -26,15 +26,15 @@ export class InputComponent {
   @ViewChild("input") input: any;
 
   constructor(private renderer: Renderer2) { // Renderer 2 - обходной класс созданный для создания кастомных UI решений
-    // this.renderer.listen('window', 'click', (e: Event) => {
-    //   if (e.target == this.input.nativeElement || e.target == this.inputField.nativeElement) {
-    //     this.inputActive = true;
-    //     this.inputField.nativeElement.focus();
-    //   } else {
-    //     this.inputActive = false;
-    //     this.inputField.nativeElement.blur();
-    //   }
-    // });
+    this.renderer.listen('window', 'click', (e: Event) => {
+      if (e.target == this.input.nativeElement || e.target == this.inputField.nativeElement) {
+        this.inputActive = true;
+        this.inputField.nativeElement.focus();
+      } else {
+        this.inputActive = false;
+        this.inputField.nativeElement.blur();
+      }
+    });
 
     this.control.valueChanges.subscribe(value => {
       this.valueChange.emit(value!);

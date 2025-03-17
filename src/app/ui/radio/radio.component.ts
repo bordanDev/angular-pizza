@@ -1,5 +1,5 @@
 import { Component, input, Input, output } from '@angular/core';
-import { filterOptions } from './radio.interface';
+import { RadioOptions } from './radio.interface';
 
 @Component({
   selector: 'app-radio',
@@ -7,7 +7,7 @@ import { filterOptions } from './radio.interface';
   styleUrl: './radio.component.scss'
 })
 export class RadioComponent {
-  options = input.required<filterOptions[]>()
+  options = input.required<RadioOptions[]>()
   name = input<string>('')
   selectedValue = input<string>('')
 

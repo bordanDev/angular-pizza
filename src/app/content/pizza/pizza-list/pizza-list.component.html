@@ -1,0 +1,11 @@
+<!-- <app-pizza-types-filter></app-pizza-types-filter> -->
+
+<app-pizza-filtration></app-pizza-filtration>
+
+<div class="list">
+    <div *ngFor="let pizza of pizzaList(); let i = index">
+        <app-card routerLink="pizza" [pizzaTag]="pizza.tag" [pizzaTitle]="pizza.title"
+            [pizzaIngredients]="pizza.ingredients" [pizzaPrice]="pizza.price" [pizzaImgUrl]="'pizza.imgUrl'">
+        </app-card>
+    </div>
+</div>
