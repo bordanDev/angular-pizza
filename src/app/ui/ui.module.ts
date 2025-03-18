@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ButtonComponent } from './button/button.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { PizzaCardComponent } from './card/pizza-card.component';
+import { CardComponent } from './card/card.component';
 import { InputComponent } from './input/input.component';
 import { SwitchComponent } from './switch/switch.component';
 import { IngredientsSelectorComponent } from './additional-selector/ingredients-selector.component';
@@ -17,7 +17,7 @@ import { IntervalComponent } from './interval/interval.component';
 @NgModule({
   declarations: [
     ButtonComponent,
-    PizzaCardComponent,
+    CardComponent,
     InputComponent,
     SwitchComponent,
     IngredientsSelectorComponent,
@@ -38,7 +38,7 @@ import { IntervalComponent } from './interval/interval.component';
     ReactiveFormsModule,
     RouterModule,
     ButtonComponent,
-    PizzaCardComponent,
+    CardComponent,
     InputComponent,
     SwitchComponent,
     IngredientsSelectorComponent,

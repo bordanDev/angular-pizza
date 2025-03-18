@@ -22,9 +22,7 @@
             </svg>
 
         </a>
-        <app-input [type]="'search'" [placeholder]="'Search pizza...'"></app-input>
+        <app-input #inputField></app-input>
         <app-authorization></app-authorization>
     </nav>
-
-    <div #background class="background" *ngIf="searchActive"></div>
 </div>

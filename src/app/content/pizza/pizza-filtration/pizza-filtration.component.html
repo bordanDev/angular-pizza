@@ -37,8 +37,10 @@
 <b>
     <p>Price Filter</p>
 </b>
-
-<app-interval></app-interval>
+<app-interval 
+  [minValue]="(selectedInterval()[0]?.minValue ?? '').toString()" 
+  [maxValue]="(selectedInterval()[0]?.maxValue ?? '').toString()">
+</app-interval>
 
 <div style="display: flex; width: 100%; height: 1px; background-color: #F6F6F6;"></div>
 
@@ -46,5 +48,4 @@
     <p>Type of dough</p>
 </b>
 
-<app-radio [options]="filterOptions()" [name]="'thickness'" [selectedValue]="this.selectedFilter()" (valueChange)="onFilterChange($event
-)"></app-radio>
+<app-radio [options]="filterOptions()" [name]="'thickness'" [selectedValue]="this.selectedFilter()" (valueChange)="onFilterChange($event)"></app-radio>

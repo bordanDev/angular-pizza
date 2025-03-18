@@ -1,30 +1,15 @@
-import {Component, OnInit} from '@angular/core';
-import {PizzaService} from "../../content/pizza/pizza-service/pizza.service";
+import {Component, input} from '@angular/core';
+
 
 @Component({
   selector: 'app-interval',
   templateUrl: './interval.component.html',
   styleUrl: './interval.component.scss'
 })
-export class IntervalComponent implements OnInit {
+export class IntervalComponent{
 
-  constructor(private pizzaService: PizzaService){
+  minValue = input<string>()
+  maxValue = input<string>() 
 
-  }
-
-  inputMin: string = '0';
-  inputMax!: string;
-
-  ngOnInit(){
-    // this.setInputValueMin()
-  }
-
-  setInputValueMin(value: string){
-    this.inputMin = value;
-  }
-
-  setInputValueMax(value: string){
-    this.inputMax = value;
-  }
-
+  
 }

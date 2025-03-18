@@ -1,4 +1,4 @@
-import {Injectable, OnInit} from '@angular/core';
+import {computed, Injectable, input, OnInit, output, signal, WritableSignal} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 import { Pizza } from '../../pizza.model';
 import { RadioOptions } from '../../../ui/radio/radio.interface';
@@ -105,34 +105,16 @@ export class PizzaService{
     { value: 'standard', label: 'thickness1' },
     { value: 'thin', label: 'thickness2' }
   ]
-  private intervalConfig: Interval[] = [ { minValue: 0, maxValue: undefined } ]
-
-  private intervalData: BehaviorSubject<Interval[]> = new BehaviorSubject<Interval[]>(this.intervalConfig)
-  interval$: Observable<Interval[]> = this.intervalData.asObservable();
-
-  setIntervalData(value: Interval[]) {
-    this.intervalData.next(value)
-  }
-  getIntervalData() {
-    return this.intervalData.getValue()
-  }
-
-  private categoryData = new BehaviorSubject<string>('All'); // rxjs потребует первоначальное значение
-  category$ = this.categoryData.asObservable(); // Применяя переменную, мы пользуемся нашим созданным сервисом(если подключим к компоненту сервис в конструктор)
-
-  setCategory(dataCategory: string) {
-    this.categoryData.next(dataCategory)
-  }
-  getCategory() {
-    return this.categoryData.getValue()
-  }
-
-  constructor() {
-    // console.log(this.getCategory())
-  }
+  private intervalConfig: Interval[] = [ { minValue: 0, maxValue: 1000 } ]
 
   private doughTypesSubject: BehaviorSubject<RadioOptions[]> = new BehaviorSubject<RadioOptions[]>(this.doughFiltrationConfig)
   doughTypes$: Observable<RadioOptions[]> = this.doughTypesSubject.asObservable()
+
+  getDoughTypes(): RadioOptions[] {
+    return this.doughTypesSubject.getValue()
+  }
+
+  // public doughTypesSubject = output<RadioOptions[]>(this.doughFiltrationConfig)
 
   /////////////////////////////////
   /////////////////////////////////
@@ -144,6 +126,21 @@ export class PizzaService{
   }
   getPizzas(): Pizza[] {
     return this.pizzasSubject.getValue()
+  }
+  refreshPizzas() {
+    this.pizzasSubject.next(this.mockPizzas)
+  }
+
+
+  private intervalData = new BehaviorSubject<Interval[]>(this.intervalConfig)
+  interval$ = this.intervalData.asObservable()
+
+  public setInterval(interval: Interval[]): void{
+    this.intervalData.next(interval)
+  }
+
+  public get getInterval(): Interval[]{
+    return this.intervalData.getValue()
   }
 
 }

@@ -1,4 +1,21 @@
-<div #input class="input input-search" [ngClass]="{ 'input-filter' : inputType === 'filter' }">
-    <input #inputField class="input-search--field" [placeholder]="placeholder" [type]="type">
+<div #input class="input input-search" [ngClass]="{'input-filter' : inputType === 'filter'}">
+    <input #inputField class="input-search--field" [value]="value" [placeholder]="placeholder">
     <ng-content/>
 </div>
+
+
+<!-- 
+
+placeholder
+value
+inputType
+inputActive
+
+iconPosition
+functionalIconButton
+type
+label -
+name -
+
+
+-->

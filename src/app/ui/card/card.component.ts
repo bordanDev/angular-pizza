@@ -2,10 +2,10 @@ import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-card',
-  templateUrl: './pizza-card.component.html',
-  styleUrl: './pizza-card.component.scss'
+  templateUrl: './card.component.html',
+  styleUrl: './card.component.scss'
 })
-export class PizzaCardComponent {
+export class CardComponent {
 
   @Input() pizzaTitle: string = 'Pizza Title';
 

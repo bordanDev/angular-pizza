@@ -1,5 +1,11 @@
-import { Component, EventEmitter, Input, Output, Renderer2, ViewChild } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
 
 @Component({
   selector: 'app-input',
@@ -12,32 +18,40 @@ export class InputComponent {
   @Input() public inputType: 'default' | 'filter' = 'default'
   @Input() public functionalIconButton: boolean = false
   @Input() public type = 'text'
-  @Input() public label = ''
-  @Input() public name = ''
   @Input() public placeholder: string = ''
-  @Input() public value = ''
+  @Input() public value: string = ''
   @Input() public inputActive: boolean = false;
 
-  @Output() public valueChange = new EventEmitter<string>();
-  public control = new FormControl('')
-
   @ViewChild("inputField") inputField: any;
-  // #inputField - устанавливая в атрибут тега получаем возможность связываться и получать дату от элемента
   @ViewChild("input") input: any;
 
+  @Output() outputData = new EventEmitter<string>()
+
+  sendData(value: string) {
+    this.outputData.emit(value)
+  }
+
+  private focusListener?: () => void; // Empty function
+
   constructor(private renderer: Renderer2) { // Renderer 2 - обходной класс созданный для создания кастомных UI решений
-    this.renderer.listen('window', 'click', (e: Event) => {
+
+  }
+
+  ngAfterViewInit(){
+    this.focusListener = this.renderer.listen('window', 'click', (e: Event) => {
       if (e.target == this.input.nativeElement || e.target == this.inputField.nativeElement) {
-        this.inputActive = true;
+        this.inputActive = !this.inputActive
         this.inputField.nativeElement.focus();
       } else {
-        this.inputActive = false;
+        this.inputActive = !this.inputActive;
         this.inputField.nativeElement.blur();
       }
     });
-
-    this.control.valueChanges.subscribe(value => {
-      this.valueChange.emit(value!);
-    });
   }
+
+  ngOnDestroy() {
+    this.focusListener?.() // Unsubscribe of 'click' event
+  }
+
+
 }

@@ -10,11 +10,7 @@
     max-width: 764px;
     height: fit-content;
     line-height: 20px;
-
-
-    &:focus-visible {
-        outline: transparent;
-    }
+    cursor: pointer;
 
     &::-webkit-search-cancel-button {
         -webkit-appearance: none;

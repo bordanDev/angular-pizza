@@ -11,7 +11,7 @@ import {map} from "rxjs";
   templateUrl: './pizza-filtration.component.html',
   styleUrl: './pizza-filtration.component.scss',
 })
-export class PizzaFiltrationComponent implements OnInit {
+export class PizzaFiltrationComponent {
 
   constructor(private pizzaService: PizzaService) {
 
@@ -22,30 +22,41 @@ export class PizzaFiltrationComponent implements OnInit {
         this.filteredPizzas.set(filtered);
       })
     },
-      {allowSignalWrites: true} )
+      {allowSignalWrites: true} );
+
+
 
     effect(
       () => {
       this.pizzaService.doughTypes$.subscribe(values => {
         this.filterOptions.set(values);
+        console.log(this.selectedFilter())
       });
     },
-      {allowSignalWrites: true})
+      {allowSignalWrites: true});
+
+
+
+    effect(
+      () => {
+      this.pizzaService.interval$.subscribe(value => {
+        this.selectedInterval.set(value)
+      })
+    },
+      {allowSignalWrites: true});
 
   }
 
   selectedFilter = signal('')
   filteredPizzas: WritableSignal<Pizza[]> = signal([])
   filterOptions: WritableSignal<RadioOptions[]> = signal([])
+  
   selectedInterval: WritableSignal<Interval[]> = signal([])
 
-  public ngOnInit() {
-    this.selectedInterval.set(this.pizzaService.getIntervalData())
-    console.log(this.selectedInterval())
-  }
 
   public onFilterChange(value: string) {
     this.selectedFilter.set(value);
+    console.log(this.selectedFilter())
     console.log(this.filteredPizzas())
   }
 

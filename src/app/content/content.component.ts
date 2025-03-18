@@ -26,9 +26,9 @@ export class ContentComponent { //// implements нужен для утвержд
   }
 
   // Создадим метод для передачи выбранного типа пиццы
-  onCategorySelected(category: string): void {
-    this.pizzaService.setCategory(category)
-  }
+  // onCategorySelected(category: string): void {
+  //   this.pizzaService.setCategory(category)
+  // }
 
   //
 
