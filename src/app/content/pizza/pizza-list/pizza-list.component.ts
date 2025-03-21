@@ -1,6 +1,7 @@
 import { Component, effect, signal, WritableSignal } from '@angular/core';
 import { PizzaService } from '../pizza-service/pizza.service';
 import { Pizza } from '../../pizza.model';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-pizza-list',
@@ -9,16 +10,13 @@ import { Pizza } from '../../pizza.model';
 })
 export class PizzaListComponent {
 
-  constructor(private pizzaService: PizzaService) { 
+  constructor(private pizzaService: PizzaService) {
     effect(() => {
-      this.pizzaService.pizzas$.subscribe((pizzas) => {
-        this.pizzaList.set(pizzas)
-      })
-    }, { allowSignalWrites: true }
-  )
-   }
+      this.pizzaList.set(this.pizzaService.filteredPizza())
+    }, {allowSignalWrites: true})
+  }
 
   // Создаём массив для хранения отфильтрованных пицц
-  public pizzaList: WritableSignal<Pizza[]> = signal([]);
+  public pizzaList = signal<Pizza[]>([]);
 
 }

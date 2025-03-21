@@ -1,5 +1,5 @@
 <div #input class="input input-search" [ngClass]="{'input-filter' : inputType === 'filter'}">
-    <input #inputField class="input-search--field" [value]="value" [placeholder]="placeholder">
+    <input #inputField class="input-search--field" [value]="value" (input)="onInputChange($event)" [placeholder]="placeholder">
     <ng-content/>
 </div>
 

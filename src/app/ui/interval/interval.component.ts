@@ -1,4 +1,5 @@
-import {Component, input} from '@angular/core';
+import {Component, input, output} from '@angular/core';
+import { Interval } from './interval.interface';
 
 
 @Component({
@@ -11,5 +12,15 @@ export class IntervalComponent{
   minValue = input<string>()
   maxValue = input<string>() 
 
+  minValueOut = output<string>()
+  maxValueOut = output<string>()
+
+  minChanged(inputValue: string){
+    this.minValueOut.emit(inputValue)
+  }
+
+  maxChanged(inputValue: string){
+    this.maxValueOut.emit(inputValue)
+  }
   
 }

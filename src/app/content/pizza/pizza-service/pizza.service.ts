@@ -9,6 +9,10 @@ import { Interval } from "../../../ui/interval/interval.interface";
 })
 export class PizzaService{
 
+  constructor(){
+    this.setMinInterval(1)
+  }
+
   private readonly mockPizzas = [
     {
       id: 1,
@@ -105,7 +109,6 @@ export class PizzaService{
     { value: 'standard', label: 'thickness1' },
     { value: 'thin', label: 'thickness2' }
   ]
-  private intervalConfig: Interval[] = [ { minValue: 0, maxValue: 1000 } ]
 
   private doughTypesSubject: BehaviorSubject<RadioOptions[]> = new BehaviorSubject<RadioOptions[]>(this.doughFiltrationConfig)
   doughTypes$: Observable<RadioOptions[]> = this.doughTypesSubject.asObservable()
@@ -114,33 +117,35 @@ export class PizzaService{
     return this.doughTypesSubject.getValue()
   }
 
-  // public doughTypesSubject = output<RadioOptions[]>(this.doughFiltrationConfig)
-
-  /////////////////////////////////
-  /////////////////////////////////
   private pizzasSubject = new BehaviorSubject<Pizza[]>(this.mockPizzas)
   pizzas$: Observable<Pizza[]> = this.pizzasSubject.asObservable();
 
-  setPizzas(pizzas: Pizza[]) {
-    this.pizzasSubject.next(pizzas)
-  }
-  getPizzas(): Pizza[] {
-    return this.pizzasSubject.getValue()
-  }
-  refreshPizzas() {
-    this.pizzasSubject.next(this.mockPizzas)
+  public readonly filteredPizza = signal<Pizza[]>(this.mockPizzas)
+
+  public setFilteredThicknessPizzas(thickness: string) {
+    const allPizzas = this.pizzasSubject.getValue()
+    const filtered = allPizzas.filter(pizza => pizza.thickness === thickness)
+    this.filteredPizza.set(filtered)
+    console.log(this.filteredPizza())
   }
 
+
+  private intervalConfig: Interval[] = [ { minValue: 0, maxValue: 1000 } ]
 
   private intervalData = new BehaviorSubject<Interval[]>(this.intervalConfig)
   interval$ = this.intervalData.asObservable()
 
-  public setInterval(interval: Interval[]): void{
-    this.intervalData.next(interval)
+  changedInterval = signal<Interval[]>(this.intervalConfig)
+
+  setMinInterval(minValue: number){
+    const interval = this.intervalConfig;
+    interval[0].minValue = minValue
+    this.changedInterval.set(interval)
   }
 
-  public get getInterval(): Interval[]{
-    return this.intervalData.getValue()
+  setMaxInterval(maxValue: number){
+    const interval = this.intervalConfig;
+    interval[0].maxValue = maxValue
+    this.changedInterval.set(interval)
   }
-
 }

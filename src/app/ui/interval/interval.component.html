@@ -1,2 +1,2 @@
-<app-input [inputType]="'filter'" [value]="minValue()!">$</app-input>
-<app-input [inputType]="'filter'" [value]="maxValue()!">$</app-input>
+<app-input [inputType]="'filter'" [value]="minValue()!" (outputData)="minChanged($event)">$</app-input>
+<app-input [inputType]="'filter'" [value]="maxValue()!" (outputData)="maxChanged($event)">$</app-input>

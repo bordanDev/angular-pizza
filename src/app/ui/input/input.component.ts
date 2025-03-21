@@ -6,6 +6,7 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
+import { debounce, debounceTime, distinctUntilChanged, Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-input',
@@ -27,6 +28,24 @@ export class InputComponent {
 
   @Output() outputData = new EventEmitter<string>()
 
+  private inputSubject = new Subject<string>()
+  private destroy$ = new Subject<void>()
+
+  ngOnInit(){
+    this.inputSubject.pipe(
+      debounceTime(500),
+      distinctUntilChanged(), // Игнорирует если не поступило нового значения
+      takeUntil(this.destroy$) // Отписка после уничтожения comp
+    ).subscribe(value => {
+        this.sendData(value)
+    })
+  }
+
+  onInputChange(e: Event){
+    const value = (e.target as HTMLInputElement).value
+    this.inputSubject.next(value)
+  }
+
   sendData(value: string) {
     this.outputData.emit(value)
   }
@@ -36,6 +55,12 @@ export class InputComponent {
   constructor(private renderer: Renderer2) { // Renderer 2 - обходной класс созданный для создания кастомных UI решений
 
   }
+
+  // ngOnInit(){
+  //   // const map = new Map();
+  //   // map.set('key', ['1', '2', '3'])
+  //   // console.log(map.get('key')[2])
+  // }
 
   ngAfterViewInit(){
     this.focusListener = this.renderer.listen('window', 'click', (e: Event) => {
@@ -51,6 +76,7 @@ export class InputComponent {
 
   ngOnDestroy() {
     this.focusListener?.() // Unsubscribe of 'click' event
+    this.destroy$.unsubscribe()
   }
 
 

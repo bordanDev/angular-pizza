@@ -2,9 +2,7 @@ import {Component, effect, signal, WritableSignal} from '@angular/core';
 import { RadioOptions } from '../../../ui/radio/radio.interface';
 import { Pizza } from '../../pizza.model';
 import { PizzaService } from '../pizza-service/pizza.service';
-import { OnInit } from '@angular/core'
 import {Interval} from "../../../ui/interval/interval.interface";
-import {map} from "rxjs";
 
 @Component({
   selector: 'app-pizza-filtration',
@@ -15,28 +13,17 @@ export class PizzaFiltrationComponent {
 
   constructor(private pizzaService: PizzaService) {
 
-    effect(() => {
-      this.pizzaService.pizzas$.pipe(
-      map(pizzas => pizzas.filter(pizza => pizza.thickness === this.selectedFilter()))
-      ).subscribe((filtered) => {
-        this.filteredPizzas.set(filtered);
-      })
-    },
-      {allowSignalWrites: true} );
-
-
-
+    // set up UI radio
     effect(
       () => {
       this.pizzaService.doughTypes$.subscribe(values => {
         this.filterOptions.set(values);
-        console.log(this.selectedFilter())
       });
     },
       {allowSignalWrites: true});
 
 
-
+    // set up UI interval
     effect(
       () => {
       this.pizzaService.interval$.subscribe(value => {
@@ -47,6 +34,18 @@ export class PizzaFiltrationComponent {
 
   }
 
+  outMinData(value: string){
+    console.log(value)
+  }
+
+  outMaxData(value: string){
+    console.log(value)
+  }
+
+  setThickness(thickness: string){
+    this.pizzaService.setFilteredThicknessPizzas(thickness)
+  }
+  
   selectedFilter = signal('')
   filteredPizzas: WritableSignal<Pizza[]> = signal([])
   filterOptions: WritableSignal<RadioOptions[]> = signal([])
@@ -56,8 +55,7 @@ export class PizzaFiltrationComponent {
 
   public onFilterChange(value: string) {
     this.selectedFilter.set(value);
-    console.log(this.selectedFilter())
-    console.log(this.filteredPizzas())
+    this.setThickness(value)
   }
 
 }
