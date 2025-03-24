@@ -7,7 +7,7 @@ import { PizzaService } from "./pizza.service";
 export class Ingredients {
     constructor(public pizzaService: PizzaService){
     }
-    
+
     ngOnInit(){
         this.ingredients()
         console.log(1)
@@ -16,19 +16,19 @@ export class Ingredients {
     ingredients = () => this.pizzaService.pizzas$.subscribe(pizzas => {
         let ingredientsOfAllPizzas = pizzas.map(pizzas => pizzas.ingredients);
         let array: string[] = []
-        
+
         const filtered = ingredientsOfAllPizzas.map((ingredients, index) => {
-            ingredients.filter((ingred, ingredIndex) => {
-                array[ingredIndex] !== ingred ? array[ingredIndex] = ingred  : ''
+            ingredients.filter((ingred, index) => {
+                array[index] !== ingred ? array[index] = ingred  : ''
             })
         })
-            
+
 
         console.log(ingredientsOfAllPizzas)
         console.log(array);
     }
     )
 
-    
+
 
 }

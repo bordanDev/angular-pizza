@@ -1,5 +1,6 @@
-import {AfterViewInit, Component, Renderer2, ViewChild} from '@angular/core';
-import {InputComponent} from "../ui/input/input.component";
+import {AfterViewInit, Component, ViewChild} from '@angular/core';
+import {InputComponent} from "../ui";
+import {NgTemplateOutlet} from "@angular/common";
 
 @Component({
   selector: 'app-header',
@@ -8,13 +9,16 @@ import {InputComponent} from "../ui/input/input.component";
 })
 export class HeaderComponent implements AfterViewInit{
 
-  @ViewChild('inputField', { static: true }) inputComponent!: InputComponent;
   @ViewChild("background") backgroundArea: any;
 
   searchActive: boolean = false; // Флаг
 
+  changeSearchActive(){
+    this.searchActive = !this.searchActive;
+    console.log(this.searchActive);
+  }
+
   ngAfterViewInit(){
 
   }
-
 }

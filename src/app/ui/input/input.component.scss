@@ -1,3 +1,8 @@
+:host{
+  display: flex;
+  width: 100%;
+}
+
 .input {
     padding: 14px 20px;
     font-size: inherit;
@@ -11,6 +16,7 @@
     height: fit-content;
     line-height: 20px;
     cursor: pointer;
+    position: relative;
 
     &::-webkit-search-cancel-button {
         -webkit-appearance: none;

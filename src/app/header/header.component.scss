@@ -2,8 +2,9 @@ nav {
     display: flex;
     flex-direction: row;
     padding: 24px 16px;
-    justify-content: space-between;
+    //justify-content: space-between;
     gap: 40px;
+    align-items: center;
 
 
 }
@@ -38,12 +39,6 @@ nav {
 
 app-authorization {
     height: fit-content;
-}
-
-app-input {
-    display: inline-flex;
-    width: 100%;
-    max-width: 700px
 }
 
 .nav-brand {

@@ -1,0 +1,23 @@
+:host{
+  position: absolute;
+  display: inline-flex;
+  flex-direction: column;
+  top: 90px;
+  background-color: white;
+  width: 100%;
+  max-width: 800px;
+  border-radius: 16px;
+  border: 1px solid #EFEFEF;
+  padding: 12px 0;
+  z-index: 999;
+}
+
+//:host::after{
+//  content: '';
+//  position: fixed;
+//  left: 0;
+//  top: 0;
+//  background-color: rgb(0, 0, 0, 0.3);
+//  width: 100vw;
+//  height: 100vh;
+//}

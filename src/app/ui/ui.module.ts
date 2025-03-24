@@ -11,6 +11,8 @@ import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { CheckboxComponent } from './checkbox/checkbox.component';
 import { RadioComponent } from './radio/radio.component';
 import { IntervalComponent } from './interval/interval.component';
+import { SearchListComponent } from './search-list/search-list.component';
+import { SearchListItemComponent } from './search-list/search-list-item/search-list-item.component';
 
 
 
@@ -24,7 +26,9 @@ import { IntervalComponent } from './interval/interval.component';
     BreadcrumbsComponent,
     CheckboxComponent,
     RadioComponent,
-    IntervalComponent
+    IntervalComponent,
+    SearchListComponent,
+    SearchListItemComponent
   ],
   imports: [
     CommonModule,
@@ -45,7 +49,8 @@ import { IntervalComponent } from './interval/interval.component';
     BreadcrumbsComponent,
     CheckboxComponent,
     RadioComponent,
-    IntervalComponent
+    IntervalComponent,
+    SearchListComponent
   ]
 })
 export class UiModule { }
