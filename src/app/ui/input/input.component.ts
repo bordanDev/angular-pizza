@@ -31,6 +31,9 @@ export class InputComponent {
   private inputSubject = new Subject<string>()
   private destroy$ = new Subject<void>()
 
+
+  // Задержка на уровне UI элемента
+  // ВСЕ инпуты отдают значения с задержкой 0.5 секунд
   ngOnInit(){
     this.inputSubject.pipe(
       debounceTime(500),

@@ -1,4 +1,4 @@
-import {computed, Injectable, input, OnInit, output, signal, WritableSignal} from '@angular/core';
+import {Injectable, signal} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 import { Pizza } from '../../pizza.model';
 import { RadioOptions } from '../../../ui/radio/radio.interface';
@@ -9,9 +9,7 @@ import { Interval } from "../../../ui/interval/interval.interface";
 })
 export class PizzaService{
 
-  constructor(){
-    this.setMinInterval(1)
-  }
+  constructor(){}
 
   private readonly mockPizzas = [
     {
@@ -130,20 +128,26 @@ export class PizzaService{
   }
 
 
-  private intervalConfig: Interval[] = [ { minValue: 0, maxValue: 1000 } ]
+  private intervalConfig: Interval[] = [ { minValue: 0, maxValue: 10 } ]
 
   private intervalData = new BehaviorSubject<Interval[]>(this.intervalConfig)
   interval$ = this.intervalData.asObservable()
 
   changedInterval = signal<Interval[]>(this.intervalConfig)
 
-  setMinInterval(minValue: number){
+  public setFilteredPricePizzas(intervalPrice: Interval[]){
+    const allPizzas = this.pizzasSubject.getValue()
+    const filtered = allPizzas.filter(pizza => pizza.price <= intervalPrice[0]?.maxValue && pizza.price >= intervalPrice[0]?.minValue)
+    this.filteredPizza.set(filtered)
+  }
+
+  public setMinInterval(minValue: number){
     const interval = this.intervalConfig;
     interval[0].minValue = minValue
     this.changedInterval.set(interval)
   }
 
-  setMaxInterval(maxValue: number){
+  public setMaxInterval(maxValue: number){
     const interval = this.intervalConfig;
     interval[0].maxValue = maxValue
     this.changedInterval.set(interval)

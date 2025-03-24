@@ -1,18 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { PizzaService } from './pizza/pizza-service/pizza.service';
+import { Component } from '@angular/core';
+import { Ingredients } from './pizza/pizza-services/ingredients.service';
+import { PizzaService } from './pizza/pizza-services/pizza.service';
 
 @Component({
   selector: 'app-content',
   templateUrl: './content.component.html',
-  styleUrl: './content.component.scss'
+  styleUrl: './content.component.scss',
+
 })
 export class ContentComponent { //// implements нужен для утверждения приложению, что мы точно реализуем OnInit внутри класса
   // Здесь мы должны передать наше событие в дочерний компонент пицц
 
   pizzas$: any;
 
-  constructor(private pizzaService: PizzaService) {
+  constructor(private pizzaService: PizzaService, private ingredients: Ingredients) {
     // Объявили в конструкторе сервис
+    ingredients.ingredients()
   }
 
   pages = ['Pizza']

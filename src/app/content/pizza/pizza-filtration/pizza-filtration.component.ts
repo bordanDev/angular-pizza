@@ -1,8 +1,9 @@
 import {Component, effect, signal, WritableSignal} from '@angular/core';
 import { RadioOptions } from '../../../ui/radio/radio.interface';
 import { Pizza } from '../../pizza.model';
-import { PizzaService } from '../pizza-service/pizza.service';
+import { PizzaService } from '../pizza-services/pizza.service';
 import {Interval} from "../../../ui/interval/interval.interface";
+import { interval, take } from 'rxjs';
 
 @Component({
   selector: 'app-pizza-filtration',
@@ -27,7 +28,8 @@ export class PizzaFiltrationComponent {
     effect(
       () => {
       this.pizzaService.interval$.subscribe(value => {
-        this.selectedInterval.set(value)
+        this.selectedInterval.set(value);
+        this.pizzaService.setFilteredPricePizzas(value)
       })
     },
       {allowSignalWrites: true});
@@ -35,11 +37,17 @@ export class PizzaFiltrationComponent {
   }
 
   outMinData(value: string){
-    console.log(value)
+    this.pizzaService.setMinInterval(Number(value))
+    this.pizzaService.setFilteredPricePizzas(this.pizzaService.changedInterval())
+    // console.log(value)
+    console.log(this.pizzaService.changedInterval())
   }
 
   outMaxData(value: string){
-    console.log(value)
+    this.pizzaService.setMaxInterval(Number(value))
+    this.pizzaService.setFilteredPricePizzas(this.pizzaService.changedInterval())
+    // console.log(value)
+    console.log(this.pizzaService.changedInterval())
   }
 
   setThickness(thickness: string){
