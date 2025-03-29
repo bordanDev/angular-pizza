@@ -36,6 +36,10 @@ export class PizzaFiltrationComponent {
 
   }
 
+  test(value: string[]){
+    console.log(value);
+  }
+
   outMinData(value: string){
     this.pizzaService.setMinInterval(Number(value))
     this.pizzaService.setFilteredPricePizzas(this.pizzaService.changedInterval())
@@ -53,11 +57,11 @@ export class PizzaFiltrationComponent {
   setThickness(thickness: string){
     this.pizzaService.setFilteredThicknessPizzas(thickness)
   }
-  
+
   selectedFilter = signal('')
   filteredPizzas: WritableSignal<Pizza[]> = signal([])
   filterOptions: WritableSignal<RadioOptions[]> = signal([])
-  
+
   selectedInterval: WritableSignal<Interval[]> = signal([])
 
 

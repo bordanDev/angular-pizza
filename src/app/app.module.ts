@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { AuthorizationComponent } from './header/authorization/authorization.component';
+import { AuthComponent } from './header/auth/auth.component';
 import { ContentComponent } from './content/content.component';
 import { PizzaFilterButtonsComponent } from './content/pizza/pizza-types-filter/pizza-filter-buttons.component';
 import { PizzaListComponent } from './content/pizza/pizza-list/pizza-list.component';
@@ -16,7 +16,7 @@ import { PizzaFiltrationComponent } from './content/pizza/pizza-filtration/pizza
   declarations: [
     AppComponent,
     HeaderComponent,
-    AuthorizationComponent,
+    AuthComponent,
     ContentComponent,
     PizzaFilterButtonsComponent,
     PizzaListComponent,
