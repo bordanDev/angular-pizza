@@ -1,14 +1,10 @@
 @for (option of options(); track $index){
-  <div class="wrapper" (change)="onCheckboxChange($event)">
-    <div class="checkbox" [ngClass]="{'active' : flag}">
-      <svg *ngIf="flag" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <div class="wrapper" (click)="onCheckboxChange(option ,$event)">
+    <div class="checkbox" [ngClass]="{'active' : isSelected(option.value)}">
+      <svg *ngIf="isSelected(option.value)" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M2 6.2L4.57143 9L11 2" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </div>
-
-    <input type="checkbox"
-      [checked]="option.value === selectedValues()[$index]"
-    >
-    {{ option.value }}
+    <input type="checkbox" [value]="option.value" [checked]="isSelected(option.value)"> {{ option.value }}
   </div>
 }

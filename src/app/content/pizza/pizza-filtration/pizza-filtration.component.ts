@@ -34,6 +34,12 @@ export class PizzaFiltrationComponent {
     },
       {allowSignalWrites: true});
 
+
+    // set up UI checkboxes
+
+    effect(() => {
+
+    })
   }
 
   test(value: string[]){
@@ -43,15 +49,11 @@ export class PizzaFiltrationComponent {
   outMinData(value: string){
     this.pizzaService.setMinInterval(Number(value))
     this.pizzaService.setFilteredPricePizzas(this.pizzaService.changedInterval())
-    // console.log(value)
-    console.log(this.pizzaService.changedInterval())
   }
 
   outMaxData(value: string){
     this.pizzaService.setMaxInterval(Number(value))
     this.pizzaService.setFilteredPricePizzas(this.pizzaService.changedInterval())
-    // console.log(value)
-    console.log(this.pizzaService.changedInterval())
   }
 
   setThickness(thickness: string){
@@ -59,7 +61,6 @@ export class PizzaFiltrationComponent {
   }
 
   selectedFilter = signal('')
-  filteredPizzas: WritableSignal<Pizza[]> = signal([])
   filterOptions: WritableSignal<RadioOptions[]> = signal([])
 
   selectedInterval: WritableSignal<Interval[]> = signal([])
