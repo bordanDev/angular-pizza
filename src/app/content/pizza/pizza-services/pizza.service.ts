@@ -124,12 +124,12 @@ export class PizzaService{
     { value: 'thin', label: 'thickness2' }
   ]
   private readonly intervalConfig: Interval[] = [ { minValue: 0, maxValue: 10 } ]
-  private readonly checkboxesConfig: CheckboxInterface[] = this.getIngredients(this.mockPizzas);
+  private readonly checkboxesList: CheckboxInterface[] = this.getIngredients(this.mockPizzas);
 
-  private checkboxesIngredsSubject: BehaviorSubject<CheckboxInterface[]> = new BehaviorSubject<CheckboxInterface[]>(this.checkboxesConfig)
+  private checkboxesIngredsSubject: BehaviorSubject<CheckboxInterface[]> = new BehaviorSubject<CheckboxInterface[]>(this.checkboxesList)
   checkboxesIngreds$: Observable<CheckboxInterface[]> = this.checkboxesIngredsSubject.asObservable()
 
-  public readonly checkboxesChanged = signal<CheckboxInterface[]>(this.checkboxesConfig)
+  public readonly checkboxesChanged = signal<CheckboxInterface[]>(this.checkboxesList)
 
   public setCheckboxes(checkboxesCfg: CheckboxInterface[]){
     this.checkboxesChanged.set(checkboxesCfg)

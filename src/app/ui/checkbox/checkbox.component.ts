@@ -34,22 +34,22 @@ export class CheckboxComponent implements OnChanges, OnInit {
   }
 
   onCheckboxChange = ( option: { value: string }, event: Event) => {
-    let updatedSelection = [...this.selectedValuesLocal];
+    // let updatedSelection = this.selectedValuesLocal;
 
     let element = event.target as HTMLInputElement;
     element.checked = !element.checked
 
     if(this.isSelected(option.value)){
-      updatedSelection = updatedSelection.filter(v => console.log(v !== option.value));
-      console.log('deleting')
+      this.selectedValuesLocal = this.selectedValuesLocal.filter(x => x !== option.value)
+      console.log('pushing to array')
     } else {
-      updatedSelection.push(option.value)
-      console.log('pushing value')
+      this.selectedValuesLocal.push(option.value)
     }
 
-    this.selectedValuesChange.emit(updatedSelection);
 
-    console.log(updatedSelection)
-  };
+    this.selectedValuesChange.emit(this.selectedValuesLocal);
+
+    console.log(this.selectedValuesLocal  )
+  }
 
 }

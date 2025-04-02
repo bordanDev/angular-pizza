@@ -42,8 +42,9 @@ export class PizzaFiltrationComponent {
       this.pizzaService.checkboxesIngreds$.subscribe(values => {
         this.selectedCheckboxes.set(values)
       })
-    })
+    }, {allowSignalWrites: true})
   }
+
   selectedCheckboxes: WritableSignal<CheckboxInterface[]> = signal([])
   selectedInterval: WritableSignal<Interval[]> = signal([])
 
