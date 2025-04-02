@@ -1,12 +1,15 @@
 @for (option of options(); track $index){
-  <div class="wrapper" (click)="onCheckboxChange(option ,$event)" [tabindex]="$index + 1">
-    <div class="checkbox" [ngClass]="{'active' : isSelected(option.value)}">
-      <svg *ngIf="isSelected(option.value)" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M2 6.2L4.57143 9L11 2" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
+
+  @if($index <= 4){
+    <div class="wrapper" (click)="onCheckboxChange(option ,$event)" [tabindex]="$index + 1">
+      <div class="checkbox" [ngClass]="{'active' : isSelected(option.value)}">
+        <svg *ngIf="isSelected(option.value)" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M2 6.2L4.57143 9L11 2" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <input type="checkbox" [value]="option.value" [checked]="isSelected(option.value)" style="display: none" > {{ option.value }}
     </div>
-    <input type="checkbox" [value]="option.value" [checked]="isSelected(option.value)" style="display: none" > {{ option.value }}
-  </div>
+  }
 
   @if($index == 4){
     <app-button variant="outline" text="View all ingredients" buttonSize="sm"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
