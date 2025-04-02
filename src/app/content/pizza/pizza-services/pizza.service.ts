@@ -1,16 +1,30 @@
-import {Injectable, signal} from '@angular/core';
+import {effect, Injectable, signal, WritableSignal} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 import { Pizza } from '../../pizza.model';
 import { RadioOptions } from '../../../ui/radio/radio.interface';
 import { Interval } from "../../../ui/interval/interval.interface";
+import {CheckboxInterface} from "../../../ui/checkbox/checkbox.interface";
+import {Ingredients} from "./ingredients.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class PizzaService{
 
-  constructor(){}
+  private getIngredients(pizzas: Pizza[]){
+    let allIngredients: string[] = [];
 
+    pizzas.map(pizza => {
+      pizza.ingredients.filter(ingred => {
+        allIngredients.includes(ingred) ? '' : allIngredients.push(ingred)
+      })
+    })
+
+    return allIngredients.map(value => { return {value: value, label: value} })
+
+  }
+
+  // Pizzas
   private readonly mockPizzas = [
     {
       id: 1,
@@ -103,10 +117,24 @@ export class PizzaService{
       thickness: 'thin' // Случайное значение
     }
   ];
-  private doughFiltrationConfig: RadioOptions[] = [
+
+  // UI cfg
+  private readonly doughFiltrationConfig: RadioOptions[] = [
     { value: 'standard', label: 'thickness1' },
     { value: 'thin', label: 'thickness2' }
   ]
+  private readonly intervalConfig: Interval[] = [ { minValue: 0, maxValue: 10 } ]
+  private readonly checkboxesConfig: CheckboxInterface[] = this.getIngredients(this.mockPizzas);
+
+  private checkboxesIngredsSubject: BehaviorSubject<CheckboxInterface[]> = new BehaviorSubject<CheckboxInterface[]>(this.checkboxesConfig)
+  checkboxesIngreds$: Observable<CheckboxInterface[]> = this.checkboxesIngredsSubject.asObservable()
+
+  public readonly checkboxesChanged = signal<CheckboxInterface[]>(this.checkboxesConfig)
+
+  public setCheckboxes(checkboxesCfg: CheckboxInterface[]){
+    this.checkboxesChanged.set(checkboxesCfg)
+    console.log(this.checkboxesChanged())
+  }
 
   private doughTypesSubject: BehaviorSubject<RadioOptions[]> = new BehaviorSubject<RadioOptions[]>(this.doughFiltrationConfig)
   doughTypes$: Observable<RadioOptions[]> = this.doughTypesSubject.asObservable()
@@ -126,9 +154,6 @@ export class PizzaService{
     this.filteredPizza.set(filtered)
     console.log(this.filteredPizza())
   }
-
-
-  private intervalConfig: Interval[] = [ { minValue: 0, maxValue: 10 } ]
 
   private intervalData = new BehaviorSubject<Interval[]>(this.intervalConfig)
   interval$ = this.intervalData.asObservable()

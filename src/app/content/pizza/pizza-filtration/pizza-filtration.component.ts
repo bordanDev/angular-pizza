@@ -4,6 +4,7 @@ import { Pizza } from '../../pizza.model';
 import { PizzaService } from '../pizza-services/pizza.service';
 import {Interval} from "../../../ui/interval/interval.interface";
 import { interval, take } from 'rxjs';
+import {CheckboxInterface} from "../../../ui/checkbox/checkbox.interface";
 
 @Component({
   selector: 'app-pizza-filtration',
@@ -38,13 +39,13 @@ export class PizzaFiltrationComponent {
     // set up UI checkboxes
 
     effect(() => {
-
+      this.pizzaService.checkboxesIngreds$.subscribe(values => {
+        this.selectedCheckboxes.set(values)
+      })
     })
   }
-
-  test(value: string[]){
-    console.log(value);
-  }
+  selectedCheckboxes: WritableSignal<CheckboxInterface[]> = signal([])
+  selectedInterval: WritableSignal<Interval[]> = signal([])
 
   outMinData(value: string){
     this.pizzaService.setMinInterval(Number(value))
@@ -62,9 +63,6 @@ export class PizzaFiltrationComponent {
 
   selectedFilter = signal('')
   filterOptions: WritableSignal<RadioOptions[]> = signal([])
-
-  selectedInterval: WritableSignal<Interval[]> = signal([])
-
 
   public onFilterChange(value: string) {
     this.selectedFilter.set(value);

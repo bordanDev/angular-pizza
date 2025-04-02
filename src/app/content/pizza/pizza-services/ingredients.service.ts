@@ -1,47 +1,26 @@
 import { Injectable } from "@angular/core";
-import { PizzaService } from "./pizza.service";
+import {Pizza} from "../../pizza.model";
 
 @Injectable({
     providedIn: 'root'
 })
 export class Ingredients {
-    constructor(public pizzaService: PizzaService){
+    constructor(){
     }
 
-    ngOnInit(){
-        this.ingredients()
-        console.log(1)
+    ingredients(pizzas: Pizza[]){
+      let allIngredients: string[] = [];
+
+      pizzas.map(pizza => {
+        pizza.ingredients.filter(ingred => {
+          allIngredients.includes(ingred) ? '' : allIngredients.push(ingred)
+        })
+      })
+
+      return allIngredients.map(value => { return {value: value, label: value} })
+
     }
 
-    ingredients = () => this.pizzaService.pizzas$.subscribe(pizzas => {
-        let ingredientsOfAllPizzas = pizzas.map(pizzas => pizzas.ingredients);
-        let array: string[] = []
-
-        let firstPizzaIngred = pizzas[0].ingredients
-        let secondPizzaIngred = pizzas[1].ingredients
-        console.log(firstPizzaIngred)
-        console.log(secondPizzaIngred)
-
-        // const filtered = ingredientsOfAllPizzas.map((ingredients, index) => {
-        //     // ingredients.filter((ingred, index) => {
-        //     //     array[index] !== ingred ? array[index] = ingred  : ''
-        //     // })
-        //   ingredients.map(x => console.log(x))
-        // })
-
-        // const filtered = ingredientsOfAllPizzas.map((ingredients, index) => {
-        //   // console.log(ingredients)
-        //   let x = ingredients.filter(ingred  => ingred !== ingredients[index])
-        //   console.log(x)
-        // })
-
-
-        // console.log(filtered)
-
-        console.log(ingredientsOfAllPizzas)
-        console.log(array);
-    }
-    )
 
 
 

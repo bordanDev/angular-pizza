@@ -1,43 +1,8 @@
-<!-- <b><h4>Фильтрация</h4></b>
-
-<div class="wrapper">
-    <app-checkbox (outputData)="getData($event)">Лучшее</app-checkbox>
-    <app-checkbox (outputData)="getData($event)">Новинки</app-checkbox>
-</div>
-
-
-<div style="display: flex; width: 100%; height: 1px; background-color: #F6F6F6;"></div>
-
-
-<b>
-    <p>Цена от и до</p>
-</b>
-
-<div class="wrapper-h">
-
-    {{ outputDataFromInput }}
-</div>
-
-<div style="display: flex; width: 100%; height: 1px; background-color: #F6F6F6;"></div>
-
-<b>
-    <p>Ингридиенты</p>
-</b>
-
-<div class="wrapper">
-    <app-checkbox (outputData)="getData($event)">Сырный соус</app-checkbox>
-    <app-checkbox (outputData)="getData($event)">Моцарелла</app-checkbox>
-    <app-checkbox (outputData)="getData($event)">Чеснок</app-checkbox>
-    <app-checkbox (outputData)="getData($event)">Солённые огурчики</app-checkbox>
-    <app-checkbox (outputData)="getData($event)">Красный лук</app-checkbox>
-    <app-checkbox (outputData)="getData($event)">Томаты</app-checkbox>
-</div> -->
-
 <b>
     <p>Ingredients</p>
 </b>
 
-<app-checkbox (selectedValuesChange)="selectedValues" [selectedValues]="['first']" [options]="[{ value: 'first', label: 'biba'}, { value: 'second', label: 'agsdgasdg'}]"></app-checkbox>
+<app-checkbox [selectedValues]="['first']" [options]="selectedCheckboxes()"></app-checkbox>
 
 <div style="display: flex; width: 100%; height: 1px; background-color: #F6F6F6;"></div>
 

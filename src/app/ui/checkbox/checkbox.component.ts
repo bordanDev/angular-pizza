@@ -22,7 +22,6 @@ export class CheckboxComponent implements OnChanges, OnInit {
     console.log(this.selectedValuesLocal)
     this.selectedValuesLocal = this.selectedValues();
     console.log(this.selectedValuesLocal)
-
   }
 
   ngOnChanges() {
