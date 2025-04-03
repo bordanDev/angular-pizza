@@ -1,4 +1,4 @@
-# Stardust
+# Angular Pizza
 
 Available UI (03.04.2025)
 
