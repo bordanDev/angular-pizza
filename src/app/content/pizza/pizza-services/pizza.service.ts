@@ -20,7 +20,7 @@ export class PizzaService{
       })
     })
 
-    return allIngredients.map(value => { return {value: value, label: value} })
+    return allIngredients.map(value => { return { value: value, label: value } })
 
   }
 
@@ -115,7 +115,17 @@ export class PizzaService{
       imgUrl: 'assets/images/pizza-9.png',
       tag: 'none',
       thickness: 'thin' // Случайное значение
-    }
+    },
+    // {
+    //   id: 10,
+    //   type: 'All',
+    //   title: 'Margherita',
+    //   ingredients: ['Tomato sauce', 'Mozzarella', 'Basil'],
+    //   price: 8.99,
+    //   imgUrl: 'assets/images/pizza-1.png',
+    //   tag: 'top',
+    //   thickness: 'thin' // Случайное значение
+    // }
   ];
 
   // UI cfg
@@ -129,11 +139,11 @@ export class PizzaService{
   private checkboxesIngredsSubject: BehaviorSubject<CheckboxInterface[]> = new BehaviorSubject<CheckboxInterface[]>(this.checkboxesList)
   checkboxesIngreds$: Observable<CheckboxInterface[]> = this.checkboxesIngredsSubject.asObservable()
 
-  public readonly checkboxesChanged = signal<CheckboxInterface[]>(this.checkboxesList)
-
-  public setCheckboxes(checkboxesCfg: CheckboxInterface[]){
-    this.checkboxesChanged.set(checkboxesCfg)
-    console.log(this.checkboxesChanged())
+  public setCheckboxes(ingredients: string[]){
+    const allPizzas = this.pizzasSubject.getValue()
+    const filtered = allPizzas.filter(pizza => pizza.ingredients.some(ing => ingredients.includes(ing)))
+    console.log(filtered)
+    this.filteredPizza.set(filtered)
   }
 
   private doughTypesSubject: BehaviorSubject<RadioOptions[]> = new BehaviorSubject<RadioOptions[]>(this.doughFiltrationConfig)

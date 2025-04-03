@@ -15,7 +15,7 @@
     'button-md' : buttonSize === 'md' && !isDisabled,
     'button-sm' : buttonSize === 'sm' && !isDisabled
     }">
-<!--    <ng-content></ng-content>-->
   <div [style]="{'display': 'inline-flex'}" [innerHtml]="svgIcon"></div>
     {{ text }}
+  <ng-content></ng-content>
 </button>

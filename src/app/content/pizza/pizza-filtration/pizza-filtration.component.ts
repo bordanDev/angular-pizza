@@ -1,4 +1,4 @@
-import {Component, effect, signal, WritableSignal} from '@angular/core';
+import {Component, effect, OnInit, signal, WritableSignal} from '@angular/core';
 import { RadioOptions } from '../../../ui/radio/radio.interface';
 import { Pizza } from '../../pizza.model';
 import { PizzaService } from '../pizza-services/pizza.service';
@@ -11,7 +11,7 @@ import {CheckboxInterface} from "../../../ui/checkbox/checkbox.interface";
   templateUrl: './pizza-filtration.component.html',
   styleUrl: './pizza-filtration.component.scss',
 })
-export class PizzaFiltrationComponent {
+export class PizzaFiltrationComponent implements OnInit {
 
   constructor(private pizzaService: PizzaService) {
 
@@ -40,12 +40,27 @@ export class PizzaFiltrationComponent {
 
     effect(() => {
       this.pizzaService.checkboxesIngreds$.subscribe(values => {
-        this.selectedCheckboxes.set(values)
+        this.availableCheckboxes.set(values)
+        console.log(values.map(x => x.value))
+        this.selectedCheckboxes.set(values.map(x => x.value))
       })
     }, {allowSignalWrites: true})
   }
 
-  selectedCheckboxes: WritableSignal<CheckboxInterface[]> = signal([])
+  availableCheckboxes: WritableSignal<CheckboxInterface[]> = signal([])
+  selectedCheckboxes: WritableSignal<string[]> = signal([])
+
+  ngOnInit() {
+
+  }
+
+  setIngredients(ingredients: string[]) {
+    console.log(ingredients)
+    this.pizzaService.setCheckboxes(ingredients)
+    console.log('FCW')
+  }
+
+
   selectedInterval: WritableSignal<Interval[]> = signal([])
 
   outMinData(value: string){

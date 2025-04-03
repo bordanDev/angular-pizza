@@ -6,7 +6,7 @@ import {CheckboxInterface} from "./checkbox.interface";
   templateUrl: './checkbox.component.html',
   styleUrl: './checkbox.component.scss'
 })
-export class CheckboxComponent implements OnInit {
+export class CheckboxComponent implements OnInit, OnChanges {
 
   selectedValues = input<string[]>([])
   options = input.required<CheckboxInterface[]>()
@@ -19,6 +19,11 @@ export class CheckboxComponent implements OnInit {
 
   ngOnInit(){
     this.selectedValuesLocal = this.selectedValues();
+    this.selectedValuesChange.emit(this.selectedValuesLocal);
+  }
+
+  ngOnChanges() {
+    console.log(this.selectedValues())
   }
 
   isSelected(value: string): boolean{
