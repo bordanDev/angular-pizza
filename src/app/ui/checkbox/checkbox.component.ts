@@ -6,7 +6,7 @@ import {CheckboxInterface} from "./checkbox.interface";
   templateUrl: './checkbox.component.html',
   styleUrl: './checkbox.component.scss'
 })
-export class CheckboxComponent implements OnChanges, OnInit {
+export class CheckboxComponent implements OnInit {
 
   selectedValues = input<string[]>([])
   options = input.required<CheckboxInterface[]>()
@@ -15,17 +15,10 @@ export class CheckboxComponent implements OnChanges, OnInit {
 
   selectedValuesLocal: string[] = []
 
-  constructor() {
-  }
+  constructor() {}
 
   ngOnInit(){
-    console.log(this.selectedValuesLocal)
     this.selectedValuesLocal = this.selectedValues();
-    console.log(this.selectedValuesLocal)
-  }
-
-  ngOnChanges() {
-    // Синхронизируем локальное состояние при изменении `@Input()`
   }
 
   isSelected(value: string): boolean{
@@ -34,22 +27,19 @@ export class CheckboxComponent implements OnChanges, OnInit {
   }
 
   onCheckboxChange = ( option: { value: string }, event: Event) => {
-    // let updatedSelection = this.selectedValuesLocal;
-
     let element = event.target as HTMLInputElement;
     element.checked = !element.checked
 
-    if(this.isSelected(option.value)){
-      this.selectedValuesLocal = this.selectedValuesLocal.filter(x => x !== option.value)
-      console.log('pushing to array')
-    } else {
-      this.selectedValuesLocal.push(option.value)
-    }
-
-
+    this.isSelected(option.value) ? this.selectedValuesLocal = this.selectedValuesLocal.filter(x => x !== option.value) : this.selectedValuesLocal.push(option.value)
     this.selectedValuesChange.emit(this.selectedValuesLocal);
 
     console.log(this.selectedValuesLocal  )
   }
+
+  toggleList(){
+    this.toggleListFlag = !this.toggleListFlag
+  }
+
+  toggleListFlag = false;
 
 }

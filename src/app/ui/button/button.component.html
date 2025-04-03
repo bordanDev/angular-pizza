@@ -3,6 +3,7 @@
     'button-primary': variant === 'primary' && !isDisabled,
     'button-secondary': variant === 'secondary' && !isDisabled,
     'button-outline': variant === 'outline' && !isDisabled,
+    'button-transparent': variant === 'transparent' && !isDisabled,
     'button-icon-left': iconPosition === 'left' && !isDisabled,
     'button-icon-right': iconPosition === 'right' && !isDisabled,
     'button-icon-none': iconPosition === 'none' && !isDisabled,
@@ -14,6 +15,7 @@
     'button-md' : buttonSize === 'md' && !isDisabled,
     'button-sm' : buttonSize === 'sm' && !isDisabled
     }">
-    <ng-content *ngIf="svgIcon"></ng-content>
+<!--    <ng-content></ng-content>-->
+  <div [style]="{'display': 'inline-flex'}" [innerHtml]="svgIcon"></div>
     {{ text }}
 </button>

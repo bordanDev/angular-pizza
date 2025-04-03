@@ -1,6 +1,7 @@
+
 @for (option of options(); track $index){
 
-  @if($index <= 4){
+  @if(toggleListFlag || $index <= 4){
     <div class="wrapper" (click)="onCheckboxChange(option ,$event)" [tabindex]="$index + 1">
       <div class="checkbox" [ngClass]="{'active' : isSelected(option.value)}">
         <svg *ngIf="isSelected(option.value)" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -11,10 +12,11 @@
     </div>
   }
 
-  @if($index == 4){
-    <app-button variant="outline" text="View all ingredients" buttonSize="sm"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-      <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
+  @if($index == options().length - 1){
+    <app-button (click)="toggleList()" variant="transparent" [text]="!toggleListFlag ? 'View all ingredients' : 'Swap ingredients'" buttonSize="sm">
+<!--      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">-->
+<!--        <path d="M7.99967 3.33325V12.6666M3.33301 7.99992H12.6663" stroke="currentColor" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>-->
+<!--      </svg>-->
     </app-button>
   }
 }
