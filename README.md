@@ -1,5 +1,7 @@
 # Stardust
+
 Available UI (03.04.2025)
+
 ![image](https://github.com/user-attachments/assets/14519586-fe0b-4416-a642-5191f9f8d763)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.1.2.
