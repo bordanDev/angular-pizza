@@ -115,18 +115,26 @@ export class PizzaService{
       imgUrl: 'assets/images/pizza-9.png',
       tag: 'none',
       thickness: 'thin' // Случайное значение
-    },
-    // {
-    //   id: 10,
-    //   type: 'All',
-    //   title: 'Margherita',
-    //   ingredients: ['Tomato sauce', 'Mozzarella', 'Basil'],
-    //   price: 8.99,
-    //   imgUrl: 'assets/images/pizza-1.png',
-    //   tag: 'top',
-    //   thickness: 'thin' // Случайное значение
-    // }
+    }
   ];
+
+  // private readonly pizzaTags
+
+  private readonly pizzaTags: CheckboxInterface[] = [
+    { value: 'top' , label: 'top'},
+    { value: 'new' , label: 'new'}
+  ]
+
+  private pizzaTagsSubject: BehaviorSubject<CheckboxInterface[]> = new BehaviorSubject<CheckboxInterface[]>(this.pizzaTags)
+  pizzaTags$: Observable<CheckboxInterface[]> = this.pizzaTagsSubject.asObservable()
+
+  setPizzaTags(values: string[]){
+    console.log(values)
+    let allPizza = this.pizzasSubject.getValue()
+    let filtered = allPizza.filter(pizza => values.includes(pizza.tag))
+    this.filteredPizza.set(filtered)
+    console.log(this.filteredPizza())
+  }
 
   // UI cfg
   private readonly doughFiltrationConfig: RadioOptions[] = [
@@ -148,10 +156,6 @@ export class PizzaService{
 
   private doughTypesSubject: BehaviorSubject<RadioOptions[]> = new BehaviorSubject<RadioOptions[]>(this.doughFiltrationConfig)
   doughTypes$: Observable<RadioOptions[]> = this.doughTypesSubject.asObservable()
-
-  getDoughTypes(): RadioOptions[] {
-    return this.doughTypesSubject.getValue()
-  }
 
   private pizzasSubject = new BehaviorSubject<Pizza[]>(this.mockPizzas)
   pizzas$: Observable<Pizza[]> = this.pizzasSubject.asObservable();

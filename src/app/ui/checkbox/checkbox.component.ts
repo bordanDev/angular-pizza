@@ -18,6 +18,7 @@ export class CheckboxComponent implements OnInit, OnChanges {
   constructor() {}
 
   ngOnInit(){
+    console.log(this.selectedValues())
     this.selectedValuesLocal = this.selectedValues();
     this.selectedValuesChange.emit(this.selectedValuesLocal);
   }

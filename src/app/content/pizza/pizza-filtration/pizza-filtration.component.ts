@@ -15,7 +15,14 @@ export class PizzaFiltrationComponent implements OnInit {
 
   constructor(private pizzaService: PizzaService) {
 
-    // set up UI radio
+    // set up UI tags
+    effect(() => {
+        this.pizzaService.pizzaTags$.subscribe(tags => {
+          this.cfgTags.set(tags)
+        })
+    }, {allowSignalWrites: true})
+
+    // set up UI type of dough
     effect(
       () => {
       this.pizzaService.doughTypes$.subscribe(values => {
@@ -25,7 +32,7 @@ export class PizzaFiltrationComponent implements OnInit {
       {allowSignalWrites: true});
 
 
-    // set up UI interval
+    // set up UI price interval
     effect(
       () => {
       this.pizzaService.interval$.subscribe(value => {
@@ -36,28 +43,34 @@ export class PizzaFiltrationComponent implements OnInit {
       {allowSignalWrites: true});
 
 
-    // set up UI checkboxes
+    // set up UI ingredients
 
     effect(() => {
       this.pizzaService.checkboxesIngreds$.subscribe(values => {
-        this.availableCheckboxes.set(values)
-        console.log(values.map(x => x.value))
-        this.selectedCheckboxes.set(values.map(x => x.value))
+        this.cfgIngred.set(values)
+        // console.log(values.map(x => x.value))
       })
-    }, {allowSignalWrites: true})
+    }, {allowSignalWrites: true});
   }
 
-  availableCheckboxes: WritableSignal<CheckboxInterface[]> = signal([])
-  selectedCheckboxes: WritableSignal<string[]> = signal([])
+  cfgTags: WritableSignal<CheckboxInterface[]> = signal([])
+  selectedTags: WritableSignal<string[]> = signal([])
+
+  cfgIngred: WritableSignal<CheckboxInterface[]> = signal([])
 
   ngOnInit() {
 
   }
 
+  setTags(tags: string[]){
+    console.log(tags)
+    this.pizzaService.setPizzaTags(tags)
+  }
+
   setIngredients(ingredients: string[]) {
-    console.log(ingredients)
+    // console.log(ingredients)
     this.pizzaService.setCheckboxes(ingredients)
-    console.log('FCW')
+    // console.log('FCW')
   }
 
 

@@ -13,6 +13,7 @@ export class PizzaListComponent {
   constructor(private pizzaService: PizzaService) {
     effect(() => {
       this.pizzaList.set(this.pizzaService.filteredPizza())
+      console.log(this.pizzaList())
     }, {allowSignalWrites: true});
 
   }

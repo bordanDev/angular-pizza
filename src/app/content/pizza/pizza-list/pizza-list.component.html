@@ -6,4 +6,15 @@
             [pizzaIngredients]="pizza.ingredients" [pizzaPrice]="pizza.price" [pizzaImgUrl]="'pizza.imgUrl'">
         </app-card>
     </div>
+    @if(pizzaList().length === 0){
+      <div class="center">
+        <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M31.5 19.8333L19.8333 31.5M19.8333 19.8333L31.5 31.5M48.9999 48.9999L38.9666 38.9666M44.3333 25.6667C44.3333 35.976 35.976 44.3333 25.6667 44.3333C15.3574 44.3333 7 35.976 7 25.6667C7 15.3574 15.3574 7 25.6667 7C35.976 7 44.3333 15.3574 44.3333 25.6667Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+
+        <span style="margin-top: 6px; opacity: 0.6">Pizza is not found</span>
+
+        <span style="font-weight: 400; opacity: 0.4">Select another filtration</span>
+      </div>
+    }
 </div>
