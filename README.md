@@ -1,8 +1,9 @@
 # Angular Pizza
 
-Available UI (03.04.2025)
+Available UI (07.04.2025)
 
-![image](https://github.com/user-attachments/assets/14519586-fe0b-4416-a642-5191f9f8d763)
+![image](https://github.com/user-attachments/assets/7a39d8d2-2ed9-4468-bd96-e6522e9f934b)
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.1.2.
 
