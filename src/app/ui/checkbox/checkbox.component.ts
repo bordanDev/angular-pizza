@@ -1,5 +1,6 @@
 import {Component, EventEmitter, input, OnChanges, OnInit, output, Output, signal} from '@angular/core';
 import {CheckboxInterface} from "./checkbox.interface";
+import {IconSize} from "../icon/enums/icon.enums";
 
 @Component({
   selector: 'app-checkbox',
@@ -48,4 +49,5 @@ export class CheckboxComponent implements OnInit, OnChanges {
 
   toggleListFlag = false;
 
+    protected readonly IconSize = IconSize;
 }

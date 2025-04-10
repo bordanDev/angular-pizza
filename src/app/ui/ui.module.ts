@@ -13,6 +13,9 @@ import { RadioComponent } from './radio/radio.component';
 import { IntervalComponent } from './interval/interval.component';
 import { SearchListComponent } from './search-list/search-list.component';
 import { SearchListItemComponent } from './search-list/search-list-item/search-list-item.component';
+import {IconModule} from "./icon/icon.module";
+import {FeatherModule} from "angular-feather";
+import {IconComponent} from "./icon/icon.component";
 
 
 
@@ -28,13 +31,15 @@ import { SearchListItemComponent } from './search-list/search-list-item/search-l
     RadioComponent,
     IntervalComponent,
     SearchListComponent,
-    SearchListItemComponent
+    SearchListItemComponent,
+    IconComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+    FeatherModule
   ],
   exports: [
     CommonModule,
@@ -50,7 +55,8 @@ import { SearchListItemComponent } from './search-list/search-list-item/search-l
     CheckboxComponent,
     RadioComponent,
     IntervalComponent,
-    SearchListComponent
+    SearchListComponent,
+    IconModule
   ]
 })
 export class UiModule { }

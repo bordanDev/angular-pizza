@@ -62,6 +62,10 @@ export class PizzaFiltrationComponent implements OnInit {
 
   }
 
+  countOfAllPizza(){
+    return this.pizzaService.filteredPizza()
+  }
+
   setTags(tags: string[]){
     console.log(tags)
     this.pizzaService.setPizzaTags(tags)

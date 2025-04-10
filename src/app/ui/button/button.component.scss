@@ -1,3 +1,10 @@
+//:host {
+//  .button-none-icon app-icon {
+//    display: none;
+//  }
+//}
+
+
 .button {
     display: flex;
     align-items: center;
@@ -12,6 +19,24 @@
     text-wrap: nowrap;
     cursor: pointer;
     line-height: 20px;
+
+    &-l{
+      flex-direction: row-reverse;
+    }
+
+    &-r{
+      flex-direction: row;
+    }
+
+    //&-none-icon > app-icon{
+    //    display: none !important;
+    //}
+
+    &-none-icon{
+      app-icon{
+        display: none;
+      }
+    }
 
     &-lg {
       padding: 18px 20px !important;

@@ -11,6 +11,8 @@ import { UiModule } from './ui/ui.module';
 import { PizzaPageComponent } from './content/pizza/pizza-page/pizza-page.component';
 import { NotFoundComponent } from './content/not-found/not-found.component';
 import { PizzaFiltrationComponent } from './content/pizza/pizza-filtration/pizza-filtration.component';
+import {FeatherModule} from "angular-feather";
+import {IconModule} from "./ui/icon/icon.module";
 
 @NgModule({
   declarations: [
@@ -22,7 +24,7 @@ import { PizzaFiltrationComponent } from './content/pizza/pizza-filtration/pizza
     PizzaListComponent,
     PizzaPageComponent,
     NotFoundComponent,
-    PizzaFiltrationComponent
+    PizzaFiltrationComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { IconSize } from "../icon/enums/icon.enums";
 
 @Component({
   selector: 'app-card',
@@ -19,4 +20,5 @@ export class CardComponent {
 
   @Input() pizzaTag!: string;
 
+  public readonly IconSize = IconSize;
 }

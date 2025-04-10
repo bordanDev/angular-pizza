@@ -4,7 +4,6 @@ import { Pizza } from '../../pizza.model';
 import { RadioOptions } from '../../../ui/radio/radio.interface';
 import { Interval } from "../../../ui/interval/interval.interface";
 import {CheckboxInterface} from "../../../ui/checkbox/checkbox.interface";
-import {Ingredients} from "./ingredients.service";
 
 @Injectable({
   providedIn: 'root'
@@ -161,6 +160,14 @@ export class PizzaService{
   pizzas$: Observable<Pizza[]> = this.pizzasSubject.asObservable();
 
   public readonly filteredPizza = signal<Pizza[]>(this.mockPizzas)
+
+  public matcherFiltration() {
+
+  }
+
+  // public setMatchFiltration(){
+  //   this.matcherFiltration.set('')
+  // }
 
   public setFilteredThicknessPizzas(thickness: string) {
     const allPizzas = this.pizzasSubject.getValue()
