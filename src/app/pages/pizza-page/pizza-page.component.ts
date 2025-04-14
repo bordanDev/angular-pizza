@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { PizzaAdditionalIngredients } from '../../pizza.model';
-
+import { PizzaAdditionalIngredients } from '../../shared/interfaces/pizza.interface';
 
 @Component({
   selector: 'app-pizza-page',

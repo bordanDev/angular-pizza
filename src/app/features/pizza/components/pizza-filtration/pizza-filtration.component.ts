@@ -1,10 +1,7 @@
 import {Component, effect, OnInit, signal, WritableSignal} from '@angular/core';
-import { RadioOptions } from '../../../ui/radio/radio.interface';
-import { Pizza } from '../../pizza.model';
-import { PizzaService } from '../pizza-services/pizza.service';
-import {Interval} from "../../../ui/interval/interval.interface";
-import { interval, take } from 'rxjs';
-import {CheckboxInterface} from "../../../ui/checkbox/checkbox.interface";
+import { RadioOptions, Interval } from '../../../../ui';
+import { PizzaService } from '../../services/pizza.service';
+import { CheckboxInterface } from "../../../../ui/checkbox/checkbox.interface";
 
 @Component({
   selector: 'app-pizza-filtration',

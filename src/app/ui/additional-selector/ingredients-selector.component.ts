@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { PizzaAdditionalIngredients } from '../../content/pizza.model';
+import { PizzaAdditionalIngredients } from '../../shared/interfaces/pizza.interface';
 
 @Component({
   selector: 'app-additional-selector',

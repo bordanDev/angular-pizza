@@ -1,27 +1,14 @@
-import { Injectable } from "@angular/core";
-import {Pizza} from "../../pizza.model";
+import { Pizza } from "../../../shared/interfaces/pizza.interface";
 
-@Injectable({
-    providedIn: 'root'
-})
-export class Ingredients {
-    constructor(){
-    }
-
-    ingredients(pizzas: Pizza[]){
+export class IngredientsService {
+    static getIngredients(pizzas: Pizza[]){
       let allIngredients: string[] = [];
-
       pizzas.map(pizza => {
         pizza.ingredients.filter(ingred => {
           allIngredients.includes(ingred) ? '' : allIngredients.push(ingred)
         })
       })
-
       return allIngredients.map(value => { return {value: value, label: value} })
-
     }
-
-
-
 
 }

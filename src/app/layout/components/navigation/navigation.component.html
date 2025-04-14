@@ -1,17 +1,13 @@
-
 <div class="container">
     <nav class="nav">
         <a routerLink="./pizzas" class="nav-brand logo">
-          <img src="assets/images/logo_s.png" alt="">
+          <img src="../../../../assets/images/logo_s.png" alt="">
         </a>
       <div style="position: relative; display: flex; width: 100%; max-width: 600px">
-        <app-input (click)="changeSearchActive()"></app-input>
+        <app-input (click)="changeSearchActive()" [placeholder]="'Search angular pizza...'" (outputData)="outData($event)"></app-input>
         @if (searchActive) {
           <app-search-list></app-search-list>
         }
       </div>
     </nav>
 </div>
-
-
-<!--        <app-auth></app-auth>-->

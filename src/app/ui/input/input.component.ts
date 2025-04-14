@@ -1,7 +1,7 @@
 import {
   Component,
   EventEmitter,
-  Input,
+  Input, OnInit,
   Output,
   Renderer2,
   ViewChild,
@@ -13,7 +13,7 @@ import { debounce, debounceTime, distinctUntilChanged, Subject, takeUntil } from
   templateUrl: './input.component.html',
   styleUrl: './input.component.scss'
 })
-export class InputComponent {
+export class InputComponent implements OnInit {
 
   @Input() public iconPosition: 'left' | 'right' | 'none' = 'none'
   @Input() public inputType: 'default' | 'filter' = 'default'

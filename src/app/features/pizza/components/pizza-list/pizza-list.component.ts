@@ -1,7 +1,6 @@
 import { Component, effect, signal } from '@angular/core';
-import { PizzaService } from '../pizza-services/pizza.service';
-import { Pizza } from '../../pizza.model';
-import { Interval } from '../../../ui';
+import { PizzaService } from '../../services/pizza.service';
+import { Pizza } from '../../../../shared/interfaces/pizza.interface';
 
 @Component({
   selector: 'app-pizza-list',

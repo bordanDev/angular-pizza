@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PizzaListComponent } from './content/pizza/pizza-list/pizza-list.component';
-import { PizzaPageComponent } from './content/pizza/pizza-page/pizza-page.component';
-import { NotFoundComponent } from './content/not-found/not-found.component';
+import { PizzaListComponent } from './features/pizza/components/pizza-list/pizza-list.component';
+import { PizzaPageComponent } from './pages/pizza-page/pizza-page.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 const routes: Routes = [
 

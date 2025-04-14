@@ -9,6 +9,6 @@ import {IconSize} from "./enums/icon.enums";
 
 export class IconComponent {
   name: InputSignal<string> = input.required()
-  size: InputSignal<IconSize.lg | IconSize.md | IconSize.sm | undefined> = input()
+  size: InputSignal<IconSize.lg | IconSize.md | IconSize.sm | undefined> = input.required()
   protected readonly IconSize = IconSize;
 }

@@ -2,24 +2,21 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { AuthComponent } from './header/auth/auth.component';
-import { ContentComponent } from './content/content.component';
-import { PizzaFilterButtonsComponent } from './content/pizza/pizza-types-filter/pizza-filter-buttons.component';
-import { PizzaListComponent } from './content/pizza/pizza-list/pizza-list.component';
+import { NavigationComponent } from './layout/components/navigation/navigation.component';
+import { AuthComponent } from './features/auth/auth.component';
+import { MainComponent } from './layout/main/main.component';
+import { PizzaFilterButtonsComponent } from './features/pizza/components/pizza-types-filter/pizza-filter-buttons.component';
+import { PizzaListComponent } from './features/pizza/components/pizza-list/pizza-list.component';
 import { UiModule } from './ui/ui.module';
-import { PizzaPageComponent } from './content/pizza/pizza-page/pizza-page.component';
-import { NotFoundComponent } from './content/not-found/not-found.component';
-import { PizzaFiltrationComponent } from './content/pizza/pizza-filtration/pizza-filtration.component';
-import {FeatherModule} from "angular-feather";
-import {IconModule} from "./ui/icon/icon.module";
-
+import { PizzaPageComponent } from './pages/pizza-page/pizza-page.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { PizzaFiltrationComponent } from './features/pizza/components/pizza-filtration/pizza-filtration.component';
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
+    NavigationComponent,
     AuthComponent,
-    ContentComponent,
+    MainComponent,
     PizzaFilterButtonsComponent,
     PizzaListComponent,
     PizzaPageComponent,

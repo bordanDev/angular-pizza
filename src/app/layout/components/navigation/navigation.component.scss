@@ -1,8 +1,13 @@
+:host{
+  display: block;
+  margin-bottom: 72px;
+}
+
 nav {
     display: flex;
     flex-direction: row;
     padding: 24px 16px;
-    //justify-content: space-between;
+    //justify-features: space-between;
     gap: 40px;
     align-items: center;
 

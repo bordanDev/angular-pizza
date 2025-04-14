@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {IconSize} from "../../ui/icon/enums/icon.enums";
 
 @Component({
   selector: 'app-not-found',
@@ -7,4 +8,5 @@ import { Component } from '@angular/core';
 })
 export class NotFoundComponent {
 
+  protected readonly IconSize = IconSize;
 }

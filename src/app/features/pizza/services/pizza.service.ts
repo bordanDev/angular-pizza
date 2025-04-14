@@ -1,26 +1,19 @@
-import {effect, Injectable, signal, WritableSignal} from '@angular/core';
-import {BehaviorSubject, Observable} from 'rxjs';
-import { Pizza } from '../../pizza.model';
+import { Injectable, signal } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { Pizza } from '../../../shared/interfaces/pizza.interface';
 import { RadioOptions } from '../../../ui/radio/radio.interface';
 import { Interval } from "../../../ui/interval/interval.interface";
-import {CheckboxInterface} from "../../../ui/checkbox/checkbox.interface";
+import { CheckboxInterface } from "../../../ui/checkbox/checkbox.interface";
+import { IngredientsService } from "./ingredients.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class PizzaService{
 
-  private getIngredients(pizzas: Pizza[]){
-    let allIngredients: string[] = [];
 
-    pizzas.map(pizza => {
-      pizza.ingredients.filter(ingred => {
-        allIngredients.includes(ingred) ? '' : allIngredients.push(ingred)
-      })
-    })
-
-    return allIngredients.map(value => { return { value: value, label: value } })
-
+  getPizzaIngredients(pizzas: Pizza[]){
+    return IngredientsService.getIngredients(pizzas)
   }
 
   // Pizzas
@@ -141,7 +134,7 @@ export class PizzaService{
     { value: 'thin', label: 'thickness2' }
   ]
   private readonly intervalConfig: Interval[] = [ { minValue: 0, maxValue: 10 } ]
-  private readonly checkboxesList: CheckboxInterface[] = this.getIngredients(this.mockPizzas);
+  private readonly checkboxesList: CheckboxInterface[] = this.getPizzaIngredients(this.mockPizzas);
 
   private checkboxesIngredsSubject: BehaviorSubject<CheckboxInterface[]> = new BehaviorSubject<CheckboxInterface[]>(this.checkboxesList)
   checkboxesIngreds$: Observable<CheckboxInterface[]> = this.checkboxesIngredsSubject.asObservable()

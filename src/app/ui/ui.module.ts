@@ -56,7 +56,8 @@ import {IconComponent} from "./icon/icon.component";
     RadioComponent,
     IntervalComponent,
     SearchListComponent,
-    IconModule
+    IconModule,
+    IconComponent
   ]
 })
 export class UiModule { }
