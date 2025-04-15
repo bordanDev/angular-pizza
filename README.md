@@ -2,9 +2,7 @@
 
 Available UI (10.04.2025)
 
-![image](https://github.com/user-attachments/assets/8d01d02d-9da2-40cc-af1d-1ff57bbb4b9a)
-
-
+![image](https://github.com/user-attachments/assets/e2a6696b-6a46-4c6a-807f-673643b6226a)\
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.1.2.
 
