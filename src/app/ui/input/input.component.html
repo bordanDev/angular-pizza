@@ -1,21 +1,11 @@
-<div #input class="input input-search" [ngClass]="{'input-filter' : inputType === 'filter'}">
+<div #input class="input input-search" [ngClass]="{
+ 'input-filter' : inputType === 'filter',
+ 'input-l' : iconPosition === 'left',
+ 'input-r' : iconPosition === 'right',
+ 'input-icon-none' : iconPosition === 'none'
+}">
     <input #inputField class="input-search--field" [value]="value" (input)="onInputChange($event)" [placeholder]="placeholder">
-    <ng-content/>
+  @if(iconPosition !== 'none'){
+    <ng-content></ng-content>
+  }
 </div>
-
-
-<!--
-
-placeholder
-value
-inputType
-inputActive
-
-iconPosition
-functionalIconButton
-type
-label -
-name -
-
-
--->

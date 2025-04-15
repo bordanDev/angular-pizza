@@ -1,24 +1,23 @@
 import {
+  AfterViewInit,
   Component,
   EventEmitter,
-  Input, OnInit,
+  Input, OnDestroy, OnInit,
   Output,
   Renderer2,
   ViewChild,
 } from '@angular/core';
-import { debounce, debounceTime, distinctUntilChanged, Subject, takeUntil } from 'rxjs';
+import { debounceTime, distinctUntilChanged, Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-input',
   templateUrl: './input.component.html',
   styleUrl: './input.component.scss'
 })
-export class InputComponent implements OnInit {
+export class InputComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @Input() public iconPosition: 'left' | 'right' | 'none' = 'none'
   @Input() public inputType: 'default' | 'filter' = 'default'
-  @Input() public functionalIconButton: boolean = false
-  @Input() public type = 'text'
   @Input() public placeholder: string = ''
   @Input() public value: string = ''
   @Input() public inputActive: boolean = false;
@@ -27,6 +26,7 @@ export class InputComponent implements OnInit {
   @ViewChild("input") input: any;
 
   @Output() outputData = new EventEmitter<string>()
+  @Output() inputActiveData = new EventEmitter<boolean>()
 
   private inputSubject = new Subject<string>()
   private destroy$ = new Subject<void>()
@@ -59,21 +59,18 @@ export class InputComponent implements OnInit {
 
   }
 
-  // ngOnInit(){
-  //   // const map = new Map();
-  //   // map.set('key', ['1', '2', '3'])
-  //   // console.log(map.get('key')[2])
-  // }
-
   ngAfterViewInit(){
     this.focusListener = this.renderer.listen('window', 'click', (e: Event) => {
       if (e.target == this.input.nativeElement || e.target == this.inputField.nativeElement) {
-        this.inputActive = !this.inputActive
+        this.inputActive = true
         this.inputField.nativeElement.focus();
+        this.inputActiveData.emit(this.inputActive)
       } else {
-        this.inputActive = !this.inputActive;
+        this.inputActive = false;
         this.inputField.nativeElement.blur();
+        this.inputActiveData.emit(this.inputActive)
       }
+      console.log(this.inputActive)
     });
   }
 

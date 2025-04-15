@@ -1,3 +1,9 @@
-<img src="assets/images/pizza-1.png" alt="">
-<p>Label</p>
-<div>$10.99</div>
+<img [src]="pizza().imgUrl" alt="">
+<p style="text-transform: capitalize" [innerHTML]="pizza().title.toLowerCase() | bolder : userText().toLowerCase()"></p>
+<div style="flex-grow: 1">{{ pizza().price }} $</div>
+
+<div *ngIf="pizza().tag" [ngClass]="{
+            'card-image-tag--top': pizza().tag === 'top',
+            'card-image-tag--new': pizza().tag === 'new',
+            'card-image-tag--none': pizza().tag === 'none'
+}" class="card-image-tag">{{ pizza().tag === 'top' ? 'TOP' : pizza().tag === 'new' ? 'NEW' : '' }}</div>

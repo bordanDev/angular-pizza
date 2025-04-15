@@ -1,13 +1,22 @@
 <div class="container">
     <nav class="nav">
-        <a routerLink="./pizzas" class="nav-brand logo">
-          <img src="../../../../assets/images/logo_s.png" alt="">
-        </a>
+
+      <a routerLink="./pizzas" class="nav-brand logo">
+        <img src="../../../../assets/images/logo_s.png" alt="">
+      </a>
+
       <div style="position: relative; display: flex; width: 100%; max-width: 600px">
-        <app-input (click)="changeSearchActive()" [placeholder]="'Search angular pizza...'" (outputData)="outData($event)"></app-input>
+
+        <app-input (inputActiveData)="changeSearchActive($event)" [placeholder]="'Search angular pizza...'" (outputData)="outData($event)" [iconPosition]="'left'">
+          <app-icon style="opacity: 0.4" [name]="'search'" [size]="IconSize.md"></app-icon>
+        </app-input>
+
         @if (searchActive) {
-          <app-search-list></app-search-list>
+          <app-search-list [textBySearch]="inputData()" [searchPizzas]="filteredList()"></app-search-list>
         }
+
       </div>
     </nav>
 </div>
+
+<div class="background" *ngIf="searchActive"></div>

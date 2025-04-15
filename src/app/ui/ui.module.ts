@@ -16,6 +16,7 @@ import { SearchListItemComponent } from './search-list/search-list-item/search-l
 import {IconModule} from "./icon/icon.module";
 import {FeatherModule} from "angular-feather";
 import {IconComponent} from "./icon/icon.component";
+import {SharedModule} from "../shared/shared.module";
 
 
 
@@ -39,7 +40,8 @@ import {IconComponent} from "./icon/icon.component";
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    FeatherModule
+    FeatherModule,
+    SharedModule
   ],
   exports: [
     CommonModule,

@@ -1,18 +1,12 @@
-import {Component, OnInit} from '@angular/core';
-import {PizzaService} from "../../features/pizza/services/pizza.service";
+import {Component, input} from '@angular/core';
+import {Pizza} from "../../shared/interfaces/pizza.interface";
 
 @Component({
   selector: 'app-search-list',
   templateUrl: './search-list.component.html',
   styleUrl: './search-list.component.scss'
 })
-export class SearchListComponent implements OnInit{
-
-  constructor(private pizza: PizzaService){}
-
-  ngOnInit(){
-    this.pizza.pizzas$.subscribe(x => console.log(x))
-    console.log()
-  }
-
+export class SearchListComponent{
+  searchPizzas = input.required<Pizza[]>()
+  textBySearch = input.required<string>()
 }

@@ -11,6 +11,7 @@ import { UiModule } from './ui/ui.module';
 import { PizzaPageComponent } from './pages/pizza-page/pizza-page.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { PizzaFiltrationComponent } from './features/pizza/components/pizza-filtration/pizza-filtration.component';
+import { SharedModule } from "./shared/shared.module";
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,12 +22,13 @@ import { PizzaFiltrationComponent } from './features/pizza/components/pizza-filt
     PizzaListComponent,
     PizzaPageComponent,
     NotFoundComponent,
-    PizzaFiltrationComponent,
+    PizzaFiltrationComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    UiModule
+    UiModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
