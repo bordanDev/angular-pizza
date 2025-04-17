@@ -1,4 +1,4 @@
 export enum PagesEnum {
-  Main = 'allpizza',
+  Main = 'pizzas',
   Pizza = 'pizza'
 }

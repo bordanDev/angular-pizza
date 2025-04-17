@@ -3,19 +3,22 @@ import { RouterModule, Routes } from '@angular/router';
 import { PizzaListComponent } from './features/pizza/components/pizza-list/pizza-list.component';
 import { PizzaPageComponent } from './pages/pizza-page/pizza-page.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { PagesEnum } from "./core/enums/pages.enum";
 
 const routes: Routes = [
 
   {
-    path: 'pizzas',
+    path: PagesEnum.Main,
     component: PizzaListComponent
   },
   {
-    path: 'pizzas/pizza',
+    path: PagesEnum.Main + '/' + PagesEnum.Pizza + '/:id',
     component: PizzaPageComponent
   },
-
-  { path: '**', component: NotFoundComponent },
+  {
+    path: '**',
+    component: NotFoundComponent
+  },
 ];
 
 @NgModule({
