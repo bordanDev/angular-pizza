@@ -1,35 +1,26 @@
 <div class="container">
   <div class="pizza">
     <div class="pizza-img">
-      <img src="../../../../assets/images/big-size.png" alt="">
+      <img [src]="currentPizza.imgUrl" alt="">
     </div>
     <div class="pizza-constructor">
-      <h2 class="h2 pizza-title">Meat</h2>
-      <p class="pizza-types">{{
-          activePizzaSize === 'Small' ? '25' :
-            activePizzaSize === 'Middle' ? '35' :
-              activePizzaSize === 'Big' ? '45' : 'N/A'
-        }} см, {{
-          activePizzaThickness.toLowerCase() + ' ' + 'thickness'
-        }}, ~400
-        g
-      </p>
+      <h2 class="h2 pizza-title">{{ currentPizza.title }}</h2>
+      <p class="pizza-types">{{ currentPizza.size }}, {{ activePizzaThickness.toLowerCase() + ' ' + 'thickness' }}, {{ currentPizza.weight }} g</p>
+
       <div class="pizza-types--switchers">
         <app-switch [items]="pizzaSizeArray" (activeChange)="onSwitchSize($event)"></app-switch>
         <app-switch [items]="pizzaThicknessArray" (activeChange)="onSwitchThickness($event)"></app-switch>
       </div>
 
       <div class="pizza-ingredients--container">
-        <p class="pizza-ingredients--title">Ingredients <span class="counter"
-                                                              *ngIf="selectedIngredients.length !== 0">Выбрано
-                    ингридиентов {{ selectedIngredients.length }}x</span>
+        <p class="pizza-ingredients--title">Ingredients
+          <span class="counter" *ngIf="selectedIngredients.length !== 0">
+            Выбрано ингридиентов {{ selectedIngredients.length }}x</span>
         </p>
       </div>
       <app-additional-selector [ingredients]="testIngredients"></app-additional-selector>
 
-      <app-button [buttonSize]="'big'" [text]="'Добавить в корзину за'">
-        {{ totalPrice.toFixed(2) }}
-      </app-button>
+      <app-button [isFilled]="true" [variant]="'primary'" [buttonSize]="'md'"  [text]="'Add to card for' + ' ' + '$'+ totalPrice.toFixed(2)"></app-button>
     </div>
 
   </div>

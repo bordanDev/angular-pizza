@@ -13,8 +13,6 @@ export class ButtonComponent {
 
   @Input() isDisabled: boolean = false; // По умолчанию кнопка включена
 
-  // @Input() size: 'sm' | 'md' | 'lg' = 'md';
-
   @Input() text: string = 'Button';
 
   @Input() iconPosition: 'left' | 'right' | 'none' = 'none'

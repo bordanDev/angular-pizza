@@ -1,12 +1,39 @@
-import { Component, Input } from '@angular/core';
-import { PizzaAdditionalIngredients } from '../../shared/interfaces/pizza.interface';
+import { Component, inject, OnInit } from '@angular/core';
+import { Pizza, PizzaAdditionalIngredients } from '../../shared/interfaces/pizza.interface';
+import { PizzaService } from "../../features/pizza/services/pizza.service";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: 'app-pizza-page',
   templateUrl: './pizza-page.component.html',
   styleUrl: './pizza-page.component.scss'
 })
-export class PizzaPageComponent {
+export class PizzaPageComponent implements OnInit {
+
+  pizzaService = inject(PizzaService)
+  routerActive = inject(ActivatedRoute)
+
+  pizzaPageId!: any;
+  pizzaArray: Pizza[] = [];
+  currentPizza!: any;
+
+  ngOnInit(){
+    this.pizzaService.pizzas$.subscribe(pizzas => this.pizzaArray = pizzas)
+    console.log(this.pizzaArray)
+    this.routerActive.url.subscribe(x => this.pizzaPageId = x[x.length - 1].path)
+    let pizzaResult = () => {
+      console.log(this.pizzaPageId)
+      console.log(this.pizzaArray)
+      this.currentPizza = this.pizzaArray.filter(x => x.id == this.pizzaPageId)
+      this.currentPizza = this.currentPizza[0]
+      console.log(this.pizzaArray)
+
+    }
+    pizzaResult()
+
+    console.log(this.currentPizza)
+
+  }
 
   testIngredients: PizzaAdditionalIngredients[] = [
     {
@@ -37,8 +64,6 @@ export class PizzaPageComponent {
 
   selectedIngredients: PizzaAdditionalIngredients[] = [];
 
-
-
   totalPrice = 12.99
 
   onSelectedIngredientsChanged(selected: PizzaAdditionalIngredients[]) {
@@ -67,8 +92,5 @@ export class PizzaPageComponent {
   onSwitchThickness(index: number) {
     this.activePizzaThickness = this.pizzaThicknessArray[index]
   }
-
-  ////////////////////////////////
-
 
 }

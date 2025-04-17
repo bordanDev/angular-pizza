@@ -1,6 +1,6 @@
 @if(searchPizzas().length !== 0){
     @for (pizza of searchPizzas(); track pizza) {
-    <app-search-list-item routerLink="./pizzas/pizza" [pizza]="pizza" [userText]="textBySearch()"></app-search-list-item>
+    <app-search-list-item [routerLink]="'pizzas/pizza' + '/' + pizza.id" [pizza]="pizza" [userText]="textBySearch()"></app-search-list-item>
     }
 }
 @else {

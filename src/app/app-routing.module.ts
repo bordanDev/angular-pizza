@@ -6,7 +6,6 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { PagesEnum } from "./core/enums/pages.enum";
 
 const routes: Routes = [
-
   {
     path: PagesEnum.Main,
     component: PizzaListComponent

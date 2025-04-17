@@ -26,7 +26,10 @@ export class PizzaService{
       price: 8.99,
       imgUrl: 'assets/images/pizza-1.png',
       tag: 'top',
-      thickness: 'thin' // Случайное значение
+      thickness: 'thin',
+      size: 'medium',
+      weight: 450,
+      additionalIngredients: ['Cheese board', 'Creamy mozzarella']
     },
     {
       id: 2,
@@ -36,7 +39,10 @@ export class PizzaService{
       price: 10.99,
       imgUrl: 'assets/images/pizza-2.png',
       tag: 'none',
-      thickness: 'standard' // Случайное значение
+      thickness: 'standard',
+      size: 'large',
+      weight: 550,
+      additionalIngredients: ['Cheddar and Parmesan', 'Creamy mozzarella']
     },
     {
       id: 3,
@@ -46,7 +52,10 @@ export class PizzaService{
       price: 11.99,
       imgUrl: 'assets/images/pizza-3.png',
       tag: 'top',
-      thickness: 'thin' // Случайное значение
+      thickness: 'thin',
+      size: 'medium',
+      weight: 500,
+      additionalIngredients: ['Cheddar and Parmesan', 'Creamy mozzarella']
     },
     {
       id: 4,
@@ -56,7 +65,10 @@ export class PizzaService{
       price: 12.99,
       imgUrl: 'assets/images/pizza-4.png',
       tag: 'new',
-      thickness: 'standard' // Случайное значение
+      thickness: 'standard',
+      size: 'large',
+      weight: 600,
+      additionalIngredients: ['Cheese board']
     },
     {
       id: 5,
@@ -66,7 +78,10 @@ export class PizzaService{
       price: 13.99,
       imgUrl: 'assets/images/pizza-5.png',
       tag: 'none',
-      thickness: 'thin' // Случайное значение
+      thickness: 'thin',
+      size: 'large',
+      weight: 630,
+      additionalIngredients: ['Cheddar and Parmesan', 'Tender chicken']
     },
     {
       id: 6,
@@ -76,7 +91,10 @@ export class PizzaService{
       price: 14.99,
       imgUrl: 'assets/images/pizza-6.png',
       tag: 'top',
-      thickness: 'standard' // Случайное значение
+      thickness: 'standard',
+      size: 'large',
+      weight: 640,
+      additionalIngredients: ['Creamy mozzarella', 'Tender chicken']
     },
     {
       id: 7,
@@ -86,7 +104,10 @@ export class PizzaService{
       price: 9.99,
       imgUrl: 'assets/images/pizza-7.png',
       tag: 'none',
-      thickness: 'thin' // Случайное значение
+      thickness: 'thin',
+      size: 'medium',
+      weight: 470,
+      additionalIngredients: ['Cheese board', 'Tender chicken']
     },
     {
       id: 8,
@@ -96,7 +117,10 @@ export class PizzaService{
       price: 13.49,
       imgUrl: 'assets/images/pizza-8.png',
       tag: 'new',
-      thickness: 'standard' // Случайное значение
+      thickness: 'standard',
+      size: 'large',
+      weight: 610,
+      additionalIngredients: ['Cheddar and Parmesan']
     },
     {
       id: 9,
@@ -106,9 +130,13 @@ export class PizzaService{
       price: 12.49,
       imgUrl: 'assets/images/pizza-9.png',
       tag: 'none',
-      thickness: 'thin' // Случайное значение
+      thickness: 'thin',
+      size: 'medium',
+      weight: 520,
+      additionalIngredients: ['Creamy mozzarella', 'Tender chicken']
     }
   ];
+
 
   // private readonly pizzaTags
 
