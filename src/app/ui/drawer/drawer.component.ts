@@ -1,5 +1,5 @@
 import { Component, effect, inject, signal, TemplateRef, ViewChild } from '@angular/core';
-import { AddPizzaService } from "../../features/pizza/services/add-pizza.service";
+import { CartPizzaService } from "../../features/pizza/services/cart-pizza.service";
 import { Pizza } from "../../shared/interfaces/pizza.interface";
 import { IconSize } from "../icon/enums/icon.enums";
 import { Router } from "@angular/router";
@@ -18,7 +18,7 @@ export class DrawerComponent {
   @ViewChild(TemplateRef) drawer: TemplateRef<unknown> | undefined;
   @ViewChild(TemplateRef) drawerEmpty: TemplateRef<unknown> | undefined;
 
-  drawerPizzaData = inject(AddPizzaService);
+  drawerPizzaData = inject(CartPizzaService);
 
   constructor(private location: Location) {
     effect(() => {

@@ -161,7 +161,7 @@ export class PizzaService{
     { value: 'standard', label: 'thickness1' },
     { value: 'thin', label: 'thickness2' }
   ]
-  private readonly intervalConfig: Interval[] = [ { minValue: 0, maxValue: 10 } ]
+  private readonly intervalConfig: Interval[] = [ { minValue: 0, maxValue: 15 } ]
   private readonly checkboxesList: CheckboxInterface[] = this.getPizzaIngredients(this.mockPizzas);
 
   private checkboxesIngredsSubject: BehaviorSubject<CheckboxInterface[]> = new BehaviorSubject<CheckboxInterface[]>(this.checkboxesList)

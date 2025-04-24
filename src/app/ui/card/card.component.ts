@@ -1,4 +1,4 @@
-import { Component, Input, output, Output } from '@angular/core';
+import { Component, input, Input, InputSignal, output, Output } from '@angular/core';
 import { IconSize } from "../icon/enums/icon.enums";
 
 @Component({
@@ -22,10 +22,12 @@ export class CardComponent {
 
   @Input() pizzaId!: number;
 
-  buttonClick = output<boolean>()
+  toggle = output<void>()
 
-  isClickOnButton(click : boolean){
-    this.buttonClick.emit(click)
+  inCart: InputSignal<boolean> = input(false);
+
+  onToggle(){
+    this.toggle.emit()
   }
 
   public readonly IconSize = IconSize;

@@ -1,6 +1,6 @@
 import { Component, effect, signal } from '@angular/core';
 import { IconSize } from "../../../ui/icon/enums/icon.enums";
-import { AddPizzaService } from "../../pizza/services/add-pizza.service";
+import { CartPizzaService } from "../../pizza/services/cart-pizza.service";
 
 @Component({
   selector: 'app-card-counter',
@@ -11,7 +11,7 @@ export class CardCounterComponent{
 
   counter = signal<number>(0)
 
-  constructor(private addPizza: AddPizzaService) {
+  constructor(private addPizza: CartPizzaService) {
     effect(() => {
       this.counter.set(this.addPizza.localSignalStorage().length)
     }, {

@@ -10,9 +10,10 @@ export enum API_KEY {
   providedIn: 'root'
 })
 
-export class AddPizzaService {
+export class CartPizzaService {
 
   private localStorage = inject(StorageService)
+
   public localSignalStorage = signal<any>([])
 
   pizzas: Pizza[] = []

@@ -14,8 +14,13 @@
       </div>
     <div class="card-container">
         <div class="card-container--price"><b>${{ pizzaPrice }}</b></div>
-        <app-button (click)="isClickOnButton(true)" [iconPosition]="'right'" [variant]="'secondary'" [text]="'Add'">
-          <app-icon [name]="'plus'" [size]="IconSize.md"></app-icon>
+        <app-button (click)="onToggle()" [iconPosition]="'right'" [variant]="'secondary'" [text]="this.inCart() ? 'Delete' : 'Add'">
+          @if(this.inCart()){
+            <app-icon [name]="'trash'" [size]="IconSize.md"></app-icon>
+          }
+          @else{
+            <app-icon [name]="'plus'" [size]="IconSize.md"></app-icon>
+          }
         </app-button>
     </div>
 </a>
