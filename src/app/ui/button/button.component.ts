@@ -1,4 +1,4 @@
-import {Component, Input, ViewEncapsulation} from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
@@ -10,23 +10,14 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 export class ButtonComponent {
 
   @Input() variant: 'primary' | 'secondary' | 'outline' | 'transparent' | 'disabled' = 'primary'; // Перечисляем возможные варианты кнопок, где мы принимаем string. Значение по умолчанию primary
-
   @Input() isDisabled: boolean = false; // По умолчанию кнопка включена
-
   @Input() text: string = 'Button';
-
   @Input() iconPosition: 'left' | 'right' | 'none' = 'none'
-
   @Input() filterButton: boolean = false;
-
   @Input() filterButtonActive: boolean = false;
-
   @Input() isFilled: boolean = false;
-
   @Input() buttonSize: 'big' | 'md' | 'sm' = 'md'
-
   @Input() svgIcon!: SafeHtml;
-
 
   constructor(private sanitizer: DomSanitizer) {
     this.setSvgIcon();

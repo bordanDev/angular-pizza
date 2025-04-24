@@ -17,6 +17,7 @@ import {IconModule} from "./icon/icon.module";
 import {FeatherModule} from "angular-feather";
 import {IconComponent} from "./icon/icon.component";
 import {SharedModule} from "../shared/shared.module";
+import { DrawerComponent } from './drawer/drawer.component';
 
 
 
@@ -33,7 +34,8 @@ import {SharedModule} from "../shared/shared.module";
     IntervalComponent,
     SearchListComponent,
     SearchListItemComponent,
-    IconComponent
+    IconComponent,
+    DrawerComponent
   ],
   imports: [
     CommonModule,
@@ -59,7 +61,8 @@ import {SharedModule} from "../shared/shared.module";
     IntervalComponent,
     SearchListComponent,
     IconModule,
-    IconComponent
+    IconComponent,
+    DrawerComponent
   ]
 })
 export class UiModule { }

@@ -52,20 +52,17 @@
       line-height: 16px;
     }
 
-    &:hover {
-        background-color: #e25402;
-
-        svg {
-                stroke: #c74b03 !important; // Цвет обводки при наведении
-                fill: #c74b03 !important; // Цвет заливки при наведении
-        }
-
-    }
-
     &-primary {
         color: white;
         padding: 14px 20px;
         background-color: #FE5F00;
+        &:hover {
+          background-color: #e25402;
+          svg {
+            stroke: #EFEFEF !important; // Цвет обводки при наведении
+            fill: #EFEFEF !important; // Цвет заливки при наведении
+          }
+        }
     }
 
 
@@ -100,8 +97,12 @@
         outline-offset: -2px;
 
         &:hover {
-            outline-color: #c74b03;
-            background-color: transparent;
+          outline-color: #c74b03;
+          color: #c74b03;
+          svg {
+            stroke: #c74b03 !important; // Цвет обводки при наведении
+            fill: #c74b03 !important; // Цвет заливки при наведении
+          }
         }
     }
 

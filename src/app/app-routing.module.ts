@@ -4,15 +4,32 @@ import { PizzaListComponent } from './features/pizza/components/pizza-list/pizza
 import { PizzaPageComponent } from './pages/pizza-page/pizza-page.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { PagesEnum } from "./core/enums/pages.enum";
+import { DrawerComponent } from "./ui/drawer/drawer.component";
 
 const routes: Routes = [
   {
     path: PagesEnum.Main,
-    component: PizzaListComponent
+    component: PizzaListComponent,
+    children: [
+      {
+        path: 'list',
+        component: DrawerComponent
+      }
+    ]
   },
   {
     path: PagesEnum.Main + '/' + PagesEnum.Pizza + '/:id',
-    component: PizzaPageComponent
+    component: PizzaPageComponent,
+    children: [
+      {
+        path: 'list',
+        component: DrawerComponent
+      }
+    ]
+  },
+  {
+    path: PagesEnum.Main + '/list',
+    component: DrawerComponent
   },
   {
     path: '**',

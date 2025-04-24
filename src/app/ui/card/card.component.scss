@@ -1,11 +1,21 @@
 .card {
     display: flex;
     flex-direction: column;
-    max-width: 256px;
-    max-height: 430px;
+    max-width: 248px;
+    max-height: 400px;
     height: 100%;
-    cursor: pointer;
+    justify-content: space-between;
     position: relative;
+
+    &-header:hover{
+      cursor: pointer;
+      h4{
+        color: #c74b03;
+      }
+      .card-image{
+        background-color: #fff0e0;
+      }
+    }
 
     &-image {
         display: flex;
@@ -75,6 +85,6 @@
             @extend .card-container--price
         }
 
-        font-size: 20px;
+        font-size: 24px;
     }
 }

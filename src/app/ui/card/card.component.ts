@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, output, Output } from '@angular/core';
 import { IconSize } from "../icon/enums/icon.enums";
 
 @Component({
@@ -19,6 +19,14 @@ export class CardComponent {
   // @Input() pizzaTag: 'top' | 'new' | 'none' = 'top'
 
   @Input() pizzaTag!: string;
+
+  @Input() pizzaId!: number;
+
+  buttonClick = output<boolean>()
+
+  isClickOnButton(click : boolean){
+    this.buttonClick.emit(click)
+  }
 
   public readonly IconSize = IconSize;
 }
