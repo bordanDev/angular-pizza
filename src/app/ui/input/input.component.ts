@@ -70,7 +70,6 @@ export class InputComponent implements OnInit, AfterViewInit, OnDestroy {
         this.inputField.nativeElement.blur();
         this.inputActiveData.emit(this.inputActive)
       }
-      console.log(this.inputActive)
     });
   }
 

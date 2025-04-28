@@ -3,7 +3,7 @@ import { SearchPizzaService } from "../../../features/pizza/services/search-pizz
 import { IconSize } from "../../../ui/icon/enums/icon.enums";
 import { Pizza } from "../../../shared/interfaces/pizza.interface";
 import { PagesEnum } from "../../../core/enums/pages.enum";
-import { Route, Router } from "@angular/router";
+import { Router } from "@angular/router";
 
 
 @Component({
@@ -28,7 +28,6 @@ export class NavigationComponent{
   searchActive: boolean = false; // Флаг
 
   changeSearchActive(value: boolean){
-    console.log(value)
     this.searchActive = value;
   }
 

@@ -23,12 +23,19 @@ export class DrawerComponent {
   constructor(private location: Location) {
     effect(() => {
       this.drawerPizza.set(this.drawerPizzaData.localSignalStorage())
+      this.getTotalPrice(this.drawerPizzaData.localSignalStorage())
     }, {allowSignalWrites: true});
   }
 
   drawerPizza = signal<Pizza[]>([])
 
   totalPrice: number = 0
+
+  getTotalPrice(pizzas: Pizza[]){
+    this.totalPrice = pizzas.reduce((sum, cur) => {
+      return sum + cur.price
+    }, 0)
+  }
 
   closeDrawer(){
     this.location.back()
