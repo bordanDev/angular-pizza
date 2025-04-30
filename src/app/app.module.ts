@@ -12,6 +12,7 @@ import { PizzaPageComponent } from './pages/pizza-page/pizza-page.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { PizzaFiltrationComponent } from './features/pizza/components/pizza-filtration/pizza-filtration.component';
 import { SharedModule } from "./shared/shared.module";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +29,8 @@ import { SharedModule } from "./shared/shared.module";
     BrowserModule,
     AppRoutingModule,
     UiModule,
-    SharedModule
+    SharedModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

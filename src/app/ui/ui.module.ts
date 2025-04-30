@@ -19,6 +19,7 @@ import {IconComponent} from "./icon/icon.component";
 import {SharedModule} from "../shared/shared.module";
 import { DrawerComponent } from './drawer/drawer.component';
 import { CounterComponent } from './counter/counter.component';
+import { CartItemComponent } from './cart-item/cart-item.component';
 
 
 
@@ -37,7 +38,8 @@ import { CounterComponent } from './counter/counter.component';
     SearchListItemComponent,
     IconComponent,
     DrawerComponent,
-    CounterComponent
+    CounterComponent,
+    CartItemComponent
   ],
   imports: [
     CommonModule,
@@ -47,25 +49,26 @@ import { CounterComponent } from './counter/counter.component';
     FeatherModule,
     SharedModule
   ],
-  exports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    RouterModule,
-    ButtonComponent,
-    CardComponent,
-    InputComponent,
-    SwitchComponent,
-    IngredientsSelectorComponent,
-    BreadcrumbsComponent,
-    CheckboxComponent,
-    RadioComponent,
-    IntervalComponent,
-    SearchListComponent,
-    IconModule,
-    IconComponent,
-    DrawerComponent,
-    CounterComponent
-  ]
+    exports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        RouterModule,
+        ButtonComponent,
+        CardComponent,
+        InputComponent,
+        SwitchComponent,
+        IngredientsSelectorComponent,
+        BreadcrumbsComponent,
+        CheckboxComponent,
+        RadioComponent,
+        IntervalComponent,
+        SearchListComponent,
+        IconModule,
+        IconComponent,
+        DrawerComponent,
+        CounterComponent,
+        CartItemComponent
+    ]
 })
 export class UiModule { }

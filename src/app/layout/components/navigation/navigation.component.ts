@@ -1,9 +1,10 @@
-import {Component, effect, signal, ViewChild, WritableSignal} from '@angular/core';
+import { Component, effect, inject, signal, ViewChild, WritableSignal } from '@angular/core';
 import { SearchPizzaService } from "../../../features/pizza/services/search-pizza.service";
 import { IconSize } from "../../../ui/icon/enums/icon.enums";
 import { Pizza } from "../../../shared/interfaces/pizza.interface";
 import { PagesEnum } from "../../../core/enums/pages.enum";
 import { Router } from "@angular/router";
+import { CartDrawerStateService } from "./services/cart-drawer-state.service";
 
 
 @Component({
@@ -18,6 +19,14 @@ export class NavigationComponent{
       this.filteredList.set(this.searchPizza.filteredPizzaByText())
       console.log(this.filteredList())
     }, {allowSignalWrites: true})
+  }
+
+  cartDrawerState = inject(CartDrawerStateService)
+
+  drawerStateChange(){
+    console.log('TEST')
+    this.cartDrawerState.setState(true)
+    console.log(this.cartDrawerState.getState())
   }
 
   filteredList: WritableSignal<Pizza[]> = signal<Pizza[]>([])
@@ -36,9 +45,7 @@ export class NavigationComponent{
     this.searchPizza.setPizzaBySearchText(event)
   }
 
-  navigateTo(): string{
-    return this.router.url + '/list'
-  }
+
 
   protected readonly IconSize = IconSize;
   protected readonly PagesEnum = PagesEnum;

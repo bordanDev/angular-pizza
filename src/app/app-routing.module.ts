@@ -20,16 +20,6 @@ const routes: Routes = [
   {
     path: PagesEnum.Main + '/' + PagesEnum.Pizza + '/:id',
     component: PizzaPageComponent,
-    children: [
-      {
-        path: 'list',
-        component: DrawerComponent
-      }
-    ]
-  },
-  {
-    path: PagesEnum.Main + '/list',
-    component: DrawerComponent
   },
   {
     path: '**',

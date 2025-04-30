@@ -1,44 +1,23 @@
-import { Component, effect, inject, signal, TemplateRef, ViewChild } from '@angular/core';
-import { CartPizzaService } from "../../features/pizza/services/cart-pizza.service";
-import { Pizza } from "../../shared/interfaces/pizza.interface";
+import { Component, input, InputSignal, output } from '@angular/core';
 import { IconSize } from "../icon/enums/icon.enums";
-import { Router } from "@angular/router";
-import { Location } from "@angular/common";
+
 
 @Component({
   selector: 'app-drawer',
   templateUrl: './drawer.component.html',
   styleUrl: './drawer.component.scss',
-  host: {
-    '[style.justify-content]': 'drawerPizza() ? "space-between" : "center"'
-  }
+  animations: [
+
+  ]
 })
 export class DrawerComponent {
 
-  @ViewChild(TemplateRef) drawer: TemplateRef<unknown> | undefined;
-  @ViewChild(TemplateRef) drawerEmpty: TemplateRef<unknown> | undefined;
+  title: InputSignal<string> = input('Placeholder')
+  isClose = output<boolean>()
 
-  drawerPizzaData = inject(CartPizzaService);
-
-  constructor(private location: Location) {
-    effect(() => {
-      this.drawerPizza.set(this.drawerPizzaData.localSignalStorage())
-      this.getTotalPrice(this.drawerPizzaData.localSignalStorage())
-    }, {allowSignalWrites: true});
-  }
-
-  drawerPizza = signal<Pizza[]>([])
-
-  totalPrice: number = 0
-
-  getTotalPrice(pizzas: Pizza[]){
-    this.totalPrice = pizzas.reduce((sum, cur) => {
-      return sum + cur.price
-    }, 0)
-  }
-
-  closeDrawer(){
-    this.location.back()
+  drawerClose(){
+    console.log('asdasd')
+    this.isClose.emit(false)
   }
 
   protected readonly IconSize = IconSize;
