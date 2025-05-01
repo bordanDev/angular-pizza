@@ -20,6 +20,7 @@ import {SharedModule} from "../shared/shared.module";
 import { DrawerComponent } from './drawer/drawer.component';
 import { CounterComponent } from './counter/counter.component';
 import { CartItemComponent } from './cart-item/cart-item.component';
+import { ModalComponent } from './modal/modal.component';
 
 
 
@@ -39,7 +40,8 @@ import { CartItemComponent } from './cart-item/cart-item.component';
     IconComponent,
     DrawerComponent,
     CounterComponent,
-    CartItemComponent
+    CartItemComponent,
+    ModalComponent
   ],
   imports: [
     CommonModule,
@@ -68,7 +70,8 @@ import { CartItemComponent } from './cart-item/cart-item.component';
         IconComponent,
         DrawerComponent,
         CounterComponent,
-        CartItemComponent
+        CartItemComponent,
+        ModalComponent
     ]
 })
 export class UiModule { }

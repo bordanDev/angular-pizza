@@ -16,7 +16,6 @@ export class DrawerComponent {
   isClose = output<boolean>()
 
   drawerClose(){
-    console.log('asdasd')
     this.isClose.emit(false)
   }
 

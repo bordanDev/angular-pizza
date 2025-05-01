@@ -1,6 +1,7 @@
 <app-navigation></app-navigation>
 <router-outlet></router-outlet>
 <app-drawer
+
   [@slideAnimation]="drawerState ? 'visible' : 'hidden'"
   (isClose)="setDrawerState($event)"
   title="TEST">

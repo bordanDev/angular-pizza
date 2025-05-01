@@ -1,0 +1,26 @@
+:host{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  background-color: rgba(0, 0, 0, 0.2);
+
+  .modal{
+    margin: 0 auto;
+    border-radius: 40px;
+    background-color: white;
+    padding: 48px;
+    max-width: 380px;
+    max-height: 420px;
+    height: min-content;
+    transform: translateY(25%);
+  }
+
+  app-button{
+    position: absolute;
+    right: 40px;
+    top: 40px;
+  }
+}

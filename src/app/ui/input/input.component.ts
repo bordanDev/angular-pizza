@@ -21,6 +21,7 @@ export class InputComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() public placeholder: string = ''
   @Input() public value: string = ''
   @Input() public inputActive: boolean = false;
+  @Input() public isFilled: boolean = false;
 
   @ViewChild("inputField") inputField: any;
   @ViewChild("input") input: any;

@@ -65,3 +65,23 @@ app-input{
     opacity: 1;
   }
 }
+
+.nav-menu{
+  gap: 8px;
+}
+
+app-modal{
+  h4{
+    margin-bottom: 12px;
+    max-width: 350px;
+  }
+
+  p{
+    margin-bottom: 24px;
+    color: #7C7C7C;
+  }
+
+  app-input{
+    margin-bottom: 20px
+  }
+}

@@ -2,7 +2,8 @@
  'input-filter' : inputType === 'filter',
  'input-l' : iconPosition === 'left',
  'input-r' : iconPosition === 'right',
- 'input-icon-none' : iconPosition === 'none'
+ 'input-icon-none' : iconPosition === 'none',
+ 'input-filled' : isFilled
 }">
     <input #inputField class="input-search--field" [value]="value" (input)="onInputChange($event)" [placeholder]="placeholder">
   @if(iconPosition !== 'none'){

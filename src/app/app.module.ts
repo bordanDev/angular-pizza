@@ -13,6 +13,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { PizzaFiltrationComponent } from './features/pizza/components/pizza-filtration/pizza-filtration.component';
 import { SharedModule } from "./shared/shared.module";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { AuthComponent } from "./features/auth/auth.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +24,8 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     PizzaListComponent,
     PizzaPageComponent,
     NotFoundComponent,
-    PizzaFiltrationComponent
+    PizzaFiltrationComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,

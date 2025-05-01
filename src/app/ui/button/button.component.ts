@@ -9,7 +9,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 })
 export class ButtonComponent {
 
-  @Input() variant: 'primary' | 'secondary' | 'outline' | 'transparent' | 'disabled' = 'primary'; // Перечисляем возможные варианты кнопок, где мы принимаем string. Значение по умолчанию primary
+  @Input() variant: 'primary' | 'secondary' | 'outline' | 'passive' | 'transparent' | 'disabled' = 'primary'; // Перечисляем возможные варианты кнопок, где мы принимаем string. Значение по умолчанию primary
   @Input() isDisabled: boolean = false; // По умолчанию кнопка включена
   @Input() text: string = 'Button';
   @Input() iconPosition: 'left' | 'right' | 'none' = 'none'

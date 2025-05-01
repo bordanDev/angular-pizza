@@ -106,6 +106,14 @@
         }
     }
 
+    &-passive{
+      background-color: #F8F8F8;
+      color: #313131;
+      &:hover {
+        background-color: #EDEDED;
+      }
+    }
+
     &-transparent{
       background-color: transparent;
       color: #FE5F00;

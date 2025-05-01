@@ -1,10 +1,11 @@
-import { Component, effect, inject, signal, ViewChild, WritableSignal } from '@angular/core';
+import { Component, effect, inject, OnInit, signal, ViewChild, WritableSignal } from '@angular/core';
 import { SearchPizzaService } from "../../../features/pizza/services/search-pizza.service";
 import { IconSize } from "../../../ui/icon/enums/icon.enums";
 import { Pizza } from "../../../shared/interfaces/pizza.interface";
 import { PagesEnum } from "../../../core/enums/pages.enum";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { CartDrawerStateService } from "./services/cart-drawer-state.service";
+import { AuthService } from "./services/auth.service";
 
 
 @Component({
@@ -12,16 +13,41 @@ import { CartDrawerStateService } from "./services/cart-drawer-state.service";
   templateUrl: './navigation.component.html',
   styleUrl: './navigation.component.scss'
 })
-export class NavigationComponent{
+export class NavigationComponent implements OnInit{
 
-  constructor(private searchPizza: SearchPizzaService, private router: Router){
+  constructor(private searchPizza: SearchPizzaService, private router: Router, private route: ActivatedRoute){
     effect(()=> {
       this.filteredList.set(this.searchPizza.filteredPizzaByText())
       console.log(this.filteredList())
     }, {allowSignalWrites: true})
   }
 
+  authService = inject(AuthService)
   cartDrawerState = inject(CartDrawerStateService)
+
+  authModalClose(value: boolean){
+    this.deleteQueryFroModal()
+  }
+
+  authModalFlag = false;
+
+  ngOnInit(){
+    this.route.queryParams.subscribe(params => this.authModalFlag = params['modal'] === 'info')
+  }
+
+  addQueryForModal(){
+    this.router.navigate([], {
+      queryParams: {modal: 'info'},
+      queryParamsHandling: 'merge' // сохраняем другие параметры
+    }).then(r => console.log(r));
+  }
+
+  deleteQueryFroModal(){
+    this.router.navigate([], {
+      queryParams: {modal: null},
+      queryParamsHandling: 'merge' // сохраняем другие параметры
+    }).then(r => console.log(r));
+  }
 
   drawerStateChange(){
     console.log('TEST')
