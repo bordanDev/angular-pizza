@@ -21,6 +21,7 @@ import { DrawerComponent } from './drawer/drawer.component';
 import { CounterComponent } from './counter/counter.component';
 import { CartItemComponent } from './cart-item/cart-item.component';
 import { ModalComponent } from './modal/modal.component';
+import { InputFcComponent } from './input-fc/input-fc.component';
 
 
 
@@ -41,7 +42,8 @@ import { ModalComponent } from './modal/modal.component';
     DrawerComponent,
     CounterComponent,
     CartItemComponent,
-    ModalComponent
+    ModalComponent,
+    InputFcComponent
   ],
   imports: [
     CommonModule,
@@ -71,7 +73,8 @@ import { ModalComponent } from './modal/modal.component';
         DrawerComponent,
         CounterComponent,
         CartItemComponent,
-        ModalComponent
+        ModalComponent,
+        InputFcComponent
     ]
 })
 export class UiModule { }

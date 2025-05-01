@@ -1,4 +1,13 @@
-import { Component, effect, inject, OnInit, signal, ViewChild, WritableSignal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  effect,
+  inject,
+  OnInit,
+  signal,
+  ViewChild,
+  WritableSignal
+} from '@angular/core';
 import { SearchPizzaService } from "../../../features/pizza/services/search-pizza.service";
 import { IconSize } from "../../../ui/icon/enums/icon.enums";
 import { Pizza } from "../../../shared/interfaces/pizza.interface";
@@ -6,12 +15,15 @@ import { PagesEnum } from "../../../core/enums/pages.enum";
 import { ActivatedRoute, Router } from "@angular/router";
 import { CartDrawerStateService } from "./services/cart-drawer-state.service";
 import { AuthService } from "./services/auth.service";
+import { FormControl, FormGroup } from "@angular/forms";
+import { InputVariantEnum } from "../../../ui/input-fc/input-fc.component";
 
 
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
-  styleUrl: './navigation.component.scss'
+  styleUrl: './navigation.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NavigationComponent implements OnInit{
 
@@ -20,6 +32,18 @@ export class NavigationComponent implements OnInit{
       this.filteredList.set(this.searchPizza.filteredPizzaByText())
       console.log(this.filteredList())
     }, {allowSignalWrites: true})
+
+    // this.form.patchValue({email: 'Nancy'});
+    // console.log(this.form.controls['email'].value)
+  }
+
+  login = new FormGroup({
+    email: new FormControl('fafafafa'),
+    password: new FormControl('asd')
+  })
+
+  inputLog(value: string){
+    console.log(value)
   }
 
   authService = inject(AuthService)
@@ -32,12 +56,13 @@ export class NavigationComponent implements OnInit{
   authModalFlag = false;
 
   ngOnInit(){
-    this.route.queryParams.subscribe(params => this.authModalFlag = params['modal'] === 'info')
+    this.route.queryParams.subscribe(params => this.authModalFlag = params['modal'] === 'login');
+    console.log(this.login.controls.email.value)
   }
 
   addQueryForModal(){
     this.router.navigate([], {
-      queryParams: {modal: 'info'},
+      queryParams: {modal: 'login'},
       queryParamsHandling: 'merge' // сохраняем другие параметры
     }).then(r => console.log(r));
   }
@@ -76,4 +101,5 @@ export class NavigationComponent implements OnInit{
   protected readonly IconSize = IconSize;
   protected readonly PagesEnum = PagesEnum;
   protected readonly Router = Router;
+  protected readonly InputVariantEnum = InputVariantEnum;
 }

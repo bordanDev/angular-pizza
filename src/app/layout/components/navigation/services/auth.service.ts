@@ -6,14 +6,14 @@ import { Injectable, Signal, signal } from "@angular/core";
 
 export class AuthService {
 
-  authModalState = signal<boolean>(false);
+  login(){
 
-  setState(value: boolean){
-    this.authModalState.set(value)
   }
 
-  getState(): boolean{
-    return this.authModalState()
+  logout(){
+
   }
+
+
 
 }

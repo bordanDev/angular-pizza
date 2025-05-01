@@ -1,18 +1,26 @@
 import {
   AfterViewInit,
   Component,
-  EventEmitter,
+  EventEmitter, forwardRef,
   Input, OnDestroy, OnInit,
   Output,
   Renderer2,
   ViewChild,
 } from '@angular/core';
 import { debounceTime, distinctUntilChanged, Subject, takeUntil } from 'rxjs';
+import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
 @Component({
   selector: 'app-input',
   templateUrl: './input.component.html',
-  styleUrl: './input.component.scss'
+  styleUrl: './input.component.scss',
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => InputComponent),
+      multi: true
+    }
+  ]
 })
 export class InputComponent implements OnInit, AfterViewInit, OnDestroy {
 
@@ -32,17 +40,14 @@ export class InputComponent implements OnInit, AfterViewInit, OnDestroy {
   private inputSubject = new Subject<string>()
   private destroy$ = new Subject<void>()
 
-
-  // Задержка на уровне UI элемента
-  // ВСЕ инпуты отдают значения с задержкой 0.5 секунд
   ngOnInit(){
-    this.inputSubject.pipe(
-      debounceTime(500),
-      distinctUntilChanged(), // Игнорирует если не поступило нового значения
-      takeUntil(this.destroy$) // Отписка после уничтожения comp
-    ).subscribe(value => {
-        this.sendData(value)
-    })
+    // this.inputSubject.pipe(
+    //   debounceTime(500),
+    //   distinctUntilChanged(), // Игнорирует если не поступило нового значения
+    //   takeUntil(this.destroy$) // Отписка после уничтожения comp
+    // ).subscribe(value => {
+    //     this.sendData(value)
+    // })
   }
 
   onInputChange(e: Event){
@@ -57,7 +62,8 @@ export class InputComponent implements OnInit, AfterViewInit, OnDestroy {
   private focusListener?: () => void; // Empty function
 
   constructor(private renderer: Renderer2) { // Renderer 2 - обходной класс созданный для создания кастомных UI решений
-
+    this.inputSubject.next(this.value)
+    this.inputSubject.subscribe(x => this.sendData(x))
   }
 
   ngAfterViewInit(){

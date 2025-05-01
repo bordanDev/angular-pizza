@@ -82,6 +82,10 @@ app-modal{
   }
 
   app-input{
-    margin-bottom: 20px
+    margin-bottom: 4px
+  }
+
+  app-input:nth-child(even){
+    margin-bottom: 20px;
   }
 }

@@ -23,11 +23,16 @@
     </nav>
 </div>
 
-@if(authModalFlag){
-  <app-modal (isClose)="authModalClose($event)">
+<!-- !!!!!!!!!!!!!!!!!!!!!!!!!! -->
+@if(true){
+<!-- !!!!!!!!!!!!!!!!!!!!!!!!!! -->
+  <app-modal (isClose)="authModalClose($event)" [formGroup]="login">
     <h4>Sign In to Account</h4>
-    <p>Write your phone number to take massage on your phopne.</p>
-    <app-input inputType="filter" [isFilled]="true"></app-input>
+    <p>Write your email and password to login.</p>
+<!--    <app-input (outputData)="login.controls.email.patchValue($event); inputLog($event)" [value]="login.controls.email.value!" formControlName="email" inputType="filter" [isFilled]="true"></app-input>-->
+<!--    <app-input (outputData)="login.controls.password.patchValue($event); inputLog($event)" [value]="login.controls.password.value!" formControlName="password" inputType="filter" [isFilled]="true"></app-input>-->
+    <app-input-fc [variant]="InputVariantEnum.PRIMARY" formControlName="email"/>
+    <app-input-fc [variant]="InputVariantEnum.DANGER" formControlName="password"/>
     <app-button [isFilled]="true" text="Get message"></app-button>
   </app-modal>
 }

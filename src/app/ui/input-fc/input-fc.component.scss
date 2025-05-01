@@ -1,0 +1,17 @@
+:host{
+  height: min-content;
+}
+
+input{
+
+  &:focus-visible{
+    outline: none;
+    border-color: #5A83E4;
+    z-index: 999;
+  }
+
+  &-filled{
+    width: 100%;
+  }
+}
+
