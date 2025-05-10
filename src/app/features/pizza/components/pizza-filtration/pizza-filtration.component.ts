@@ -8,7 +8,7 @@ import { CheckboxInterface } from "../../../../ui/checkbox/checkbox.interface";
   templateUrl: './pizza-filtration.component.html',
   styleUrl: './pizza-filtration.component.scss',
 })
-export class PizzaFiltrationComponent implements OnInit {
+export class PizzaFiltrationComponent{
 
   constructor(private pizzaService: PizzaService) {
 
@@ -54,10 +54,6 @@ export class PizzaFiltrationComponent implements OnInit {
   selectedTags: WritableSignal<string[]> = signal([])
 
   cfgIngred: WritableSignal<CheckboxInterface[]> = signal([])
-
-  ngOnInit() {
-
-  }
 
   countOfAllPizza(){
     return this.pizzaService.filteredPizza()

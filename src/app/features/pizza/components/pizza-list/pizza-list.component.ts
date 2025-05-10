@@ -1,7 +1,6 @@
 import { Component, effect, inject, signal } from '@angular/core';
 import { PizzaService } from '../../services/pizza.service';
 import { Pizza } from '../../../../shared/interfaces/pizza.interface';
-import { StorageService } from "../../../../core/services/storage.service";
 import { CartPizzaService } from "../../services/cart-pizza.service";
 
 @Component({
@@ -22,10 +21,6 @@ export class PizzaListComponent {
     effect(() => {
       this.cart.set(this.addPizza.localSignalStorage())
       console.log(this.cart())
-    }, {allowSignalWrites: true});
-
-    effect(() => {
-
     }, {allowSignalWrites: true});
   }
 

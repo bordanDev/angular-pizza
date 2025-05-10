@@ -26,11 +26,12 @@ export class InputComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @Input() public iconPosition: 'left' | 'right' | 'none' = 'none'
   @Input() public inputType: 'default' | 'filter' = 'default'
-  @Input() public placeholder: string = ''
-  @Input() public value: string = ''
-  @Input() public inputActive: boolean = false;
-  @Input() public isFilled: boolean = false;
+  @Input() public placeholder = ''
+  @Input() public value = ''
+  @Input() public inputActive = false;
+  @Input() public isFilled = false;
 
+  /* eslint-disable  @typescript-eslint/no-explicit-any */
   @ViewChild("inputField") inputField: any;
   @ViewChild("input") input: any;
 
@@ -41,13 +42,13 @@ export class InputComponent implements OnInit, AfterViewInit, OnDestroy {
   private destroy$ = new Subject<void>()
 
   ngOnInit(){
-    // this.inputSubject.pipe(
-    //   debounceTime(500),
-    //   distinctUntilChanged(), // Игнорирует если не поступило нового значения
-    //   takeUntil(this.destroy$) // Отписка после уничтожения comp
-    // ).subscribe(value => {
-    //     this.sendData(value)
-    // })
+    this.inputSubject.pipe(
+      debounceTime(500),
+      distinctUntilChanged(), // Игнорирует если не поступило нового значения
+      takeUntil(this.destroy$) // Отписка после уничтожения comp
+    ).subscribe(value => {
+        this.sendData(value)
+    })
   }
 
   onInputChange(e: Event){

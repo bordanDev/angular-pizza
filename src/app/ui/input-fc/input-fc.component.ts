@@ -1,4 +1,4 @@
-import { Component, forwardRef, input, Input, InputSignal, OnInit } from '@angular/core';
+import { Component, forwardRef, input, InputSignal, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 
 @Component({
@@ -22,6 +22,12 @@ export class InputFcComponent implements ControlValueAccessor, OnInit{
     console.log(this.dynamicStyles())
   }
 
+  // Working when you call
+  // custom change-detection function
+  // for directive
+  //
+  // https://angular.dev/api/core/DoCheck
+
   onChange = (_: any) => {}
   onTouched = () => {}
 
@@ -38,7 +44,7 @@ export class InputFcComponent implements ControlValueAccessor, OnInit{
   }
 
   setDisabledState(isDisabled: boolean){
-    this.disabled = isDisabled
+    this.disabled = isDisabled;
   }
 
   dynamicStyles: InputSignal<DynamicStyle> = input({})
@@ -49,7 +55,8 @@ export class InputFcComponent implements ControlValueAccessor, OnInit{
     const baseStyles = {
       borderStyle: 'solid',
       padding: '14px 20px',
-      borderRadius: '16px'
+      borderRadius: '16px',
+      backgroundColor: '#fffff'
     }
 
     const variantStyles = this.getVariantStyles(this.variant())
@@ -66,15 +73,14 @@ export class InputFcComponent implements ControlValueAccessor, OnInit{
         },
         secondary: {
           borderColor: '#6c757d',
-          backgroundColor: '#e9ecef',
         },
         danger: {
           borderColor: '#dc3545',
           backgroundColor: '#f8d7da',
         },
         disabled: {
-          borderColor: '#dc3545',
-          backgroundColor: '#f8d7da',
+          color: '#C4C4C4',
+          borderColor: '#F5F5F5',
         }
       }
 

@@ -1,8 +1,8 @@
-import {Component, input, InputSignal, signal, WritableSignal} from '@angular/core';
+import {Component, signal, WritableSignal} from '@angular/core';
 import {IconSize} from "../icon/enums/icon.enums";
 
 @Component({
-  selector: 'div[app-counter]',
+  selector: 'app-counter',
   templateUrl: './counter.component.html',
   styleUrl: './counter.component.scss'
 })

@@ -1,4 +1,4 @@
-import {Component, EventEmitter, input, OnChanges, OnInit, output, Output, signal} from '@angular/core';
+import {Component, input, OnChanges, OnInit, output } from '@angular/core';
 import {CheckboxInterface} from "./checkbox.interface";
 import {IconSize} from "../icon/enums/icon.enums";
 
@@ -16,8 +16,6 @@ export class CheckboxComponent implements OnInit, OnChanges {
 
   selectedValuesLocal: string[] = []
 
-  constructor() {}
-
   ngOnInit(){
     console.log(this.selectedValues())
     this.selectedValuesLocal = this.selectedValues();
@@ -34,10 +32,15 @@ export class CheckboxComponent implements OnInit, OnChanges {
   }
 
   onCheckboxChange = ( option: { value: string }, event: Event) => {
-    let element = event.target as HTMLInputElement;
-    element.checked = !element.checked
+    const element = event.target as HTMLInputElement;
+    element.checked = !element.checked;
 
-    this.isSelected(option.value) ? this.selectedValuesLocal = this.selectedValuesLocal.filter(x => x !== option.value) : this.selectedValuesLocal.push(option.value)
+    if(this.isSelected(option.value)) {
+      this.selectedValuesLocal = this.selectedValuesLocal.filter(x => x !== option.value)
+    } else {
+      this.selectedValuesLocal.push(option.value);
+    }
+
     this.selectedValuesChange.emit(this.selectedValuesLocal);
 
     console.log(this.selectedValuesLocal  )

@@ -32,9 +32,6 @@ export class NavigationComponent implements OnInit{
       this.filteredList.set(this.searchPizza.filteredPizzaByText())
       console.log(this.filteredList())
     }, {allowSignalWrites: true})
-
-    // this.form.patchValue({email: 'Nancy'});
-    // console.log(this.form.controls['email'].value)
   }
 
   login = new FormGroup({
@@ -42,9 +39,6 @@ export class NavigationComponent implements OnInit{
     password: new FormControl('asd')
   })
 
-  inputLog(value: string){
-    console.log(value)
-  }
 
   authService = inject(AuthService)
   cartDrawerState = inject(CartDrawerStateService)
@@ -57,6 +51,8 @@ export class NavigationComponent implements OnInit{
 
   ngOnInit(){
     this.route.queryParams.subscribe(params => this.authModalFlag = params['modal'] === 'login');
+    this.login.controls.password.disable();
+    this.login.controls.email.disable()
     console.log(this.login.controls.email.value)
   }
 
@@ -99,7 +95,5 @@ export class NavigationComponent implements OnInit{
 
 
   protected readonly IconSize = IconSize;
-  protected readonly PagesEnum = PagesEnum;
-  protected readonly Router = Router;
   protected readonly InputVariantEnum = InputVariantEnum;
 }

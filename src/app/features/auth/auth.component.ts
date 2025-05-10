@@ -1,4 +1,4 @@
-import { Component, effect, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { IconSize } from "../../ui/icon/enums/icon.enums";
 
 @Component({

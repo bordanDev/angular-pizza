@@ -22,7 +22,7 @@ export class CardCounterComponent{
     });
 
     effect(() => {
-      let pizzas: Pizza[] = this.addPizza.localSignalStorage()
+      const pizzas: Pizza[] = this.addPizza.localSignalStorage()
       this.totalPrice.set(pizzas.reduce((sum, cur) => {
         return sum += cur.price
       }, 0))
