@@ -150,8 +150,8 @@ export class PizzaService{
 
   setPizzaTags(values: string[]){
     console.log(values)
-    let allPizza = this.pizzasSubject.getValue()
-    let filtered = allPizza.filter(pizza => values.includes(pizza.tag))
+    const allPizza = this.pizzasSubject.getValue()
+    const filtered = allPizza.filter(pizza => values.includes(pizza.tag))
     this.filteredPizza.set(filtered)
     console.log(this.filteredPizza())
   }
@@ -181,14 +181,6 @@ export class PizzaService{
   pizzas$: Observable<Pizza[]> = this.pizzasSubject.asObservable();
 
   public readonly filteredPizza = signal<Pizza[]>(this.mockPizzas)
-
-  public matcherFiltration() {
-
-  }
-
-  // public setMatchFiltration(){
-  //   this.matcherFiltration.set('')
-  // }
 
   public setFilteredThicknessPizzas(thickness: string) {
     const allPizzas = this.pizzasSubject.getValue()

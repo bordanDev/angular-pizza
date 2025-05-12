@@ -1,4 +1,4 @@
-import { inject, Injectable, OnInit, signal } from "@angular/core";
+import { inject, Injectable, signal } from "@angular/core";
 import { StorageService } from "../../../core/services/storage.service";
 import { Pizza } from "../../../shared/interfaces/pizza.interface";
 
@@ -14,7 +14,7 @@ export class CartPizzaService {
 
   private localStorage = inject(StorageService)
 
-  public localSignalStorage = signal<any>([])
+  public localSignalStorage = signal<Pizza[]>([])
 
   pizzas: Pizza[] = []
 

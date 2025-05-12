@@ -1,10 +1,34 @@
 :host{
   display: flex;
+  flex-direction: column;
+  p{
+    padding-left: 8px;
+    padding-top: 4px;
+  }
 }
+:host(.ng-invalid.ng-touched) input {
+  border-color: red !important;
+  background-color: #ffe6e6 !important;
+}
+
+:host(.ng-valid.ng-touched) input {
+  border-color: #009905 !important;
+  background-color: #DFFFE0 !important;
+}
+
+input:focus-within{
+  border-color: #5A83E4 !important;
+  border-width: 2px;
+}
+
+
+
+
 
 input{
   display: flex;
   width: 100%;
+  overflow: hidden;
 
   &:focus-visible{
     outline: none;

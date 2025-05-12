@@ -1,4 +1,4 @@
-<button [disabled]="isDisabled" class="button" [ngClass]="{
+<button [type]="type" [disabled]="isDisabled" class="button" [ngClass]="{
     'button-disabled': isDisabled,
     'button-primary': variant === 'primary' && !isDisabled,
     'button-secondary': variant === 'secondary' && !isDisabled,

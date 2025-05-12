@@ -1,10 +1,20 @@
-import { Component, forwardRef, input, InputSignal, OnInit } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  forwardRef,
+  input,
+  InputSignal,
+  OnInit,
+  signal,
+  WritableSignal
+} from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'app-input-fc',
   templateUrl: './input-fc.component.html',
   styleUrl: './input-fc.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -15,31 +25,29 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 })
 
 export class InputFcComponent implements ControlValueAccessor, OnInit{
-  value: string = ''
+  value = ''
   disabled = false;
+  isErrorMessage = false;
+  type: InputSignal<InputType> = input<InputType>(InputTypeEnum.TEXT);
+
+  placeholder = input<string>('');
 
   ngOnInit(){
     console.log(this.dynamicStyles())
   }
 
-  // Working when you call
-  // custom change-detection function
-  // for directive
-  //
-  // https://angular.dev/api/core/DoCheck
-
-  onChange = (_: any) => {}
-  onTouched = () => {}
+  onChange: (value: string) => void = () => { return };
+  onTouched:() => void = () => { return }
 
   writeValue(value: string){
     this.value = value;
   }
 
-  registerOnChange(fn: any){
-    this.onChange = fn
+  registerOnChange(fn: (value: string) => void = () => { return }){
+    this.onChange = fn;
   }
 
-  registerOnTouched(fn: any){
+  registerOnTouched(fn: () => void = () => { return }){
     this.onTouched = fn
   }
 
@@ -48,7 +56,7 @@ export class InputFcComponent implements ControlValueAccessor, OnInit{
   }
 
   dynamicStyles: InputSignal<DynamicStyle> = input({})
-  variant: InputSignal<InputVariantEnum> = input<InputVariantEnum>(InputVariantEnum.PRIMARY)
+  variant: WritableSignal<InputVariantEnum> = signal<InputVariantEnum>(InputVariantEnum.PRIMARY)
 
   get computedStyles(){
 
@@ -56,7 +64,8 @@ export class InputFcComponent implements ControlValueAccessor, OnInit{
       borderStyle: 'solid',
       padding: '14px 20px',
       borderRadius: '16px',
-      backgroundColor: '#fffff'
+      backgroundColor: '#fffff',
+      width: '-webkit-fill-available'
     }
 
     const variantStyles = this.getVariantStyles(this.variant())
@@ -71,7 +80,7 @@ export class InputFcComponent implements ControlValueAccessor, OnInit{
           borderStyle: 'solid',
           borderColor: '#EFEFEF',
         },
-        secondary: {
+        touched: {
           borderColor: '#6c757d',
         },
         danger: {
@@ -89,19 +98,27 @@ export class InputFcComponent implements ControlValueAccessor, OnInit{
 
 }
 
-interface DynamicStyle {
-  [key: string] : string;
-}
+type DynamicStyle = Record<string, string>;
 
 export enum InputVariantEnum {
   PRIMARY = 'primary',
-  SECONDARY = 'secondary',
+  TOUCHED = 'touched',
   DANGER = 'danger',
   DISABLED = 'disabled'
 }
 
 export type InputVariant =
   InputVariantEnum.PRIMARY |
-  InputVariantEnum.SECONDARY |
+  InputVariantEnum.TOUCHED |
   InputVariantEnum.DANGER |
   InputVariantEnum.DISABLED
+
+
+export enum InputTypeEnum {
+  PASSWORD = 'password',
+  TEXT = 'text'
+}
+
+export type InputType =
+  InputTypeEnum.TEXT |
+  InputTypeEnum.PASSWORD

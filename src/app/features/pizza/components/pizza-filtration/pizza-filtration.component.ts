@@ -1,4 +1,4 @@
-import {Component, effect, OnInit, signal, WritableSignal} from '@angular/core';
+import {Component, effect, signal, WritableSignal} from '@angular/core';
 import { RadioOptions, Interval } from '../../../../ui';
 import { PizzaService } from '../../services/pizza.service';
 import { CheckboxInterface } from "../../../../ui/checkbox/checkbox.interface";

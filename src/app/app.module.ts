@@ -14,6 +14,7 @@ import { PizzaFiltrationComponent } from './features/pizza/components/pizza-filt
 import { SharedModule } from "./shared/shared.module";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AuthComponent } from "./features/auth/auth.component";
+import { NgOptimizedImage } from "@angular/common";
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,13 +28,14 @@ import { AuthComponent } from "./features/auth/auth.component";
     PizzaFiltrationComponent,
     AuthComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    UiModule,
-    SharedModule,
-    BrowserAnimationsModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        UiModule,
+        SharedModule,
+        BrowserAnimationsModule,
+        NgOptimizedImage
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

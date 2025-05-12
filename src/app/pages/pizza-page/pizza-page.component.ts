@@ -13,26 +13,20 @@ export class PizzaPageComponent implements OnInit {
   pizzaService = inject(PizzaService)
   routerActive = inject(ActivatedRoute)
 
-  pizzaPageId!: any;
+  pizzaPageId!: string;
   pizzaArray: Pizza[] = [];
-  currentPizza!: any;
+  currentPizza!: Pizza;
 
   ngOnInit(){
     this.pizzaService.pizzas$.subscribe(pizzas => this.pizzaArray = pizzas)
-    console.log(this.pizzaArray)
     this.routerActive.url.subscribe(x => this.pizzaPageId = x[x.length - 1].path)
-    let pizzaResult = () => {
-      console.log(this.pizzaPageId)
-      console.log(this.pizzaArray)
-      this.currentPizza = this.pizzaArray.filter(x => x.id == this.pizzaPageId)
-      this.currentPizza = this.currentPizza[0]
-      console.log(this.pizzaArray)
-
+    const pizzaResult = () => {
+      const pizzas = this.pizzaArray.filter(x => x.id.toString() === this.pizzaPageId);
+      this.currentPizza = pizzas[0];
+      console.log(this.currentPizza, 'PIZZA RESULT')
     }
+
     pizzaResult()
-
-    console.log(this.currentPizza)
-
   }
 
   testIngredients: PizzaAdditionalIngredients[] = [

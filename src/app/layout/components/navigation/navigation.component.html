@@ -24,12 +24,14 @@
 </div>
 
 @if(this.authModalFlag){
-  <app-modal (isClose)="authModalClose($event)" [formGroup]="login">
-    <h4>Sign In to Account</h4>
-    <p>Write your email and password to login.</p>
-      <app-input-fc [variant]="InputVariantEnum.PRIMARY" formControlName="email"/>
-      <app-input-fc [variant]="InputVariantEnum.DISABLED" formControlName="password"/>
-      <app-button [isFilled]="true" text="Get message"></app-button>
+  <app-modal (isClose)="authModalClose()">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <h4>Sign In to Account</h4>
+      <p>Write your email and password to login.</p>
+      <app-input-fc [placeholder]="'example@mail.com'" formControlName="email"/>
+      <app-input-fc [type]="InputTypeEnum.PASSWORD" [placeholder]="'Your password'" formControlName="password"/>
+      <app-button [type]="'submit'" [isFilled]="true" text="Sign In"></app-button>
+    </form>
   </app-modal>
 }
 

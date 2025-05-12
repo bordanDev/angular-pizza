@@ -30,6 +30,7 @@ export class PizzaListComponent {
   cart = signal<Pizza[]>([])
 
   pizzaAddToStorage(pizza: Pizza){
+    console.log('ADD TO STORAGE')
     const exists = this.isInCart(pizza)
     this.cart.set(
       exists

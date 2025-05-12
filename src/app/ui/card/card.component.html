@@ -14,7 +14,7 @@
       </div>
     <div class="card-container">
         <div class="card-container--price"><b>${{ pizzaPrice }}</b></div>
-        <app-button (click)="onToggle()" [iconPosition]="'right'" [variant]="'secondary'" [text]="this.inCart() ? 'Delete' : 'Add'">
+        <app-button (click)="onToggle()" (keydown.enter)="onToggle()" [iconPosition]="'right'" [variant]="'secondary'" [text]="this.inCart() ? 'Delete' : 'Add'">
           @if(this.inCart()){
             <app-icon [name]="'trash'" [size]="IconSize.md"></app-icon>
           }

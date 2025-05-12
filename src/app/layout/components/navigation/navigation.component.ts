@@ -5,18 +5,17 @@ import {
   inject,
   OnInit,
   signal,
-  ViewChild,
   WritableSignal
 } from '@angular/core';
 import { SearchPizzaService } from "../../../features/pizza/services/search-pizza.service";
 import { IconSize } from "../../../ui/icon/enums/icon.enums";
 import { Pizza } from "../../../shared/interfaces/pizza.interface";
-import { PagesEnum } from "../../../core/enums/pages.enum";
 import { ActivatedRoute, Router } from "@angular/router";
 import { CartDrawerStateService } from "./services/cart-drawer-state.service";
 import { AuthService } from "./services/auth.service";
-import { FormControl, FormGroup } from "@angular/forms";
-import { InputVariantEnum } from "../../../ui/input-fc/input-fc.component";
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { InputTypeEnum, InputVariantEnum } from '../../../ui/input-fc/input-fc.component';
+import PasswordValidator from '../../../shared/validators/password.validator';
 
 
 @Component({
@@ -34,16 +33,16 @@ export class NavigationComponent implements OnInit{
     }, {allowSignalWrites: true})
   }
 
-  login = new FormGroup({
-    email: new FormControl('fafafafa'),
-    password: new FormControl('asd')
-  })
+  form = new FormGroup({
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.required, PasswordValidator.passwordStrength])
+  }, { updateOn: 'submit' })
 
 
   authService = inject(AuthService)
   cartDrawerState = inject(CartDrawerStateService)
 
-  authModalClose(value: boolean){
+  authModalClose(){
     this.deleteQueryFroModal()
   }
 
@@ -51,9 +50,10 @@ export class NavigationComponent implements OnInit{
 
   ngOnInit(){
     this.route.queryParams.subscribe(params => this.authModalFlag = params['modal'] === 'login');
-    this.login.controls.password.disable();
-    this.login.controls.email.disable()
-    console.log(this.login.controls.email.value)
+    // this.login.controls.password.disable();
+    // this.login.controls.email.getError('asd');
+    // this.login.controls.email
+    console.log(this.form .controls.email.value)
   }
 
   addQueryForModal(){
@@ -79,9 +79,7 @@ export class NavigationComponent implements OnInit{
   filteredList: WritableSignal<Pizza[]> = signal<Pizza[]>([])
   inputData= signal<string>('')
 
-  @ViewChild("background") backgroundArea: any;
-
-  searchActive: boolean = false; // Флаг
+  searchActive = false; // Флаг
 
   changeSearchActive(value: boolean){
     this.searchActive = value;
@@ -92,8 +90,11 @@ export class NavigationComponent implements OnInit{
     this.searchPizza.setPizzaBySearchText(event)
   }
 
-
+  public onSubmit(){
+    console.log('SUBMIT')
+  }
 
   protected readonly IconSize = IconSize;
   protected readonly InputVariantEnum = InputVariantEnum;
+  protected readonly InputTypeEnum = InputTypeEnum;
 }

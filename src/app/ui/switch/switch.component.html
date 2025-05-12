@@ -1,10 +1,13 @@
 <div class="switcher" [style.--button-count]="items.length" [style.--button-active]="activeIndex">
-    <!-- Генерация кнопок -->
-<!--    <div *ngFor="let item of items; let i = index" (click)="setActive(i)" class="switcher-button"-->
-<!--        [class.active]="i === activeIndex">-->
-<!--        {{ item }}-->
-<!--    </div>-->
+    <div
+      *ngFor="let item of items; let i = index"
+       (keydown.enter)="setActive(i)"
+       [tabindex]="i"
+       (click)="setActive(i)"
+       class="switcher-button"
+      [class.active]="i === activeIndex">
+        {{ item }}
+    </div>
 
-    <!-- Подсветка активной кнопки -->
     <div class="switcher-highlight"></div>
 </div>

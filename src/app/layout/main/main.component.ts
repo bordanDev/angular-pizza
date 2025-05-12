@@ -1,9 +1,8 @@
-import { Component, effect, inject, input, OnInit, signal } from '@angular/core';
-import { StorageService } from "../../core/services/storage.service";
+import { Component, effect, inject, signal } from '@angular/core';
 import { CartPizzaService } from "../../features/pizza/services/cart-pizza.service";
 import { Pizza } from "../../shared/interfaces/pizza.interface";
 import { CartDrawerStateService } from "../components/navigation/services/cart-drawer-state.service";
-import { animate, AnimationEvent, state, style, transition, trigger } from "@angular/animations";
+import { animate, state, style, transition, trigger } from "@angular/animations";
 import { IconSize } from "../../ui/icon/enums/icon.enums";
 
 @Component({
