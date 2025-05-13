@@ -1,6 +1,6 @@
 @for(option of options(); track option.value){
-<label [for]="option.label" class="wrapper">
-    <input class="radio" [id]="option.label" type="radio" [name]="name()" [value]="option.value"
+<label [for]="option.value" class="wrapper">
+    <input class="radio" [id]="option.value" type="radio" [name]="name()" [value]="option.value"
         [checked]="option.value === selectedValue()" (change)="onChange(option.value)">
     {{ option.value }}
 </label>

@@ -11,10 +11,3 @@ export interface Pizza {
   weight: number,
   additionalIngredients: string[]
 }
-
-export interface PizzaAdditionalIngredients {
-  title: string;
-  imgUrl: string;
-  price: number;
-  state: boolean
-}

@@ -7,15 +7,15 @@ import {
   signal,
   WritableSignal
 } from '@angular/core';
-import { SearchPizzaService } from "../../../features/pizza/services/search-pizza.service";
-import { IconSize } from "../../../ui/icon/enums/icon.enums";
-import { Pizza } from "../../../shared/interfaces/pizza.interface";
+import { SearchPizzaService } from "../pizza/services/search-pizza.service";
+import { IconSize } from "../../ui/icon/enums/icon.enums";
+import { Pizza } from "../../shared/interfaces/pizza.interface";
 import { ActivatedRoute, Router } from "@angular/router";
 import { CartDrawerStateService } from "./services/cart-drawer-state.service";
 import { AuthService } from "./services/auth.service";
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { InputTypeEnum, InputVariantEnum } from '../../../ui/input-fc/input-fc.component';
-import PasswordValidator from '../../../shared/validators/password.validator';
+import { InputTypeEnum, InputVariantEnum } from "../../ui/input-fc/input-fc.component";
+import PasswordValidator from "../../shared/validators/password.validator";
 
 
 @Component({

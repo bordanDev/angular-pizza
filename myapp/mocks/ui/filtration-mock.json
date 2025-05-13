@@ -1,0 +1,24 @@
+{
+  "tags": [
+    {
+      "value": "top"
+    },
+    {
+      "value": "new"
+    }
+  ],
+  "interval": [
+    {
+      "min": 0,
+      "max": 15
+    }
+  ],
+  "typeOfDough": [
+    {
+      "value": "standard"
+    },
+    {
+      "value": "thin"
+    }
+  ]
+}

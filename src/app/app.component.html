@@ -1,1 +1,22 @@
-<app-main></app-main>
+<app-navigation></app-navigation>
+<router-outlet></router-outlet>
+<app-drawer
+
+  [@slideAnimation]="drawerState ? 'visible' : 'hidden'"
+  (isClose)="setDrawerState($event)"
+  title="TEST">
+  @if(this.itemsForDrawer().length > 0){
+    <app-cart-item [cartPizzas]="itemsForDrawer()"/>
+  }
+  @else{
+    <div class="wrapper drawer-empty">
+      <img src="/assets/images/cart_empty.png" style="display: block; width: 120px; aspect-ratio: 1/1" alt="">
+      <div class="drawer-empty--text"><p>Card is empty</p>
+        <span>Add some pizza into this list to make your order</span></div>
+      <app-button [variant]="'primary'" iconPosition="left" [text]="'Close order list'">
+        <app-icon [name]="'arrow-left'" [size]="IconSize.md"></app-icon>
+      </app-button>
+    </div>
+  }
+
+</app-drawer>

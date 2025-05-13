@@ -1,4 +1,4 @@
-import { Component, effect, inject, signal } from '@angular/core';
+import { Component, effect, inject, OnInit, signal } from '@angular/core';
 import { PizzaService } from '../../services/pizza.service';
 import { Pizza } from '../../../../shared/interfaces/pizza.interface';
 import { CartPizzaService } from "../../services/cart-pizza.service";
@@ -8,7 +8,7 @@ import { CartPizzaService } from "../../services/cart-pizza.service";
   templateUrl: './pizza-list.component.html',
   styleUrls: ['./pizza-list.component.scss']
 })
-export class PizzaListComponent {
+export class PizzaListComponent implements OnInit{
 
   addPizza = inject(CartPizzaService)
 
@@ -22,6 +22,14 @@ export class PizzaListComponent {
       this.cart.set(this.addPizza.localSignalStorage())
       console.log(this.cart())
     }, {allowSignalWrites: true});
+  }
+
+  ngOnInit(){
+    this.pizzaService.pizzas$.subscribe((pizzas) => {
+      this.pizzaList.set(pizzas)
+      console.log(this.pizzaList())
+      console.log('PIZZALISTSETTER')
+    })
   }
 
   // Создаём массив для хранения отфильтрованных пицц

@@ -1,5 +1,6 @@
 import {Component, effect, signal, WritableSignal} from '@angular/core';
-import { RadioOptions, Interval } from '../../../../ui';
+import { RadioOptions } from '../../../../ui';
+import { Interval } from "../../enums/filtration.interface";
 import { PizzaService } from '../../services/pizza.service';
 import { CheckboxInterface } from "../../../../ui/checkbox/checkbox.interface";
 
@@ -52,24 +53,42 @@ export class PizzaFiltrationComponent{
 
   cfgTags: WritableSignal<CheckboxInterface[]> = signal([])
   selectedTags: WritableSignal<string[]> = signal([])
-
   cfgIngred: WritableSignal<CheckboxInterface[]> = signal([])
 
   countOfAllPizza(){
     return this.pizzaService.filteredPizza()
   }
 
+  localTags: string[] = [];
+  localIngred: string[] = [];
+
+  controlFilterLength(){
+    if(!this.localTags.length && !this.localIngred.length) {
+      this.pizzaService.pizzas$.subscribe((pizzas) => {
+        this.pizzaService.filteredPizza.set(pizzas)
+      })
+    }
+  }
+
   setTags(tags: string[]){
-    console.log(tags)
-    this.pizzaService.setPizzaTags(tags)
+    console.log(tags, 'SET TAGS')
+    this.localTags = tags;
+    this.controlFilterLength()
+    if(this.localTags.length) {
+      console.log('localTags LENGTH')
+      this.pizzaService.setPizzaTags(tags)
+    }
   }
 
   setIngredients(ingredients: string[]) {
-    // console.log(ingredients)
-    this.pizzaService.setCheckboxes(ingredients)
-    // console.log('FCW')
+    console.log(ingredients, 'SET INGRED')
+    this.localIngred = ingredients;
+    this.controlFilterLength()
+    if(this.localIngred.length) {
+      console.log('localIngred LENGTH')
+      this.pizzaService.setPizzaIngredients(ingredients)
+    }
   }
-
 
   selectedInterval: WritableSignal<Interval[]> = signal([])
 

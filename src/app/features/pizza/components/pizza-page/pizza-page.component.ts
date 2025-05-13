@@ -1,6 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { Pizza, PizzaAdditionalIngredients } from '../../shared/interfaces/pizza.interface';
-import { PizzaService } from "../../features/pizza/services/pizza.service";
+import { Pizza } from '../../../../shared/interfaces/pizza.interface';
+import { PizzaAdditionalIngredients } from '../../../../shared/interfaces/pizza-additional-ingridients.interface';
+import { PizzaService } from "../../services/pizza.service";
 import { ActivatedRoute } from "@angular/router";
 
 @Component({
@@ -18,16 +19,25 @@ export class PizzaPageComponent implements OnInit {
   currentPizza!: Pizza;
 
   ngOnInit(){
-    this.pizzaService.pizzas$.subscribe(pizzas => this.pizzaArray = pizzas)
-    this.routerActive.url.subscribe(x => this.pizzaPageId = x[x.length - 1].path)
-    const pizzaResult = () => {
-      const pizzas = this.pizzaArray.filter(x => x.id.toString() === this.pizzaPageId);
-      this.currentPizza = pizzas[0];
+    this.pizzaService.pizzas$.subscribe(pizzas => {
+      this.pizzaArray = pizzas
+      console.log(this.pizzaArray)
+      const filteredPizza = this.pizzaArray.filter(x => x.id.toString() === this.pizzaPageId);
+      this.currentPizza = filteredPizza[0];
       console.log(this.currentPizza, 'PIZZA RESULT')
-    }
-
-    pizzaResult()
+    })
+    this.routerActive.url.subscribe(x => this.pizzaPageId = x[x.length - 1].path)
+    console.log(this.pizzaArray)
+    console.log(this.currentPizza)
+    // const pizzaResult = () => {
+    //   const pizzas = this.pizzaArray.filter(x => x.id.toString() === this.pizzaPageId);
+    //   this.currentPizza = pizzas[0];
+    //   console.log(this.currentPizza, 'PIZZA RESULT')
+    // }
+    //
+    // pizzaResult()
   }
+
 
   testIngredients: PizzaAdditionalIngredients[] = [
     {
@@ -66,10 +76,6 @@ export class PizzaPageComponent implements OnInit {
     this.totalPrice = selected.reduce((sum, ingredient) => sum + ingredient.price, 12.99) // Суммирует с возможностью перезаписывать ранее выбранные значения
     console.log('Выбранные ингредиенты:', selected)
   }
-
-
-  ///////////////////////////////////////////
-  // Передача активного значения свитчера на внешний компонент
 
   pizzaSizeArray: string[] = ['Small', 'Middle', 'Big']
 

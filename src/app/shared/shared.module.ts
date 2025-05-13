@@ -1,10 +1,11 @@
-import {NgModule} from "@angular/core";
-import {BolderPipe} from "./pipes/search-bolder.pipe";
+import { NgModule } from "@angular/core";
+import { BolderPipe } from "./pipes/search-bolder.pipe";
+import { ListSpacerPipe } from './pipes/ingredients-spacer.pipe';
 
 @NgModule({
-  declarations: [BolderPipe],
+  declarations: [BolderPipe, ListSpacerPipe],
   imports: [],
-  exports: [BolderPipe]
+  exports: [BolderPipe, ListSpacerPipe]
 })
 
 export class SharedModule {

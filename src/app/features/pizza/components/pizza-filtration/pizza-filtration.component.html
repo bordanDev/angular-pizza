@@ -30,8 +30,8 @@
 </b>
 
 <app-interval
-  [minValue]="(selectedInterval()[0] && selectedInterval()[0].minValue.toString() ? selectedInterval()[0].minValue : '').toString()"
-  [maxValue]="(selectedInterval()[0] && selectedInterval()[0].maxValue.toString() ? selectedInterval()[0].maxValue : '').toString()"
+  [minValue]="(selectedInterval()[0] && selectedInterval()[0].min.toString() ? selectedInterval()[0].min : '').toString()"
+  [maxValue]="(selectedInterval()[0] && selectedInterval()[0].max.toString() ? selectedInterval()[0].max : '').toString()"
   (minValueOut)="outMinData($event)"
   (maxValueOut)="outMaxData($event)">
 </app-interval>
