@@ -1,12 +1,20 @@
-<div class="selector"
-     [ngClass]="{'active': item.state}"
-     (keydown.enter)="setActive(i)"
-     (click)="setActive(i)"
-     [tabindex]="i"
+<div class="title">
+  <p *ngIf="selectorState.length !== 0">{{ selectorState.length }}x ingredients</p>
+</div>
 
-     *ngFor="let item of ingredients; let i = index">
+<div class="selectors">
 
-  <img [src]="item.imgUrl" alt="" class="selector-img">
+  <div class="selector"
+       [ngClass]="{'active': selectorState.includes(item) }"
+       (keydown.enter)="setActive(item)"
+       (click)="setActive(item)"
+       [tabindex]="i"
+       *ngFor="let item of ingredients(); let i = index">
+
+    <img [src]="item.imgUrl" alt="" class="selector-img">
     <p class="selector-title">{{ item.title }}</p>
     <span class="selector-price">{{ item.price }} $</span>
+
+  </div>
+
 </div>

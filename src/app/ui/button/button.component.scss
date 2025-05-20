@@ -93,7 +93,7 @@
     &-outline {
         color: #FE5F00;
         background-color: transparent;
-        outline: 2px solid #FE5F00;
+        outline: 1px solid #FE5F00;
         outline-offset: -2px;
 
         &:hover {
@@ -127,7 +127,8 @@
     }
 
     &-icon {
-        padding: 14px;
+      border-radius: 12px;
+        padding: 12px;
 
         #text {
             display: none;

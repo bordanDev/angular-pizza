@@ -12,14 +12,10 @@
       <app-switch [items]="pizzaThicknessArray" (activeChange)="onSwitchThickness($event)"></app-switch>
     </div>
 
-    <div class="pizza-ingredients--container">
-      <p class="pizza-ingredients--title">Ingredients
-        <span class="counter" *ngIf="selectedIngredients.length !== 0">
-          Выбрано ингридиентов {{ selectedIngredients.length }}x</span>
-      </p>
-    </div>
-    <app-additional-selector [ingredients]="testIngredients"></app-additional-selector>
-
-    <app-button [isFilled]="true" [variant]="'primary'" [buttonSize]="'md'"  [text]="'Add to card for' + ' ' + '$'+ totalPrice.toFixed(2)"></app-button>
+    <app-additional-selector [ingredients]="testIngredients" (activatedSelector)="selectedChanged($event)"></app-additional-selector>
+    <app-button [isFilled]="true" [variant]="'primary'" iconPosition="left" [buttonSize]="'md'"  [text]="''">
+      {{ 'Add to card for' + ' $' + totalPrice.toFixed(2) }}
+    </app-button>
   </div>
+
 </div>

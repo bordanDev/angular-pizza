@@ -2,7 +2,7 @@
 
 <div class="list">
     <div *ngFor="let pizza of pizzaList()">
-        <app-card [inCart]="isInCart(pizza)" (click)="pizzaAddToStorage(pizza)" (keydown.enter)="pizzaAddToStorage(pizza)" [pizzaId]="pizza.id" [pizzaTag]="pizza.tag" [pizzaTitle]="pizza.title"
+        <app-card [inCart]="isInCartForList(pizza)" (click)="pizzaAddToStorage(pizza)" (keydown.enter)="pizzaAddToStorage(pizza)" [pizzaId]="pizza.id" [pizzaTag]="pizza.tag" [pizzaTitle]="pizza.title"
             [pizzaIngredients]="pizza.ingredients" [pizzaPrice]="pizza.price" [pizzaImgUrl]="pizza.imgUrl">
         </app-card>
     </div>

@@ -1,0 +1,15 @@
+[
+  {
+    "id": 1,
+    "type": "All",
+    "title": "Margherita",
+    "ingredients": ["Tomato sauce", "Mozzarella", "Basil"],
+    "price": 8.99,
+    "imgUrl": "assets/images/pizza-1.png",
+    "tag": "top",
+    "thickness": "thin",
+    "size": "medium",
+    "weight": 450,
+    "additionalIngredients": ["Cheese board", "Creamy mozzarella"]
+  }
+]

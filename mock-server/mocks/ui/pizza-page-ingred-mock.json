@@ -1,0 +1,32 @@
+[
+    {
+      "title": "Cheese board",
+      "imgUrl": "assets/images/ingredient-1.png",
+      "price": 4.99
+    },
+    {
+      "title": "Creamy mozzarella",
+      "imgUrl": "assets/images/ingredient-2.png",
+      "price": 0.99
+    },
+    {
+      "title": "Cheddar and Parmesan",
+      "imgUrl": "assets/images/ingredient-3.png",
+      "price": 0.99
+    },
+    {
+      "title": "Tender chicken",
+      "imgUrl": "assets/images/ingredient-4.png",
+      "price": 0.99
+    },
+    {
+      "title": "Tender chicken L",
+      "imgUrl": "assets/images/ingredient-4.png",
+      "price": 1.59
+    },
+    {
+      "title": "Tender chicken XL",
+      "imgUrl": "assets/images/ingredient-4.png",
+      "price": 1.99
+    }
+]

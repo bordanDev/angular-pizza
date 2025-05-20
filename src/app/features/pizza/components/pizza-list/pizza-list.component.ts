@@ -1,56 +1,63 @@
 import { Component, effect, inject, OnInit, signal } from '@angular/core';
 import { PizzaService } from '../../services/pizza.service';
 import { Pizza } from '../../../../shared/interfaces/pizza.interface';
-import { CartPizzaService } from "../../services/cart-pizza.service";
+import { UserPizzaService } from '../../api/user-pizza.service';
+import {
+  isInCart,
+  userPizzaStorageHelper,
+} from '../../helpers/user-pizza-storage.helper';
 
 @Component({
   selector: 'app-pizza-list',
   templateUrl: './pizza-list.component.html',
-  styleUrls: ['./pizza-list.component.scss']
+  styleUrls: ['./pizza-list.component.scss'],
 })
-export class PizzaListComponent implements OnInit{
-
-  addPizza = inject(CartPizzaService)
+export class PizzaListComponent implements OnInit {
+  userPizzaService = inject(UserPizzaService);
 
   constructor(private pizzaService: PizzaService) {
-    effect(() => {
-      this.pizzaList.set(this.pizzaService.filteredPizza())
-      console.log(this.pizzaList())
-    }, {allowSignalWrites: true});
+    effect(
+      () => {
+        this.pizzaList.set(this.pizzaService.filteredPizza());
+        console.log(this.pizzaList());
+      },
+      { allowSignalWrites: true },
+    );
 
-    effect(() => {
-      this.cart.set(this.addPizza.localSignalStorage())
-      console.log(this.cart())
-    }, {allowSignalWrites: true});
+    this.userPizzaService.userPizza$.subscribe((pizzas) => {
+      this.cart.set(pizzas);
+    });
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.pizzaService.pizzas$.subscribe((pizzas) => {
-      this.pizzaList.set(pizzas)
-      console.log(this.pizzaList())
-      console.log('PIZZALISTSETTER')
-    })
+      this.pizzaList.set(pizzas);
+    });
+
+    this.userPizzaService.getUserPizza().subscribe();
   }
 
   // Создаём массив для хранения отфильтрованных пицц
   public pizzaList = signal<Pizza[]>([]);
 
-  cart = signal<Pizza[]>([])
+  cart = signal<Pizza[]>([]);
 
-  pizzaAddToStorage(pizza: Pizza){
-    console.log('ADD TO STORAGE')
-    const exists = this.isInCart(pizza)
-    this.cart.set(
-      exists
-        ? this.cart().filter(p => p.id !== pizza.id)
-        : [...this.cart(), pizza]
-    )
-    console.log(this.addPizza.getPizza())
-    this.addPizza.setPizzaLocalStorage(pizza)
+  pizzaAddToStorage(pizza: Pizza) {
+    userPizzaStorageHelper(
+      pizza,
+      this.cart(), // значение сигнала
+      this.userPizzaService,
+      (pizza, storage) => {
+        return isInCart(pizza, storage);
+      },
+      () => {
+        console.log('TEST TEST tESET');
+      },
+    );
   }
 
-  isInCart(pizza: Pizza): boolean{
-    return this.cart().some(x => x.id === pizza.id)
+  isInCartForList(pizza: Pizza): boolean {
+    return isInCart(pizza, this.cart());
   }
 
   protected readonly Event = Event;

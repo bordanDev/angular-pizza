@@ -1,11 +1,21 @@
 import { Component, effect, inject, OnInit, signal } from '@angular/core';
-import { animate, state, style, transition, trigger } from '@angular/animations';
-import { CartPizzaService } from './features/pizza/services/cart-pizza.service';
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
 import { Pizza } from './shared/interfaces/pizza.interface';
-import { CartDrawerStateService } from "./features/navigation/services/cart-drawer-state.service";
+import { CartDrawerStateService } from './features/navigation/services/cart-drawer-state.service';
 import { IconSize } from './ui/icon/enums/icon.enums';
 import { environment } from '../environments/environment';
 import { PizzaService } from './features/pizza/services/pizza.service';
+import { UserPizzaService } from './features/pizza/api/user-pizza.service';
+import {
+  isInCart,
+  userPizzaStorageHelper,
+} from './features/pizza/helpers/user-pizza-storage.helper';
 
 @Component({
   selector: 'app-root',
@@ -13,50 +23,82 @@ import { PizzaService } from './features/pizza/services/pizza.service';
   styleUrl: './app.component.scss',
   animations: [
     trigger('slideAnimation', [
-      state('hidden', style({
-        transform: 'translateX(100%)'
-      })),
-      state('visible', style({
-        transform: 'translateX(0)'
-      })),
+      state(
+        'hidden',
+        style({
+          transform: 'translateX(100%)',
+        }),
+      ),
+      state(
+        'visible',
+        style({
+          transform: 'translateX(0)',
+        }),
+      ),
       transition('hidden => visible', animate('300ms ease-out')),
-      transition('visible => hidden', animate('300ms ease-in'))
-    ])
-  ]
+      transition('visible => hidden', animate('300ms ease-in')),
+    ]),
+  ],
 })
-export class AppComponent implements OnInit{
-
-  private pizzaService = inject(PizzaService)
-
-  ngOnInit(){
-    console.log(environment.production);
-    this.pizzaService.loadPizza().subscribe();
-    this.pizzaService.loadUi().subscribe()
-  }
-
+export class AppComponent implements OnInit {
   title = 'Angular Pizza';
 
-  cartStorage = inject(CartPizzaService)
-  itemsForDrawer = signal<Pizza[]>([])
+  private pizzaService = inject(PizzaService);
+  private userPizzaService = inject(UserPizzaService);
+
+  ngOnInit() {
+    console.log(environment.production);
+    this.pizzaService.loadPizza().subscribe();
+    this.pizzaService.loadUi().subscribe();
+    this.pizzaService.loadAdditionalIngredUi().subscribe();
+    this.userPizzaService.getUserPizza().subscribe();
+    console.log('END of INIT APP');
+  }
+
+  itemsForDrawer = signal<Pizza[]>([]);
 
   drawerState = false;
-  cartDrawerState = inject(CartDrawerStateService)
+  cartPizzaService = inject(CartDrawerStateService);
 
   constructor() {
-    effect(() => {
-      this.itemsForDrawer.set(this.cartStorage.localSignalStorage())
-    }, {allowSignalWrites: true});
+    this.userPizzaService.userPizza$.subscribe((pizzas) => {
+      this.itemsForDrawer.set(pizzas);
+    });
 
-    effect(() => {
-      this.drawerState = this.cartDrawerState.drawerFlag()
-    }, {allowSignalWrites: true});
-
+    //////// Закрывает дровер каждый раз как срабатывает сервис
+    effect(
+      () => {
+        this.drawerState = this.cartPizzaService.drawerFlag();
+      },
+      { allowSignalWrites: true },
+    );
   }
 
-  setDrawerState(value: boolean){
-    this.cartDrawerState.setState(value)
+  setDrawerState(value: boolean) {
+    this.cartPizzaService.setState(value);
   }
 
+  deleteItem(pizza: Pizza) {
+    userPizzaStorageHelper(
+      pizza,
+      this.itemsForDrawer(),
+      this.userPizzaService,
+      (pizza, storage) => {
+        return isInCart(pizza, storage);
+      },
+      () => {
+        console.log('delete Item test app component');
+      },
+    );
+  }
+
+  totalPriceSum(): number {
+    return this.itemsForDrawer().reduce((sum, item) => {
+      sum = item.price + sum;
+      return sum;
+    }, 0);
+  }
 
   protected readonly IconSize = IconSize;
+  protected readonly userPizzaStorageHelper = userPizzaStorageHelper;
 }
