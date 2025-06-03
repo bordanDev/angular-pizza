@@ -1,0 +1,27 @@
+<div class="container">
+
+  <h4>Order process</h4>
+
+  <div class="order-list">
+    <div class="order-list--left">
+      <app-layout>
+        <h5>Cart</h5>
+        <app-cart-item type="order" [isFilled]="true" [cartPizzas]="orderPizza"></app-cart-item>
+      </app-layout>
+
+      <app-layout>
+        <h5>Personal Info</h5>
+      </app-layout>
+      <app-layout>
+        <h5>Your location</h5>
+      </app-layout>
+    </div>
+    <app-layout class="order-list--right">
+      <div class="order-list--price">
+        <p>Total price</p>
+        <h5>$32.22</h5>
+      </div>
+      <app-button text="Pay for check" [isFilled]="true"/>
+    </app-layout>
+  </div>
+</div>

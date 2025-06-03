@@ -1,27 +1,42 @@
-import { Component, Input, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  HostBinding,
+  Input,
+  ViewEncapsulation,
+} from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-button',
   templateUrl: './button.component.html',
   styleUrl: './button.component.scss',
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class ButtonComponent {
-
-  @Input() variant: 'primary' | 'secondary' | 'outline' | 'passive' | 'transparent' | 'disabled' = 'primary';
+  @Input() variant:
+    | 'primary'
+    | 'secondary'
+    | 'outline'
+    | 'passive'
+    | 'transparent'
+    | 'disabled' = 'primary';
   @Input() isDisabled = false;
   @Input() text = 'Button';
-  @Input() iconPosition: 'left' | 'right' | 'none' = 'none'
+  @Input() iconPosition: 'left' | 'right' | 'none' = 'none';
   @Input() filterButton = false;
   @Input() filterButtonActive = false;
   @Input() isFilled = false;
-  @Input() buttonSize: 'big' | 'md' | 'sm' = 'md'
+  @Input() buttonSize: 'big' | 'md' | 'sm' = 'md';
   @Input() svgIcon!: SafeHtml;
   @Input() type: 'submit' | '' = '';
 
   constructor(private sanitizer: DomSanitizer) {
     this.setSvgIcon();
+  }
+
+  @HostBinding('style.width')
+  get hostFilling() {
+    return this.isFilled === true ? '100%' : 'unset';
   }
 
   setSvgIcon() {
@@ -33,5 +48,4 @@ export class ButtonComponent {
 
     this.svgIcon = this.sanitizer.bypassSecurityTrustHtml(rawSvg);
   }
-
 }

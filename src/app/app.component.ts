@@ -16,6 +16,7 @@ import {
   isInCart,
   userPizzaStorageHelper,
 } from './features/pizza/helpers/user-pizza-storage.helper';
+import { PagesEnum } from './core/enums/pages.enum';
 
 @Component({
   selector: 'app-root',
@@ -51,7 +52,13 @@ export class AppComponent implements OnInit {
     this.pizzaService.loadPizza().subscribe();
     this.pizzaService.loadUi().subscribe();
     this.pizzaService.loadAdditionalIngredUi().subscribe();
+    this.userPizzaService.userPizza$.subscribe((pizza) => {
+      console.log(pizza);
+    });
     this.userPizzaService.getUserPizza().subscribe();
+    this.userPizzaService.userPizza$.subscribe((pizza) => {
+      console.log(pizza);
+    });
     console.log('END of INIT APP');
   }
 
@@ -99,6 +106,9 @@ export class AppComponent implements OnInit {
     }, 0);
   }
 
+  orderId = 1;
+
   protected readonly IconSize = IconSize;
   protected readonly userPizzaStorageHelper = userPizzaStorageHelper;
+  protected readonly PagesEnum = PagesEnum;
 }

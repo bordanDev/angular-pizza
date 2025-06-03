@@ -10,11 +10,12 @@ import { UiModule } from './ui/ui.module';
 import { PizzaPageComponent } from './features/pizza/components/pizza-page/pizza-page.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { PizzaFiltrationComponent } from './features/pizza/components/pizza-filtration/pizza-filtration.component';
-import { SharedModule } from "./shared/shared.module";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { AuthComponent } from "./features/navigation/components/auth/auth.component";
-import { NgOptimizedImage } from "@angular/common";
+import { SharedModule } from './shared/shared.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AuthComponent } from './features/navigation/components/auth/auth.component';
+import { NgOptimizedImage } from '@angular/common';
 import { provideHttpClient } from '@angular/common/http';
+import { OrderPageComponent } from './pages/order-page/order-page.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,17 +26,18 @@ import { provideHttpClient } from '@angular/common/http';
     PizzaPageComponent,
     NotFoundComponent,
     PizzaFiltrationComponent,
-    AuthComponent
+    AuthComponent,
+    OrderPageComponent,
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        UiModule,
-        SharedModule,
-        BrowserAnimationsModule,
-        NgOptimizedImage
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    UiModule,
+    SharedModule,
+    BrowserAnimationsModule,
+    NgOptimizedImage,
+  ],
   providers: [provideHttpClient()],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

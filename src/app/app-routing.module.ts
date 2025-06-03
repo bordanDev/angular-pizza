@@ -3,13 +3,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { PizzaListComponent } from './features/pizza/components/pizza-list/pizza-list.component';
 import { PizzaPageComponent } from './features/pizza/components/pizza-page/pizza-page.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { PagesEnum } from "./core/enums/pages.enum";
+import { PagesEnum } from './core/enums/pages.enum';
+import { OrderPageComponent } from './pages/order-page/order-page.component';
 
 const routes: Routes = [
   {
     path: '',
-    pathMatch: "full",
-    redirectTo: PagesEnum.Main
+    pathMatch: 'full',
+    redirectTo: PagesEnum.Main,
   },
   {
     path: PagesEnum.Main,
@@ -20,14 +21,17 @@ const routes: Routes = [
     component: PizzaPageComponent,
   },
   {
-    path: '**',
-    component: NotFoundComponent
+    path: PagesEnum.Order + '/:id',
+    component: OrderPageComponent,
   },
-
+  {
+    path: '**',
+    component: NotFoundComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

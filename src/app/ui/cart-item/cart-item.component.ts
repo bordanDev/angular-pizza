@@ -1,4 +1,12 @@
-import { Component, EventEmitter, input, Output } from '@angular/core';
+import {
+  Component,
+  computed,
+  EventEmitter,
+  HostBinding,
+  input,
+  InputSignal,
+  Output,
+} from '@angular/core';
 import { Pizza } from '../../shared/interfaces/pizza.interface';
 import { IconSize } from '../icon/enums/icon.enums';
 
@@ -8,7 +16,16 @@ import { IconSize } from '../icon/enums/icon.enums';
   styleUrl: './cart-item.component.scss',
 })
 export class CartItemComponent {
-  cartPizzas = input<Pizza[]>([]);
+  isFilled: InputSignal<boolean> = input(false);
+  private maxWidth = computed(() => (this.isFilled() ? 'unset' : '400px'));
+  @HostBinding('style.max-width')
+  get hostMaxWidth() {
+    return this.maxWidth();
+  }
+
+  type: InputSignal<'default' | 'order'> = input.required();
+
+  cartPizzas = input.required<Pizza[]>();
 
   @Output() deleteOutput = new EventEmitter<Pizza>();
 

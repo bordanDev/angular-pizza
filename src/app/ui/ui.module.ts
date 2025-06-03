@@ -13,17 +13,16 @@ import { RadioComponent } from './radio/radio.component';
 import { IntervalComponent } from './interval/interval.component';
 import { SearchListComponent } from './search-list/search-list.component';
 import { SearchListItemComponent } from './search-list/search-list-item/search-list-item.component';
-import {IconModule} from "./icon/icon.module";
-import {FeatherModule} from "angular-feather";
-import {IconComponent} from "./icon/icon.component";
-import {SharedModule} from "../shared/shared.module";
+import { IconModule } from './icon/icon.module';
+import { FeatherModule } from 'angular-feather';
+import { IconComponent } from './icon/icon.component';
+import { SharedModule } from '../shared/shared.module';
 import { DrawerComponent } from './drawer/drawer.component';
 import { CounterComponent } from './counter/counter.component';
 import { CartItemComponent } from './cart-item/cart-item.component';
 import { ModalComponent } from './modal/modal.component';
 import { InputFcComponent } from './input-fc/input-fc.component';
-
-
+import { LayoutComponent } from './layout';
 
 @NgModule({
   declarations: [
@@ -43,7 +42,8 @@ import { InputFcComponent } from './input-fc/input-fc.component';
     CounterComponent,
     CartItemComponent,
     ModalComponent,
-    InputFcComponent
+    InputFcComponent,
+    LayoutComponent,
   ],
   imports: [
     CommonModule,
@@ -51,30 +51,31 @@ import { InputFcComponent } from './input-fc/input-fc.component';
     ReactiveFormsModule,
     RouterModule,
     FeatherModule,
-    SharedModule
+    SharedModule,
   ],
-    exports: [
-        CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        RouterModule,
-        ButtonComponent,
-        CardComponent,
-        InputComponent,
-        SwitchComponent,
-        IngredientsSelectorComponent,
-        BreadcrumbsComponent,
-        CheckboxComponent,
-        RadioComponent,
-        IntervalComponent,
-        SearchListComponent,
-        IconModule,
-        IconComponent,
-        DrawerComponent,
-        CounterComponent,
-        CartItemComponent,
-        ModalComponent,
-        InputFcComponent
-    ]
+  exports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule,
+    ButtonComponent,
+    CardComponent,
+    InputComponent,
+    SwitchComponent,
+    IngredientsSelectorComponent,
+    BreadcrumbsComponent,
+    CheckboxComponent,
+    RadioComponent,
+    IntervalComponent,
+    SearchListComponent,
+    IconModule,
+    IconComponent,
+    DrawerComponent,
+    CounterComponent,
+    CartItemComponent,
+    ModalComponent,
+    InputFcComponent,
+    LayoutComponent,
+  ],
 })
-export class UiModule { }
+export class UiModule {}
