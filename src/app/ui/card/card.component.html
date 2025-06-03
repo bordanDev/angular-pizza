@@ -1,5 +1,5 @@
-<a class="card">
-      <div class="card-header" [routerLink]="'pizza' + '/' + pizzaId">
+<div class="card" >
+      <a class="card-header" [routerLink]="'pizza' + '/' + pizzaId">
         <div class="card-image">
           <div *ngIf="pizzaTag" [ngClass]="{
                 'card-image-tag--top': pizzaTag === 'top',
@@ -11,16 +11,16 @@
         </div>
         <h4 class="card-title">{{ pizzaTitle }}</h4>
         <p class="card-ingredients">{{ pizzaIngredients.join(", ") }}</p>
+      </a>
+      <div class="card-container">
+          <div class="card-container--price"><b>${{ pizzaPrice }}</b></div>
+          <app-button (click)="onToggle()" (keydown.enter)="onToggle()" [iconPosition]="'right'" [variant]="'secondary'" [text]="this.inCart() ? 'Delete' : 'Add'">
+            @if(this.inCart()){
+              <app-icon [name]="'trash'" [size]="IconSize.md"></app-icon>
+            }
+            @else{
+              <app-icon [name]="'plus'" [size]="IconSize.md"></app-icon>
+            }
+          </app-button>
       </div>
-    <div class="card-container">
-        <div class="card-container--price"><b>${{ pizzaPrice }}</b></div>
-        <app-button (click)="onToggle()" (keydown.enter)="onToggle()" [iconPosition]="'right'" [variant]="'secondary'" [text]="this.inCart() ? 'Delete' : 'Add'">
-          @if(this.inCart()){
-            <app-icon [name]="'trash'" [size]="IconSize.md"></app-icon>
-          }
-          @else{
-            <app-icon [name]="'plus'" [size]="IconSize.md"></app-icon>
-          }
-        </app-button>
-    </div>
-</a>
+</div>

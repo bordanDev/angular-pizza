@@ -1,5 +1,5 @@
 @for (pizza of cartPizzas(); track pizza.id) {
-  <div [tabindex]="pizza.id" class="drawer-pizza--card">
+  <div [tabindex]="pizza.id" class="drawer-pizza--card" [ngStyle]="{'padding' : type() === 'order' ? '20px 0' : '' }">
     <img class="card-image" [src]="pizza.imgUrl" [alt]="pizza.title">
     <div class="card-info">
       <p class="card-info--title">{{ pizza.title }}</p>

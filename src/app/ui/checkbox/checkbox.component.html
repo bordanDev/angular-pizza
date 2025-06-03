@@ -1,4 +1,4 @@
-@for (option of options(); track $index){
+ @for (option of options(); track $index){
 
   @if(toggleListFlag || $index <= 4){
     <div class="wrapper" (click)="onCheckboxChange(option ,$event)" (keydown.enter)="onCheckboxChange(option ,$event)" [tabindex]="$index + 1">

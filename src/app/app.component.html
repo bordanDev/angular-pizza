@@ -7,7 +7,7 @@
   (isClose)="setDrawerState(false)"
   title="TEST">
   @if(this.itemsForDrawer().length > 0){
-    <app-cart-item (deleteOutput)="deleteItem($event)" [cartPizzas]="itemsForDrawer()"/>
+    <app-cart-item type="default" (deleteOutput)="deleteItem($event)" [cartPizzas]="itemsForDrawer()"/>
 
   }
   @else{
@@ -23,7 +23,7 @@
 
   <div class="drawer-info" *ngIf="itemsForDrawer().length !== 0">
     <div class="drawer-info--price">Total Price<p>${{ totalPriceSum() }}</p></div>
-    <app-button variant="primary" buttonSize="md" iconPosition="right" [isFilled]="true" text="Go to payment" > <app-icon name="arrow-right" [size]="IconSize.sm"></app-icon></app-button>
+    <app-button (click)="setDrawerState(false)" [routerLink]="PagesEnum.Order + '/' + orderId" variant="primary" buttonSize="md" iconPosition="right" [isFilled]="true" text="Go to payment" > <app-icon name="arrow-right" [size]="IconSize.sm"></app-icon></app-button>
   </div>
 
 </app-drawer>
