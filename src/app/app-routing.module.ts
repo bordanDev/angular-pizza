@@ -5,6 +5,8 @@ import { PizzaPageComponent } from './features/pizza/components/pizza-page/pizza
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { PagesEnum } from './core/enums/pages.enum';
 import { OrderPageComponent } from './pages/order-page/order-page.component';
+import { ModalComponent } from "./features/navigation/components";
+import { RegisterComponent } from "./features/navigation/components/modal/forms/register/register.component";
 
 const routes: Routes = [
   {
@@ -30,8 +32,24 @@ const routes: Routes = [
   },
 ];
 
+const drawerRoutes: Routes = [
+  {
+    path: ':sign_in',
+    outlet: 'modal',
+    component: ModalComponent
+  },
+  {
+    path: ':register',
+    outlet: 'modal',
+    component: RegisterComponent
+  }
+]
+
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes),
+    RouterModule.forRoot(drawerRoutes)
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

@@ -7,12 +7,81 @@ const pizzasMock = require("./mocks/pizzas-mock.json");
 const userPizzaMock = require("./mocks/user-pizzas.json");
 const filtrationMock = require("./mocks/ui/filtration-mock.json");
 const pizzaPageIngredMock = require("./mocks/ui/pizza-page-ingred-mock.json");
+const users = require("./mocks/users.json")
 
 const cors = require("cors");
+const bcrypt = require('bcrypt')
 app.use(cors()); // Разрешает все запросы
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+
+app.post('/register', async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const newUser = {
+      id: users.length + 1,
+      email,
+      password: hashedPassword
+    };
+
+    function isMatchEmail(email) {
+      let state = false;
+      state = users.some((user) => user.email === email )
+      console.log(state)
+      return state;
+    }
+
+    if(isMatchEmail(email)){
+      throw new Error();
+    }
+
+    users.push(newUser);
+    res.status(201).json({
+      message: 'User registered successfully'
+    })
+  } catch (error) {
+    res.status(500).json({ message: 'Error registering user'})
+  }
+})
+
+app.post('/login', async (req, res) => {
+  try{
+
+    const { email, password } = req.body
+
+    let user = users.filter((x) => x.email === email )
+    user = user[0]
+
+    if(!user){
+      throw new Error()
+    }
+
+    const hashedPassword1 = await bcrypt.compare(password, user.password);
+
+    if(hashedPassword1){
+      res.status(201).json({ message: 'User is login into the system',
+        user: {
+          email: email
+        }
+      })
+    } else {
+      throw new Error();
+    }
+
+  } catch (error) {
+
+    res.status(500).json({ message: 'Error login user into the system'})
+
+  }
+
+})
+
+app.get('/users', (req, res) => {
+  res.json(users)
+})
 
 app.post("/pizza-list", (req, res) => {
   const availablePizza = {

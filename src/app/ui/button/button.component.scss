@@ -20,6 +20,11 @@
     cursor: pointer;
     line-height: 20px;
 
+    &-disabled{
+      opacity: 0.4;
+      cursor: default;
+    }
+
     &-l{
       flex-direction: row-reverse;
     }
@@ -54,7 +59,6 @@
 
     &-primary {
         color: white;
-        padding: 14px 20px;
         background-color: #FE5F00;
         &:hover {
           background-color: #e25402;
@@ -128,7 +132,7 @@
 
     &-icon {
       border-radius: 12px;
-        padding: 12px;
+      padding: 12px;
 
         #text {
             display: none;

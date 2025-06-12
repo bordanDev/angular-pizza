@@ -1,5 +1,5 @@
 <div class="authorization-buttons">
-    <app-button [variant]="counter() > 0 ? 'primary' : 'outline'" [iconPosition]="'right'" [text]="''">
-      <div *ngIf="counter() > 0">${{ totalPrice() }}  | </div> <app-icon name="shopping-cart" [size]="IconSize.md"></app-icon> {{ counter() === 0 ? '' : counter().toString() }}
+    <app-button buttonSize="sm" [variant]="counter() > 0 ? 'primary' : 'outline'" [iconPosition]="'right'" [text]="''">
+      <div *ngIf="counter() > 0">${{ totalPrice() }}  | </div> <app-icon name="shopping-cart" [size]="IconSize.sm"></app-icon> {{ counter() === 0 ? '' : counter().toString() }}
     </app-button>
 </div>

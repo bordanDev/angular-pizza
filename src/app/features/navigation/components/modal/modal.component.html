@@ -1,0 +1,7 @@
+<app-modal (isClose)="authModalClose()">
+  @if (toggleAuth) {
+    <app-register (closeOutput)="authModalClose()"></app-register>
+  } @else {
+    <app-sign-in (closeOutput)="authModalClose()"></app-sign-in>
+  }
+</app-modal>

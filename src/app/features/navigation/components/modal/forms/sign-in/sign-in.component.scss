@@ -1,0 +1,33 @@
+:host{
+  .title{
+    margin-bottom: 12px;
+    max-width: 350px;
+  }
+
+  .subtitle{
+    margin-bottom: 24px;
+    color: #7C7C7C;
+  }
+
+  app-input-fc{
+    margin-bottom: 4px
+  }
+
+  app-input-fc:nth-child(even){
+    margin-bottom: 20px;
+  }
+
+  .register{
+    color: #7C7C7C;
+    text-align: center;
+    padding-top: 24px;
+  }
+
+  span{
+    &.link{
+      text-decoration: underline;
+      color: #c74b03;
+      cursor: pointer;
+    }
+  }
+}

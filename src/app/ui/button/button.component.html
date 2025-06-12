@@ -1,19 +1,19 @@
 <button [type]="type" [disabled]="isDisabled" class="button" [ngClass]="{
     'button-disabled': isDisabled,
-    'button-primary': variant === 'primary' && !isDisabled,
-    'button-secondary': variant === 'secondary' && !isDisabled,
-    'button-outline': variant === 'outline' && !isDisabled,
-    'button-passive': variant === 'passive' && !isDisabled,
-    'button-transparent': variant === 'transparent' && !isDisabled,
-    'button-icon':  text === '' && !isDisabled,
-    'button-filter': filterButton && !isDisabled,
-    'button-filter--active': filterButtonActive && !isDisabled,
-    'button-filled': isFilled && !isDisabled,
-    'button-lg' : buttonSize === 'big' && !isDisabled,
-    'button-md' : buttonSize === 'md' && !isDisabled,
-    'button-sm' : buttonSize === 'sm' && !isDisabled,
-    'button-l' : iconPosition === 'left' && !isDisabled,
-    'button-r' : iconPosition === 'right' && !isDisabled
+    'button-primary': variant === 'primary' ,
+    'button-secondary': variant === 'secondary' ,
+    'button-outline': variant === 'outline' ,
+    'button-passive': variant === 'passive' ,
+    'button-transparent': variant === 'transparent' ,
+    'button-icon':  text === '' ,
+    'button-filter': filterButton ,
+    'button-filter--active': filterButtonActive ,
+    'button-filled': isFilled ,
+    'button-lg' : buttonSize === 'big' ,
+    'button-md' : buttonSize === 'md' ,
+    'button-sm' : buttonSize === 'sm' ,
+    'button-l' : iconPosition === 'left' ,
+    'button-r' : iconPosition === 'right'
     }">
     {{ text }}
       @if(iconPosition !== 'none'){

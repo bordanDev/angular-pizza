@@ -1,4 +1,4 @@
-<div class="modal" >
+<div class="modal" tabindex="0" (keydown.escape)="close()">
   <ng-content/>
   <app-button (click)="close()" variant="passive" text="" iconPosition="left">
     <app-icon name="x" [size]="IconSize.sm"/>

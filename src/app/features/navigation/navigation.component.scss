@@ -69,23 +69,3 @@ app-input{
 .nav-menu{
   gap: 8px;
 }
-
-app-modal{
-  h4{
-    margin-bottom: 12px;
-    max-width: 350px;
-  }
-
-  p{
-    margin-bottom: 24px;
-    color: #7C7C7C;
-  }
-
-  app-input-fc{
-    margin-bottom: 4px
-  }
-
-  app-input-fc:nth-child(even){
-    margin-bottom: 20px;
-  }
-}
