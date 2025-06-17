@@ -1,7 +1,8 @@
 # Angular Pizza
 
-Available UI (12.06.2025)
+Available UI (17.06.2025)
 
+![image](https://github.com/user-attachments/assets/3837a073-35f0-4597-a2d0-3379afd7a3d9)
 ![image](https://github.com/user-attachments/assets/d9c76739-a3f2-41a5-83e3-a91b476b7584)
 ![image](https://github.com/user-attachments/assets/a77e9eaf-6cb6-452f-9216-4fd7dbf426d6)
 ![image](https://github.com/user-attachments/assets/d37b8948-1160-4f4d-ae3c-b0480b127e74)
