@@ -2,11 +2,14 @@
 <router-outlet></router-outlet>
 <router-outlet name="modal"></router-outlet>
 
+<app-notification [stateToggler]="notificationActivator" [title]="notificationContent.title" [subtitle]="notificationContent.subtitle"></app-notification>
+
 <app-drawer
 
   [@slideAnimation]="drawerState ? 'visible' : 'hidden'"
   (isClose)="setDrawerState(false)"
   title="TEST">
+
   @if(this.itemsForDrawer().length > 0){
     <app-cart-item type="default" (deleteOutput)="deleteItem($event)" [cartPizzas]="itemsForDrawer()"/>
   }

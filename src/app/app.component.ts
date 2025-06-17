@@ -17,6 +17,8 @@ import {
   userPizzaStorageHelper,
 } from './features/pizza/helpers/user-pizza-storage.helper';
 import { PagesEnum } from './core/enums/pages.enum';
+import { NotificationService } from "./core/services/notification.service";
+import { Notification } from "./shared/interfaces/notification.interface";
 
 @Component({
   selector: 'app-root',
@@ -66,11 +68,26 @@ export class AppComponent implements OnInit {
 
   drawerState = false;
   cartPizzaService = inject(CartDrawerStateService);
+  private not = inject(NotificationService)
+
+  notificationActivator = false;
+  notificationContent: Notification = { title: '1', subtitle: '1'};
 
   constructor() {
     this.userPizzaService.userPizza$.subscribe((pizzas) => {
       this.itemsForDrawer.set(pizzas);
     });
+
+    this.not.$handleNotification.subscribe((content) => {
+      console.log(content);
+      if (content != undefined) {
+        this.notificationContent = content;
+        this.notificationActivator = true;
+      } else {
+        this.notificationActivator = false;
+      }
+
+    })
 
     //////// Закрывает дровер каждый раз как срабатывает сервис
     effect(

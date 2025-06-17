@@ -1,0 +1,32 @@
+.notification {
+  z-index: 99999;
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 24px;
+  background-color: #ffffff;
+  border: #EDEDED 1px solid;
+  border-radius: 16px;
+  min-width: 340px;
+  width: min-content;
+  box-shadow: 6px 6px 20px #d5d5d5;
+
+  app-button{
+    position: absolute;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  &.success{
+    background-color: #EEFFF2;
+    border: 1px solid #B1E9BD;
+  }
+  &.danger {
+    background-color: #FFF6F6;
+    border: 1px solid #E9B1B1;
+  }
+}
+

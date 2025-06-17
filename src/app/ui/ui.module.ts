@@ -23,6 +23,7 @@ import { CartItemComponent } from './cart-item/cart-item.component';
 import { ModalComponent } from './modal/modal.component';
 import { InputFcComponent } from './input-fc/input-fc.component';
 import { LayoutComponent } from './layout';
+import { NotificationComponent } from './notification/notification.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { LayoutComponent } from './layout';
     ModalComponent,
     InputFcComponent,
     LayoutComponent,
+    NotificationComponent,
   ],
   imports: [
     CommonModule,
@@ -76,6 +78,7 @@ import { LayoutComponent } from './layout';
     ModalComponent,
     InputFcComponent,
     LayoutComponent,
+    NotificationComponent
   ],
 })
 export class UiModule {}

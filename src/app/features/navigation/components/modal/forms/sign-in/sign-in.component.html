@@ -4,6 +4,7 @@
   <app-input-fc [placeholder]="'example@mail.com'" formControlName="email"/>
   <app-input-fc [type]="InputTypeEnum.PASSWORD" [placeholder]="'Your password'" formControlName="password"/>
   <app-button [type]="'submit'" [isFilled]="true" [isDisabled]="!isValidForm" text="Sign In"></app-button>
+<!--  <app-button (click)="testNotification()" [isFilled]="true"  text="TEST"></app-button>-->
   <p class="register">
     New customer?
     <span class="link" tabindex="0" (click)="openRegister()" (keydown.enter)="openRegister()">Start here</span>

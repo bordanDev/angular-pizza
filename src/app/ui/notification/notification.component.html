@@ -1,0 +1,16 @@
+<div class="notification"
+     [@slideAnimation]="isVisible ? 'visible' : 'hidden'"
+     [ngClass]="
+     {
+     'success': notificationType === 'successfully',
+     'danger': notificationType === 'danger'
+     }
+    "
+>
+
+  <h6 class="title">{{ title() }}</h6>
+  <p class="subtitle">{{ subtitle() }}</p>
+  <app-button (click)="deactivateNotification()" variant="passive" iconPosition="left" buttonSize="sm" text="">
+    <app-icon [size]="IconSize.sm" [name]="'x'"></app-icon>
+  </app-button>
+</div>

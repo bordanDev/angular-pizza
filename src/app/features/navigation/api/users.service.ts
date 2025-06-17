@@ -11,11 +11,11 @@ export class UsersService {
   }
 
   public reg(user: User) {
-    return this.httpClient.post<User>(environment.apiUrl + '/register', user)
+    return this.httpClient.post<User>(environment.apiUrl + '/register', user, { observe: 'response' })
   }
 
   public logIn(user: User) {
-    return this.httpClient.post<User>(environment.apiUrl + '/login', user)
+    return this.httpClient.post<User>(environment.apiUrl + '/login', user, { observe: 'response' })
   }
 
 }

@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { User } from "../../../../interfaces/user.interface";
 import { UsersService } from "../../../../api/users.service";
 import { Router } from "@angular/router";
+import { NotificationService } from "../../../../../../core/services/notification.service";
 
 @Component({
   selector: 'app-sign-in',
@@ -15,7 +16,8 @@ export class SignInComponent implements OnInit{
   constructor(
     private users: UsersService,
     private cdr: ChangeDetectorRef,
-    private router: Router
+    private router: Router,
+    private not: NotificationService
   ) {
   }
 
@@ -25,7 +27,8 @@ export class SignInComponent implements OnInit{
     {
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [
-        Validators.required
+        Validators.required,
+        Validators.minLength(4)
       ]),
     },
     { updateOn: 'change' },
@@ -40,6 +43,25 @@ export class SignInComponent implements OnInit{
       console.log(this.isValidForm)
     });
   }
+
+  // testNotification(){
+  //   const user: User = {
+  //     email: this.form.controls.email.value!,
+  //     password: this.form.controls.password.value!,
+  //   };
+  //   this.users.logIn(user).subscribe(
+  //     (response) => {
+  //       console.log('Client is login', response.status);
+  //       this.not.addNotification(response.status)
+  //       // this.authModalClose();
+  //     },
+  //     (error) => {
+  //       console.error('Client login is failed', error);
+  //       this.not.addNotification(error.status)
+  //       // this.authModalClose();
+  //     },
+  //   );
+  // }
 
   public onSubmit() {
     this.closeOutput.emit(true)
@@ -56,11 +78,13 @@ export class SignInComponent implements OnInit{
     if (this.form.valid) {
       this.users.logIn(user).subscribe(
         (response) => {
-          console.log('Client is login', response);
+          console.log('Client is login', response.status);
+          this.not.addNotification(response.status)
           // this.authModalClose();
         },
         (error) => {
           console.error('Client login is failed', error);
+          this.not.addNotification(error.status)
           // this.authModalClose();
         },
       );
