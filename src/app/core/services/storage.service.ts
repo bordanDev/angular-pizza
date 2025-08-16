@@ -20,4 +20,8 @@ export class StorageService {
 
   storage = inject(LOCAL_STORAGE)
 
+  constructor() {
+    this.storage.setItem('userIsRegister', )
+  }
+
 }

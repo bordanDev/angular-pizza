@@ -52,8 +52,7 @@ app.post('/login', async (req, res) => {
 
     const { email, password } = req.body
 
-    let user = users.filter((x) => x.email === email )
-    user = user[0]
+    let user = users.find((x) => x.email === email )
 
     if(!user){
       throw new Error()

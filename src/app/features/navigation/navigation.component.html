@@ -17,9 +17,13 @@
 
       </div>
       <div class="f-hor nav-menu">
-        <app-button buttonSize="sm" (click)="openSignIn()" variant="outline" [text]="'Sign In | Sign Up'" iconPosition="left">
-          <app-icon name="user" [size]="IconSize.sm"></app-icon>
-        </app-button>
+        @if(false){
+          <app-button buttonSize="sm" (click)="openSignIn()" variant="outline" [text]="''" iconPosition="left">
+            <app-icon name="user" [size]="IconSize.sm"></app-icon>
+          </app-button>
+        } @else {
+          <app-button buttonSize="sm" (click)="openSignIn()" variant="outline" [text]="'Sign In | Sign Up'" iconPosition="left"/>
+        }
         <app-card-counter (click)="drawerStateChange()"></app-card-counter>
       </div>
     </nav>

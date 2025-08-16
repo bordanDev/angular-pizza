@@ -4,7 +4,7 @@ export class IngredientsService {
     static getIngredients(pizzas: Pizza[]){
       const allIngredients: string[] = [];
       pizzas.map(pizza => {
-        pizza.ingredients.filter(ingred => {
+        pizza.ingredients.map(ingred => {
           if(!allIngredients.includes(ingred)){
             allIngredients.push(ingred)
           }

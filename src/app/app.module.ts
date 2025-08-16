@@ -14,6 +14,7 @@ import { NgOptimizedImage } from '@angular/common';
 import { provideHttpClient } from '@angular/common/http';
 import { OrderPageComponent } from './pages/order-page/order-page.component';
 import { FeatureModule } from "./features/feature.module";
+import { CookieModule } from 'ngx-cookie';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +32,8 @@ import { FeatureModule } from "./features/feature.module";
     SharedModule,
     BrowserAnimationsModule,
     NgOptimizedImage,
-    FeatureModule
+    FeatureModule,
+    CookieModule.withOptions()
   ],
   providers: [provideHttpClient()],
   bootstrap: [AppComponent],
