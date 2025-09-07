@@ -1,47 +1,22 @@
-import { Component, effect, inject, OnInit, signal } from '@angular/core';
-import {
-  animate,
-  state,
-  style,
-  transition,
-  trigger,
-} from '@angular/animations';
-import { Pizza } from './shared/interfaces/pizza.interface';
-import { CartDrawerStateService } from './features/navigation/services/cart-drawer-state.service';
-import { IconSize } from './ui/icon/enums/icon.enums';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { environment } from '../environments/environment';
-import { PizzaService } from './features/pizza/services/pizza.service';
+import { PagesEnum } from './core/enums/pages.enum';
+import { NotificationService } from './core/services/notification.service';
+import { CartDrawerStateService } from './features/navigation/services/cart-drawer-state.service';
 import { UserPizzaService } from './features/pizza/api/user-pizza.service';
 import {
   isInCart,
   userPizzaStorageHelper,
 } from './features/pizza/helpers/user-pizza-storage.helper';
-import { PagesEnum } from './core/enums/pages.enum';
-import { NotificationService } from "./core/services/notification.service";
-import { Notification } from "./shared/interfaces/notification.interface";
+import { PizzaService } from './features/pizza/services/pizza.service';
+import { Notification } from './shared/interfaces/notification.interface';
+import { Pizza } from './shared/interfaces/pizza.interface';
+import { IconSize } from './ui/icon/enums/icon.enums';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
-  animations: [
-    trigger('slideAnimation', [
-      state(
-        'hidden',
-        style({
-          transform: 'translateX(100%)',
-        }),
-      ),
-      state(
-        'visible',
-        style({
-          transform: 'translateX(0)',
-        }),
-      ),
-      transition('hidden => visible', animate('300ms ease-out')),
-      transition('visible => hidden', animate('300ms ease-in')),
-    ]),
-  ],
 })
 export class AppComponent implements OnInit {
   title = 'Angular Pizza';
@@ -54,24 +29,17 @@ export class AppComponent implements OnInit {
     this.pizzaService.loadPizza().subscribe();
     this.pizzaService.loadUi().subscribe();
     this.pizzaService.loadAdditionalIngredUi().subscribe();
-    this.userPizzaService.userPizza$.subscribe((pizza) => {
-      console.log(pizza);
-    });
+    this.userPizzaService.userPizza$.subscribe();
     this.userPizzaService.getUserPizza().subscribe();
-    this.userPizzaService.userPizza$.subscribe((pizza) => {
-      console.log(pizza);
-    });
-    console.log('END of INIT APP');
+    this.userPizzaService.userPizza$.subscribe();
   }
 
   itemsForDrawer = signal<Pizza[]>([]);
-
-  drawerState = false;
   cartPizzaService = inject(CartDrawerStateService);
-  private not = inject(NotificationService)
+  private not = inject(NotificationService);
 
   notificationActivator = false;
-  notificationContent: Notification = { title: '1', subtitle: '1'};
+  notificationContent: Notification = { title: '1', subtitle: '1' };
 
   constructor() {
     this.userPizzaService.userPizza$.subscribe((pizzas) => {
@@ -86,16 +54,7 @@ export class AppComponent implements OnInit {
       } else {
         this.notificationActivator = false;
       }
-
-    })
-
-    //////// Закрывает дровер каждый раз как срабатывает сервис
-    effect(
-      () => {
-        this.drawerState = this.cartPizzaService.drawerFlag();
-      },
-      { allowSignalWrites: true },
-    );
+    });
   }
 
   setDrawerState(value: boolean) {

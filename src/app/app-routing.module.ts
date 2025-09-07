@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { PagesEnum } from './core/enums/pages.enum';
+import { ModalComponent } from './features/navigation/components';
+import { RegisterComponent } from './features/navigation/components/modal/forms/register/register.component';
+import { PizzaListDrawerComponent } from './features/pizza/components/pizza-list-drawer/pizza-list-drawer.component';
 import { PizzaListComponent } from './features/pizza/components/pizza-list/pizza-list.component';
 import { PizzaPageComponent } from './features/pizza/components/pizza-page/pizza-page.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { PagesEnum } from './core/enums/pages.enum';
 import { OrderPageComponent } from './pages/order-page/order-page.component';
-import { ModalComponent } from "./features/navigation/components";
-import { RegisterComponent } from "./features/navigation/components/modal/forms/register/register.component";
 
 const routes: Routes = [
   {
@@ -36,20 +37,22 @@ const drawerRoutes: Routes = [
   {
     path: ':sign_in',
     outlet: 'modal',
-    component: ModalComponent
+    component: ModalComponent,
   },
   {
     path: ':register',
     outlet: 'modal',
-    component: RegisterComponent
-  }
-]
+    component: RegisterComponent,
+  },
+  {
+    path: ':' + PagesEnum.Cart,
+    outlet: 'drawer',
+    component: PizzaListDrawerComponent,
+  },
+];
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes),
-    RouterModule.forRoot(drawerRoutes)
-  ],
+  imports: [RouterModule.forRoot(routes), RouterModule.forRoot(drawerRoutes)],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

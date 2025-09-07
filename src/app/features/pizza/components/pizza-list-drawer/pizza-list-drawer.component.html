@@ -1,0 +1,51 @@
+<app-drawer
+  [@slideAnimation]="drawerState ? 'visible' : 'hidden'"
+  (isClose)="setDrawerState(false)"
+  title="TEST"
+>
+  @if (this.itemsForDrawer().length > 0) {
+    <app-cart-item
+      type="default"
+      (deleteOutput)="deleteItem($event)"
+      [cartPizzas]="itemsForDrawer()"
+    />
+  } @else {
+    <div class="wrapper drawer-empty">
+      <img
+        src="/assets/images/cart_empty.png"
+        style="display: block; width: 120px; aspect-ratio: 1/1"
+        alt=""
+      />
+      <div class="drawer-empty--text">
+        <p>Card is empty</p>
+        <span>Add some pizza into this list to make your order</span>
+      </div>
+      <app-button
+        (click)="setDrawerState(false)"
+        [variant]="'primary'"
+        iconPosition="left"
+        [text]="'Close order list'"
+      >
+        <app-icon [name]="'arrow-left'" [size]="IconSize.md"></app-icon>
+      </app-button>
+    </div>
+  }
+
+  <div class="drawer-info" *ngIf="itemsForDrawer().length !== 0">
+    <div class="drawer-info--price">
+      Total Price
+      <p>${{ totalPriceSum().toFixed(2) }}</p>
+    </div>
+    <app-button
+      (click)="routeToOrderList()"
+      [relativeTo]="route.parent"
+      variant="primary"
+      buttonSize="md"
+      iconPosition="right"
+      [isFilled]="true"
+      text="Go to payment"
+    >
+      <app-icon name="arrow-right" [size]="IconSize.sm"></app-icon
+    ></app-button>
+  </div>
+</app-drawer>

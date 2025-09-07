@@ -1,4 +1,12 @@
-<input [type]="type()" [placeholder]="placeholder()" [ngStyle]="computedStyles" [value]="value" (input)="onChange($any($event.target).value)" (blur)="onTouched()" [disabled]="disabled"/>
-@if(isErrorMessage){
+<input
+  [type]="type()"
+  [placeholder]="placeholder()"
+  [ngStyle]="computedStyles"
+  [value]="value"
+  (input)="onChange($any($event.target).value)"
+  (blur)="onTouched()"
+  [disabled]="disabled"
+/>
+@if (isErrorMessage) {
   <p>Error</p>
 }
