@@ -1,7 +1,7 @@
-:host{
+:host {
   display: flex;
   flex-direction: column;
-  p{
+  p {
     padding-left: 8px;
     padding-top: 4px;
   }
@@ -13,31 +13,61 @@
 
 :host(.ng-valid.ng-touched) input {
   border-color: #009905 !important;
-  background-color: #DFFFE0 !important;
+  background-color: #dfffe0 !important;
 }
 
-input:focus-within{
-  border-color: #5A83E4 !important;
+input:focus-within {
+  border-color: #5a83e4 !important;
   border-width: 2px;
 }
 
-
-
-
-
-input{
+input {
   display: flex;
-  width: 100%;
   overflow: hidden;
+  border-style: solid;
+  padding: 14px 20px;
+  border-radius: 16px;
+  background-color: #ffffff;
 
-  &:focus-visible{
+  &.primary {
+    border-style: solid;
+    border-color: #efefef;
+  }
+
+  &.touched {
+    border-color: #6c757d;
+  }
+
+  &.danger {
+    border-color: #dc3545;
+    background-color: #f8d7da;
+  }
+
+  &.disabled {
+    color: #c4c4c4;
+    border-color: #f5f5f5;
+  }
+
+  &:focus-visible {
     outline: none;
-    border-color: #5A83E4;
+    border-color: #5a83e4;
     z-index: 999;
   }
 
-  &-filled{
-    width: 100%;
-  }
+  // &.filled {
+  //   width: 100%;
+  // }
 }
 
+.text-align {
+  &-center {
+    text-align: center;
+    padding: 14px 0px;
+  }
+  &-left {
+    text-align: left;
+  }
+  &-right {
+    text-align: right;
+  }
+}

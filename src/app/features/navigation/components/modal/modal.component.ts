@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { InputTypeEnum } from '../../../../ui/input-fc/input-fc.component';
+import { navigateBackOutlet } from '../../../../shared/helpers/navigate-back-outlet';
+import { InputTypeEnum } from '../../../../ui/input-fc/enums';
 
 @Component({
   selector: 'app-modal-auth',
@@ -10,20 +11,20 @@ import { InputTypeEnum } from '../../../../ui/input-fc/input-fc.component';
 export class ModalComponent implements OnInit {
   constructor(
     private router: Router,
-    private activatedRoute: ActivatedRoute,
+    private route: ActivatedRoute,
   ) {}
 
   ngOnInit() {
-    console.log(this.activatedRoute.snapshot.url[0].path);
+    console.log(this.route.snapshot.url[0].path);
   }
 
   get toggleAuth(): boolean {
-    return this.activatedRoute.snapshot.url[0].path === 'register';
+    return this.route.snapshot.url[0].path === 'register';
   }
 
   authModalClose() {
-    console.log('authModalClose()');
-    this.router.navigate(['../']);
+    navigateBackOutlet(this.route, this.router); // Navigate your modal/drawer(something like inside outlets logic)
+    // to close only item
   }
 
   protected readonly InputTypeEnum = InputTypeEnum;

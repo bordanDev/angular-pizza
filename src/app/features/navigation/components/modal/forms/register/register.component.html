@@ -1,11 +1,26 @@
-<form appClickOutside [formGroup]="form" (ngSubmit)="onSubmit()">
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
   <h4 class="title">Sign Up to Account</h4>
   <p class="subtitle">Write your email and password to login.</p>
-  <app-input-fc [placeholder]="'example@mail.com'" formControlName="email"/>
-  <app-input-fc [type]="InputTypeEnum.PASSWORD" [placeholder]="'Your password'" formControlName="password"/>
-  <app-button [type]="'submit'" [isFilled]="true" [isDisabled]="!isValidForm" text="Sign Up"></app-button>
+  <app-input-fc [placeholder]="'example@mail.com'" formControlName="email" />
+  <app-input-fc
+    [type]="InputTypeEnum.PASSWORD"
+    [placeholder]="'Your password'"
+    formControlName="password"
+  />
+  <app-button
+    [type]="'submit'"
+    [isFilled]="true"
+    [isDisabled]="!isValidForm"
+    text="Sign Up"
+  ></app-button>
   <p class="register">
     Have an account?
-    <span class="link" tabindex="0" (click)="openSignIn()" (keydown.enter)="openSignIn()">Sign In</span>
+    <span
+      class="link"
+      tabindex="0"
+      (click)="openSignIn()"
+      (keydown.enter)="openSignIn()"
+      >Sign In</span
+    >
   </p>
 </form>

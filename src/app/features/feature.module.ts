@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { ClickOutsideDirective } from '../shared';
 import { SharedModule } from '../shared/shared.module';
 import { UiModule } from '../ui/ui.module';
 import {
@@ -22,7 +23,7 @@ import { PizzaListDrawerComponent } from './pizza/components/pizza-list-drawer/p
     RegisterComponent,
     PizzaListDrawerComponent,
   ],
-  imports: [CommonModule, UiModule, SharedModule],
+  imports: [CommonModule, UiModule, SharedModule, ClickOutsideDirective],
   exports: [NavigationComponent, PizzaListDrawerComponent],
 })
 export class FeatureModule {}

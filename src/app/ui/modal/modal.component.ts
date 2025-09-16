@@ -1,23 +1,17 @@
-import { AfterViewInit, Component, ElementRef, OnInit, output, TemplateRef, ViewChild } from '@angular/core';
-import { IconSize } from "../icon/enums/icon.enums";
+import { Component, output } from '@angular/core';
+import { IconSize } from '../icon/enums/icon.enums';
 
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
-  styleUrl: './modal.component.scss'
+  styleUrl: './modal.component.scss',
 })
-export class ModalComponent implements AfterViewInit{
+export class ModalComponent {
+  public isClose = output<boolean>();
 
-  isClose = output<boolean>()
-
-  close(){
-    this.isClose.emit(true)
-  }
-
-  ngAfterViewInit(){
-    console.log('asd')
+  protected close() {
+    this.isClose.emit(true);
   }
 
   protected readonly IconSize = IconSize;
-  protected readonly escape = escape;
 }

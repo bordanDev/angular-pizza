@@ -1,7 +1,7 @@
 <input
   [type]="type()"
   [placeholder]="placeholder()"
-  [ngStyle]="computedStyles"
+  [ngClass]="getClasses()"
   [value]="value"
   (input)="onChange($any($event.target).value)"
   (blur)="onTouched()"

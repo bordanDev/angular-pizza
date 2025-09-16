@@ -7,7 +7,8 @@ export interface Pizza {
   imgUrl: string;
   tag: string;
   thickness: string;
-  size: string,
-  weight: number,
-  additionalIngredients: string[]
+  size: string;
+  weight: number;
+  additionalIngredients: string[];
+  count?: number;
 }

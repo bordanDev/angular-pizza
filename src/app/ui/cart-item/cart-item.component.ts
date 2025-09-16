@@ -2,30 +2,35 @@ import {
   Component,
   computed,
   EventEmitter,
-  HostBinding, inject,
+  HostBinding,
+  inject,
   input,
   InputSignal,
   Output,
 } from '@angular/core';
+import { Router } from '@angular/router';
 import { Pizza } from '../../shared/interfaces/pizza.interface';
 import { IconSize } from '../icon/enums/icon.enums';
-import { CartVariantEnum } from "./enums/cart-variant.enum";
-import { Router } from "@angular/router";
+import { CartVariantEnum } from './enums/cart-variant.enum';
 
 @Component({
   selector: 'app-cart-item',
   templateUrl: './cart-item.component.html',
   styleUrl: './cart-item.component.scss',
 })
-export class CartItemComponent{
-  isFilled: InputSignal<boolean> = input(false);
+export class CartItemComponent {
+  public isFilled: InputSignal<boolean> = input(false);
+  public variant: InputSignal<CartVariantEnum> = input<CartVariantEnum>(
+    CartVariantEnum.Default,
+  );
+  public isCounted: InputSignal<boolean> = input(true);
+  public cartPizzas = input.required<Pizza[]>();
   private maxWidth = computed(() => (this.isFilled() ? 'unset' : '400px'));
   @HostBinding('style.max-width')
   get hostMaxWidth() {
     return this.maxWidth();
   }
-  variant: InputSignal<CartVariantEnum> = input<CartVariantEnum>(CartVariantEnum.Default)
-  cartPizzas = input.required<Pizza[]>();
+
   @Output() deleteOutput = new EventEmitter<Pizza>();
 
   deleteHandler(pizza: Pizza) {
@@ -34,14 +39,15 @@ export class CartItemComponent{
 
   private routerActive = inject(Router);
 
-  public navigateToPage(pizzaId: number){
-    this.routerActive.navigate(['pizzas/pizza/' + pizzaId])
+  public navigateToPage(pizzaId: number) {
+    // navigate(['pizzas/pizza/' + pizzaId]);
+    this.routerActive.navigateByUrl('pizzas/pizza/' + pizzaId);
   }
 
   priceStyle = {
     gap: '2vw',
-    flexDirection: 'row-reverse'
-  }
+    flexDirection: 'row-reverse',
+  };
 
   protected readonly IconSize = IconSize;
   protected readonly CartVariantEnum = CartVariantEnum;

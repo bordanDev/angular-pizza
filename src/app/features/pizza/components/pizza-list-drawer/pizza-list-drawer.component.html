@@ -1,7 +1,13 @@
 <app-drawer
+  appClickOutside
   [@slideAnimation]="drawerState ? 'visible' : 'hidden'"
-  (isClose)="setDrawerState(false)"
-  title="TEST"
+  (@slideAnimation.done)="backNavigateFromDrawer()"
+  (isClose)="closeDrawer()"
+  [title]="
+    !!this.itemsForDrawer().length
+      ? this.itemsForDrawer().length + ' pizzas in the basket'
+      : 'Cart is empty'
+  "
 >
   @if (this.itemsForDrawer().length > 0) {
     <app-cart-item
@@ -21,7 +27,7 @@
         <span>Add some pizza into this list to make your order</span>
       </div>
       <app-button
-        (click)="setDrawerState(false)"
+        (click)="closeDrawer()"
         [variant]="'primary'"
         iconPosition="left"
         [text]="'Close order list'"
@@ -38,7 +44,6 @@
     </div>
     <app-button
       (click)="routeToOrderList()"
-      [relativeTo]="route.parent"
       variant="primary"
       buttonSize="md"
       iconPosition="right"

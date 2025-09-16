@@ -41,9 +41,8 @@ export class NavigationComponent {
   }
 
   drawerStateChange() {
-    this.router.navigate([{ outlets: { drawer: PagesEnum.Cart } }]);
+    this.router.navigate(['/', { outlets: { drawer: PagesEnum.Cart } }]);
     this.cartDrawerState.setState(true);
-    console.log(this.cartDrawerState.getState());
   }
 
   filteredList: WritableSignal<Pizza[]> = signal<Pizza[]>([]);

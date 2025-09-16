@@ -6,7 +6,7 @@ import {
   trigger,
 } from '@angular/animations';
 import { Component, effect, inject, signal } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PagesEnum } from '../../../../core/enums/pages.enum';
 import { Pizza } from '../../../../shared/interfaces/pizza.interface';
 import { IconSize } from '../../../../ui/icon/enums/icon.enums';
@@ -43,7 +43,8 @@ import {
 export class PizzaListDrawerComponent {
   private userPizzaService = inject(UserPizzaService);
   private cartPizzaService = inject(CartDrawerStateService);
-  public router = inject(Router);
+  private router = inject(Router);
+  private route = inject(ActivatedRoute);
 
   protected drawerState = false;
   protected itemsForDrawer = signal<Pizza[]>([]);
@@ -58,6 +59,7 @@ export class PizzaListDrawerComponent {
     effect(
       () => {
         this.drawerState = this.cartPizzaService.drawerFlag();
+        console.log(this.drawerState, 'DRAWER STATE CHANGE');
       },
       { allowSignalWrites: true },
     );
@@ -77,15 +79,27 @@ export class PizzaListDrawerComponent {
     );
   }
 
-  protected setDrawerState(value: boolean) {
-    if (!value) {
-      this.router.navigate(['']);
+  protected backNavigateFromDrawer() {
+    if (!this.drawerState) {
+      this.router.navigate(
+        [
+          {
+            outlets: {
+              drawer: null,
+            },
+          },
+        ],
+        { relativeTo: this.route.root },
+      );
     }
-    this.cartPizzaService.setState(value);
+  }
+
+  protected closeDrawer() {
+    this.cartPizzaService.setState(false);
   }
 
   protected routeToOrderList() {
-    this.setDrawerState(false);
+    this.closeDrawer();
     this.router.navigate([PagesEnum.Order + '/' + this.orderId]);
   }
 

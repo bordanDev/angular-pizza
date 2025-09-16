@@ -1,14 +1,17 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   forwardRef,
+  HostBinding,
+  Input,
   input,
   InputSignal,
-  OnInit,
-  signal,
-  WritableSignal
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { UtlOptional } from '../../core/types/utl-optional.type';
+import { InputTypeEnum, InputVariantEnum } from './enums';
+import { InputTextAlign, InputType } from './types';
 
 @Component({
   selector: 'app-input-fc',
@@ -19,106 +22,69 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputFcComponent),
-      multi: true
-    }
-  ]
+      multi: true,
+    },
+  ],
 })
+export class InputFcComponent implements ControlValueAccessor {
+  protected value = '';
+  protected disabled = false;
+  protected isErrorMessage = false;
+  public isField: InputSignal<boolean> = input(false);
+  public textAlign: InputSignal<UtlOptional<InputTextAlign>> = input();
+  public type: InputSignal<InputType> = input<InputType>(InputTypeEnum.TEXT);
+  public placeholder = input<string>('');
 
-export class InputFcComponent implements ControlValueAccessor, OnInit{
-  value = ''
-  disabled = false;
-  isErrorMessage = false;
-  type: InputSignal<InputType> = input<InputType>(InputTypeEnum.TEXT);
+  protected variant: InputSignal<InputVariantEnum> = input<InputVariantEnum>(
+    InputVariantEnum.PRIMARY,
+  );
 
-  placeholder = input<string>('');
+  @HostBinding('style.width.%')
+  @Input()
+  width = 100;
 
-  ngOnInit(){
-    console.log(this.dynamicStyles())
-  }
+  onChange: (value: string) => void = () => {
+    return;
+  };
 
-  onChange: (value: string) => void = () => { return };
-  onTouched:() => void = () => { return }
+  onTouched: () => void = () => {
+    return;
+  };
 
-  writeValue(value: string){
+  writeValue(value: string) {
     this.value = value;
   }
 
-  registerOnChange(fn: (value: string) => void = () => { return }){
+  registerOnChange(
+    fn: (value: string) => void = () => {
+      return;
+    },
+  ) {
     this.onChange = fn;
   }
 
-  registerOnTouched(fn: () => void = () => { return }){
-    this.onTouched = fn
+  registerOnTouched(
+    fn: () => void = () => {
+      return;
+    },
+  ) {
+    this.onTouched = fn;
   }
 
-  setDisabledState(isDisabled: boolean){
+  setDisabledState(isDisabled: boolean) {
     this.disabled = isDisabled;
   }
 
-  dynamicStyles: InputSignal<DynamicStyle> = input({})
-  variant: WritableSignal<InputVariantEnum> = signal<InputVariantEnum>(InputVariantEnum.PRIMARY)
-
-  get computedStyles(){
-
-    const baseStyles = {
-      borderStyle: 'solid',
-      padding: '14px 20px',
-      borderRadius: '16px',
-      backgroundColor: '#fffff',
-      width: '-webkit-fill-available'
-    }
-
-    const variantStyles = this.getVariantStyles(this.variant())
-
-    return { ...baseStyles, ...variantStyles }
-
-  }
-
-  private getVariantStyles(variant: InputVariant){
-      const styles = {
-        primary: {
-          borderStyle: 'solid',
-          borderColor: '#EFEFEF',
-        },
-        touched: {
-          borderColor: '#6c757d',
-        },
-        danger: {
-          borderColor: '#dc3545',
-          backgroundColor: '#f8d7da',
-        },
-        disabled: {
-          color: '#C4C4C4',
-          borderColor: '#F5F5F5',
-        }
-      }
-
-      return styles[variant]
-  }
-
+  protected getClasses = computed(
+    (): Record<string, UtlOptional<boolean | string>> => {
+      return {
+        filled: this.isField(),
+        ['text-align-' + this.textAlign()]: this.textAlign() ? true : false,
+        primary: this.variant() === InputVariantEnum.PRIMARY,
+        disabled: this.variant() === InputVariantEnum.DISABLED,
+        touched: this.variant() === InputVariantEnum.TOUCHED,
+        danger: this.variant() === InputVariantEnum.DANGER,
+      };
+    },
+  );
 }
-
-type DynamicStyle = Record<string, string>;
-
-export enum InputVariantEnum {
-  PRIMARY = 'primary',
-  TOUCHED = 'touched',
-  DANGER = 'danger',
-  DISABLED = 'disabled'
-}
-
-export type InputVariant =
-  InputVariantEnum.PRIMARY |
-  InputVariantEnum.TOUCHED |
-  InputVariantEnum.DANGER |
-  InputVariantEnum.DISABLED
-
-
-export enum InputTypeEnum {
-  PASSWORD = 'password',
-  TEXT = 'text'
-}
-
-export type InputType =
-  InputTypeEnum.TEXT |
-  InputTypeEnum.PASSWORD

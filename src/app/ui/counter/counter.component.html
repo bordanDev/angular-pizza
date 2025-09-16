@@ -1,7 +1,38 @@
-<app-button (click)="dec()" [buttonSize]="'sm'" variant="outline" [text]="''" [iconPosition]="'left'">
+<app-button
+  (click)="dec()"
+  [buttonSize]="'sm'"
+  variant="outline"
+  [text]="''"
+  [iconPosition]="'left'"
+>
   <app-icon [name]="'minus'" [size]="IconSize.sm"></app-icon>
 </app-button>
-{{ counter() }}
-<app-button (click)="inc()" [buttonSize]="'sm'" variant="outline" [text]="''" [iconPosition]="'left'">
+<div
+  tabindex="1"
+  class="counter-input"
+  (click)="isCounterClicked.set(true)"
+  (keypress)="isCounterClicked.set(true)"
+>
+  @if (!isCounterClicked()) {
+    {{ counter() }}
+  } @else {
+    <app-input-fc
+      [width]="100"
+      [isField]="true"
+      (keydown.arrowup)="inc()"
+      (keydown.arrowdown)="dec()"
+      [textAlign]="InputTextAlign.CENTER"
+      [ngModel]="counter()"
+      (ngModelChange)="counter.set($event)"
+    ></app-input-fc>
+  }
+</div>
+<app-button
+  (click)="inc()"
+  [buttonSize]="'sm'"
+  variant="outline"
+  [text]="''"
+  [iconPosition]="'left'"
+>
   <app-icon [name]="'plus'" [size]="IconSize.sm"></app-icon>
 </app-button>

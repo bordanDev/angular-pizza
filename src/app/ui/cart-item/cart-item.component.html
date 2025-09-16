@@ -1,17 +1,51 @@
 @for (pizza of cartPizzas(); track pizza.id) {
-  <div [tabindex]="pizza.id" class="drawer-pizza--card" >
-    <img class="card-image" [src]="pizza.imgUrl" [alt]="pizza.title">
-    <div class="card-info" [ngClass]="{ 'order' : (variant() === CartVariantEnum.Order) }">
-      <a (click)="navigateToPage(pizza.id)" (keydown.enter)="navigateToPage(pizza.id)" class="card-info--title" [tabindex]="pizza.id" >{{ pizza.title }}</a>
+  <div [tabindex]="pizza.id" class="drawer-pizza--card">
+    <img class="card-image" [src]="pizza.imgUrl" [alt]="pizza.title" />
+    <div
+      class="card-info"
+      [ngClass]="{ order: variant() === CartVariantEnum.Order }"
+    >
+      <a
+        (click)="navigateToPage(pizza.id)"
+        (keydown.enter)="navigateToPage(pizza.id)"
+        class="card-info--title"
+        [tabindex]="pizza.id"
+        >{{ pizza.title }}</a
+      >
       @if (variant() === CartVariantEnum.Default) {
-      <p class="card-info--ingredients">{{ pizza.ingredients | listSpacer }}</p>
-        <div style="display: flex; width: 100%; height: 1px; background-color: #F6F6F6;"></div>
+        <p class="card-info--ingredients">
+          {{ pizza.ingredients | listSpacer }}
+        </p>
+        <div
+          style="
+            display: flex;
+            width: 100%;
+            height: 1px;
+            background-color: #f6f6f6;
+          "
+        ></div>
       }
-      <div style="display: flex; justify-content: space-between; align-items: center" [ngStyle]="priceStyle">
-        <app-button (click)="deleteHandler(pizza)" text="" [buttonSize]="'sm'" variant="outline" iconPosition="left"><app-icon [name]="'trash-2'" [size]="IconSize.sm"></app-icon></app-button>
+      @if (isCounted()) {
+        <app-counter></app-counter>
+      }
+      <div
+        style="
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        "
+        [ngStyle]="priceStyle"
+      >
+        <app-button
+          (click)="deleteHandler(pizza)"
+          text=""
+          [buttonSize]="'sm'"
+          variant="outline"
+          iconPosition="left"
+          ><app-icon [name]="'trash-2'" [size]="IconSize.sm"></app-icon
+        ></app-button>
         <p class="card-info--price">${{ pizza.price }}</p>
       </div>
     </div>
   </div>
 }
-

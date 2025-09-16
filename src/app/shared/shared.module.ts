@@ -1,14 +1,10 @@
-import { NgModule } from "@angular/core";
-import { BolderPipe } from "./pipes/search-bolder.pipe";
+import { NgModule } from '@angular/core';
 import { ListSpacerPipe } from './pipes/ingredients-spacer.pipe';
-import { ClickOutsideDirective } from './directives/click-outside.directive';
+import { BolderPipe } from './pipes/search-bolder.pipe';
 
 @NgModule({
-  declarations: [BolderPipe, ListSpacerPipe, ClickOutsideDirective],
+  declarations: [BolderPipe, ListSpacerPipe],
   imports: [],
-  exports: [BolderPipe, ListSpacerPipe, ClickOutsideDirective]
+  exports: [BolderPipe, ListSpacerPipe],
 })
-
-export class SharedModule {
-
-}
+export class SharedModule {}
