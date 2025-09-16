@@ -44,6 +44,7 @@ export class PizzaListDrawerComponent {
   private userPizzaService = inject(UserPizzaService);
   private cartPizzaService = inject(CartDrawerStateService);
   public router = inject(Router);
+  protected route = inject(Route);
 
   protected drawerState = false;
   protected itemsForDrawer = signal<Pizza[]>([]);
